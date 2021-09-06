@@ -1,15 +1,5 @@
 {
   "parser": "babel-eslint",
-  "extends": [
-    "standard",
-    "standard-react",
-    "plugin:prettier/recommended",
-    "prettier/standard",
-    "prettier/react"
-  ],
-  "env": {
-    "node": true
-  },
   "parserOptions": {
     "ecmaVersion": 2020,
     "ecmaFeatures": {
@@ -17,17 +7,37 @@
       "jsx": true
     }
   },
-  "settings": {
-    "react": {
-      "version": "16"
-    }
+  "env": {
+    "node": true
   },
+  "plugins": ["react", "prettier"],
+  "extends": [
+    "prettier",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:import/recommended"
+  ],
+  "settings": { "react": { "version": "17" } },
   "rules": {
-    "space-before-function-paren": 0,
-    "react/prop-types": 0,
-    "react/jsx-handler-names": 0,
-    "react/jsx-fragments": 0,
-    "react/no-unused-prop-types": 0,
-    "import/export": 0
+    "react/prop-types": ["warn"],
+    "react/forbid-prop-types": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/jsx-fragments": ["off"],
+    "semi": ["error", "always"],
+    "quotes": ["error", "double"],
+    "jsx-quotes": ["error", "prefer-double"],
+    "comma-dangle": [
+      "error",
+      {
+        "objects": "always",
+        "arrays": "only-multiline",
+        "imports": "never",
+        "exports": "never",
+        "functions": "never"
+      }
+    ],
+    "no-undef": "error",
+    "no-use-before-define": "off",
+    "import/no-unresolved": "off"
   }
 }
