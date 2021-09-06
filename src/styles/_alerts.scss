@@ -1,0 +1,56 @@
+/* alerts */
+
+.alert {
+  color: $light;
+  opacity: 0.8;
+  filter: alpha(opacity=30);
+  border-radius: 3px;
+  box-shadow: 0 9px 18px $body-bg;
+  box-sizing: border-box;
+}
+
+.alert-success {
+  background-color: darken($color: $success, $amount: 30);
+  border: 1px solid $success;
+}
+
+.alert-info {
+  background-color: darken($color: $info, $amount: 45);
+  border: 1px solid $info;
+}
+
+.alert-secondary {
+  background-color: darken($color: $secondary, $amount: 45);
+  border: 1px solid $secondary;
+}
+
+.alert-warning {
+  background-color: darken($color: $warning, $amount: 40);
+  border: 1px solid $warning;
+}
+
+.alert-danger {
+  background-color: darken($color: $danger, $amount: 50);
+  border: 1px solid $danger;
+}
+
+.alert-light {
+  color: $yiq-text-dark;
+  background-color: $light;
+  border: 1px solid $darker;
+}
+
+.alert-dark {
+  background-color: darken($color: $dark, $amount: 5);
+  border: 2px solid $dark;
+}
+
+.alert-accent-1 {
+  background-color: darken($color: $accent-1, $amount: 20);
+  border: 1px solid $accent-1;
+}
+
+.alert-accent-2 {
+  background-color: darken($color: $accent-2, $amount: 35);
+  border: 1px solid $accent-2;
+}

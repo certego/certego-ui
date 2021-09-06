@@ -1,0 +1,37 @@
+/* nav */
+
+.nav-tabs {
+  background-color: $navbar-dark-bg;
+  .nav-item {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+/* stylelint-disable selector-max-type, selector-max-class, selector-max-compound-selectors */
+.navbar-dark {
+  background-color: $navbar-dark-bg;
+  // only bottom shadow, useful for dark theme
+  box-shadow: $box-shadow-sm;
+  @include border-bottom-radius($border-radius-lg);
+
+  .navbar-nav {
+    .nav-item {
+      @include media-breakpoint-down(sm) {
+        .dropdown-menu {
+          background-color: lighten($navbar-dark-bg, 2.5%) !important;
+          box-shadow: none;
+
+          .dropdown-item,
+          .dropdown-header {
+            text-align: center;
+          }
+        }
+      }
+      .nav-link-active {
+        color: $nav-tabs-link-active-color !important;
+      }
+    }
+  }
+}

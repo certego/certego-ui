@@ -1,0 +1,92 @@
+// theme
+@import "variables";
+@import "~bootstrap/scss/bootstrap";
+@import url("https://fonts.googleapis.com/css?family=Montserrat:200,300,400,500,600|Pacifico|Roboto:700");
+
+// local files
+@import "_alerts";
+@import "_button";
+@import "_card";
+@import "_chat";
+@import "_form";
+@import "_list";
+@import "_nav";
+@import "_overwrite";
+@import "_recharts";
+@import "_spinners";
+@import "_table";
+@import "_text";
+@import "_toast";
+@import "_utils";
+
+/* custom SCSS */
+
+body {
+  margin-top: 5rem;
+  line-height: 1.65;
+  font-size: 12pt;
+}
+
+footer {
+  z-index: 9999 !important;
+}
+
+hr {
+  background-color: $light;
+}
+
+/* custom */
+
+a:hover {
+  color: $primary !important;
+  text-decoration: none !important;
+}
+
+/* links */
+
+.link {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+.link-primary {
+  cursor: pointer;
+  color: $primary !important;
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+.link-ul-primary {
+  cursor: pointer;
+  color: $primary !important;
+  text-decoration: underline;
+  &:hover {
+    color: $primary !important;
+    text-decoration: none !important;
+  }
+}
+
+.link-ul-muted {
+  cursor: pointer;
+  color: $text-muted-color !important;
+  text-decoration: underline;
+  &:hover {
+    color: $text-muted-color !important;
+    text-decoration: none !important;
+  }
+}
+
+// moment
+
+.moment-hoverable {
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  cursor: pointer;
+  &:hover {
+    background-color: $dark;
+    color: $info;
+  }
+}
