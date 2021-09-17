@@ -16,7 +16,7 @@ import useFuzzySearch from "../../hooks/useFuzzySearch";
 const SCROLL_STEP = 10;
 
 // Component
-function InfiniteScrollList(props) {
+export default function InfiniteScrollList(props) {
   // props
   const {
     data,
@@ -24,6 +24,7 @@ function InfiniteScrollList(props) {
     searchableKeys,
     renderListItem,
     genListKeyProp,
+    children,
     ...rest
   } = props;
 
@@ -57,11 +58,10 @@ function InfiniteScrollList(props) {
         hasMore: index < data.length,
       }));
     }, 150);
-  }, [data.length, setState]);
+  }, [data, setState]);
 
   return (
     <Fade in timeout={200} {...rest}>
-      {/* FIXME use infinite scroll list */}
       <ListGroup>
         <InfiniteScroll
           dataLength={state.index}
@@ -79,10 +79,13 @@ function InfiniteScrollList(props) {
             )
           }
         >
-          {/* Search Input */}
-          {showSearch && data?.length > 5 && (
-            <Col className="d-flex align-items-center justify-content-end my-3">
-              <Col md={3}>
+          {/* Extra Actions */}
+          <Col className="py-3 d-flex align-items-center justify-content-end">
+            {/* Children */}
+            <Col>{children}</Col>
+            {/* Search Input */}
+            <Col md={3}>
+              {showSearch && data?.length > 5 && (
                 <Input
                   name="search-input"
                   type="search"
@@ -91,9 +94,9 @@ function InfiniteScrollList(props) {
                   placeholder="Search keyword"
                   onChange={onInputChange}
                 />
-              </Col>
+              )}
             </Col>
-          )}
+          </Col>
           {/* List Items */}
           {items?.length ? (
             items
@@ -118,11 +121,11 @@ InfiniteScrollList.propTypes = {
   searchableKeys: PropTypes.array,
   renderListItem: PropTypes.func.isRequired,
   genListKeyProp: PropTypes.func.isRequired,
+  children: PropTypes.node,
 };
 
 InfiniteScrollList.defaultProps = {
   showSearch: true,
   searchableKeys: [],
+  children: null,
 };
-
-export default React.memo(InfiniteScrollList);

@@ -2,7 +2,7 @@ $enable-shadows: true;
 
 // font
 $font-family-sans-serif: "Montserrat", sans-serif;
-$font-family-monospace: "Inconsolata", monospace;
+$font-family-monospace: "Montserrat", monospace;
 $font-size-base: 1rem;
 
 // color palette
@@ -233,6 +233,7 @@ $table-bg: $body-bg;
 $table-hover-bg: $yiq-text-dark;
 $table-accent-bg: rgba($light-bluish-grey, 0.1);
 $table-row-disabled-bg: darken($dark-bluish-grey, 6.5);
+$table-border: 1px solid $dark;
 
 // chat
 $chat-color: #ebebeb;

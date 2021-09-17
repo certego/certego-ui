@@ -22,14 +22,14 @@ textarea {
 
 /* Weight range slider */
 
-// Chrome
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  input[type="range"]::-webkit-slider-runnable-track {
+input[type="range"] {
+  // Chrome
+  &::-webkit-slider-runnable-track {
     overflow: hidden;
     height: 5px;
     background-color: $light;
   }
-  input[type="range"]::-webkit-slider-thumb {
+  &::-webkit-slider-thumb {
     cursor: ew-resize;
     height: 12px;
     width: 12px;
@@ -37,25 +37,25 @@ textarea {
     background-color: darken($info, 30%);
     box-shadow: -80px 0 0 80px $sev-medium;
   }
-}
 
-// Firefox
-input[type="range"]::-moz-range-progress {
-  background: linear-gradient(
-    to right,
-    $sev-very-low 0%,
-    $sev-medium 20%,
-    $sev-critical 90%
-  );
-}
-input[type="range"]::-moz-range-track {
-  height: 2.5px;
-  background-color: $light;
-}
-input[type="range"]::-moz-range-thumb {
-  cursor: ew-resize;
-  height: 12px;
-  width: 12px;
-  background-color: darken($info, 30%);
-  border-radius: 0;
+  // Firefox
+  &::-moz-range-progress {
+    background: linear-gradient(
+      to right,
+      $sev-very-low 0%,
+      $sev-medium 20%,
+      $sev-critical 90%
+    );
+  }
+  &::-moz-range-track {
+    height: 2.5px;
+    background-color: $light;
+  }
+  &::-moz-range-thumb {
+    cursor: ew-resize;
+    height: 12px;
+    width: 12px;
+    background-color: darken($info, 30%);
+    border-radius: 0;
+  }
 }

@@ -27,7 +27,7 @@ tr.head-row {
 
 th,
 td {
-  border: 0.025px solid $dark !important;
+  border: $table-border !important;
   border-collapse: collapse;
 }
 
