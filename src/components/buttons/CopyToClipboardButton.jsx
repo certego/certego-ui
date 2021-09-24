@@ -12,14 +12,14 @@ function CopyToClipboardButton(props) {
   // local state
   const [copied, setCopied] = React.useState(false);
 
-  const [_, copyToClipboard] = useCopyToClipboard();
+  const [, copyToClipboard] = useCopyToClipboard();
 
   // callbacks
-  const onCopy = React.useCallback(() => {
+  const onCopy = () => {
     copyToClipboard(text);
     setCopied(true);
     setTimeout(() => setCopied(false), tooltip?.timeout || 1000);
-  }, [setCopied]);
+  };
 
   return (
     <>
@@ -40,7 +40,7 @@ function CopyToClipboardButton(props) {
         target={`copyBtn-${id}`}
         trigger="click"
         innerClassName="bg-info text-darker"
-        delay={{ show: 0, hide: 0 }}
+        delay={{ show: 0, hide: 0, }}
       >
         {tooltip?.text || "Copied!"}
       </Tooltip>

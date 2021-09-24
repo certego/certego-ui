@@ -7,7 +7,7 @@ import { Button } from "reactstrap";
 // constants
 const SCROLL_Y_OFFSET = 300;
 
-export default function ScrollToTopButton() {
+export default function ScrollToTopButton(props) {
   const [isVisible, setIsVisible] = React.useState(false);
 
   // Show button when page is scrolled upto given distance
@@ -16,7 +16,7 @@ export default function ScrollToTopButton() {
       window.pageYOffset > SCROLL_Y_OFFSET
         ? setIsVisible(true)
         : setIsVisible(false),
-    [setIsVisible],
+    [setIsVisible]
   );
 
   // Set the top cordinate to 0
@@ -29,10 +29,10 @@ export default function ScrollToTopButton() {
 
   React.useEffect(() => {
     window.addEventListener("scroll", toggleVisibility);
-  }, []);
+  }, [toggleVisibility]);
 
   return (
-    <div id="ScrollToTopButton">
+    <div id="ScrollToTopButton" {...props}>
       {isVisible && (
         <Button onClick={scrollToTop} color="accent-1" size="md">
           <MdArrowUpward />

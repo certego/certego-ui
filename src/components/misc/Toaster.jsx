@@ -14,7 +14,14 @@ function getIcon(color) {
   return iconChoices[color] ? iconChoices[color] : iconChoices.info;
 }
 
-function Toaster({ header, body, color, timeout, showToggle, ...props }) {
+export default function Toaster({
+  header,
+  body,
+  color,
+  timeout,
+  showToggle,
+  ...props
+}) {
   // state
   const [show, setShow] = useState(true);
   const toggle = useCallback(() => setShow((v) => !v), [setShow]);
@@ -53,5 +60,3 @@ Toaster.defaultProps = {
   timeout: 4000,
   showToggle: false,
 };
-
-export default Toaster;

@@ -38,7 +38,7 @@ export default function PopupFormButton(props) {
         <UncontrolledTooltip
           target={btnId}
           placement={titlePlacement}
-          delay={{ show: 0 }}
+          delay={{ show: 0, }}
         >
           {title}
         </UncontrolledTooltip>

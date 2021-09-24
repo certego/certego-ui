@@ -1,4 +1,4 @@
-/* global FileReader, Promise */
+/* global FileReader */
 
 export function isObject(obj) {
   return typeof obj === "object" && obj !== null;
@@ -46,9 +46,8 @@ export function objToString(obj) {
   const stringify = (key, val) =>
     typeof val === "object"
       ? Object.entries(val).map(([k, v]) =>
-        // eslint-disable-next-line no-restricted-globals
-        stringify(isNaN(k) ? `${key}.${k}` : `${key}[${k}]`, v)
-      )
+          stringify(Number.isNaN(k) ? `${key}.${k}` : `${key}[${k}]`, v)
+        )
       : `${key}: ${val}`;
   return Object.entries(obj).reduce(
     (str, [key, val]) => `${str}${stringify(key, val)}\n`,
