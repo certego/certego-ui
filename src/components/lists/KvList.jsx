@@ -19,7 +19,7 @@ function recurseArray(key, arr) {
             small: !isObject(val),
           })}
         >
-          {isObject(val) ? recurseObjectList(val) : val || "null"}
+          {isObject(val) ? recurseObjectList(val) : val}
         </p>
       ))}
     </Details>
@@ -32,13 +32,13 @@ function recurseObjectList(obj) {
     <ListGroupItem key={`kvlist-objlist__${key}-${val}`}>
       <span className="text-gray">{key}:</span>
       <span className="ml-2">
-        {isObject(val) ? recurseObjectList(val) : val || "null"}
+        {isObject(val) ? recurseObjectList(val) : val}
       </span>
     </ListGroupItem>
   ));
 }
 
-function KvList(props) {
+export default function KvList(props) {
   const { object, ...rest } = props;
 
   const entries = Object.entries(object);
@@ -55,7 +55,7 @@ function KvList(props) {
               ? Array.isArray(val)
                 ? recurseArray(key, val)
                 : recurseObjectList(val)
-              : val || "null"}
+              : val}
           </Col>
         </ListGroupItem>
       ))}
@@ -66,5 +66,3 @@ function KvList(props) {
 KvList.propTypes = {
   object: PropTypes.object.isRequired,
 };
-
-export default KvList;
