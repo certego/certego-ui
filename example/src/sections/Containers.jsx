@@ -1,11 +1,39 @@
 import React from "react";
 import { Row } from "reactstrap";
 
-import { ContentSection, SmallInfoCard } from "@certego/certego-ui";
+import {
+  ContentSection,
+  SmallInfoCard,
+  Loader,
+  LoadingBoundary,
+} from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";
 
 export default function Containers(props) {
+  const [loading, setLoading] = React.useState(true);
+
+  // onComponentMount
+  React.useEffect(() => {
+    const interval = setInterval(() => setLoading((s) => !s), 2000);
+    return () => clearInterval(interval);
+  }, [setLoading]);
+
+  const exampleRenderFn = React.useCallback(
+    () => (
+      <Row>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
+          odit? Saepe earum nostrum rerum quasi nisi illo sit. Numquam nesciunt
+          pariatur natus alias aperiam. Repellat velit perspiciatis sed rem
+          commodi!
+        </p>
+        <p className="text-muted">Will refetch in a second...</p>
+      </Row>
+    ),
+    []
+  );
+
   return (
     <ContentSection {...props}>
       <ComponentAsExample
@@ -60,6 +88,25 @@ export default function Containers(props) {
               </p>
             }
             foo
+          />
+        }
+      />
+      <ComponentAsExample
+        name="Loader"
+        bodyNode={<Loader loading={loading} render={exampleRenderFn} />}
+      />
+      <ComponentAsExample
+        name="LoadingBoundary"
+        bodyNode={
+          <LoadingBoundary
+            render={exampleRenderFn}
+            error={{
+              response: {
+                status: 404,
+                statusText: "Not Found",
+              },
+              parsedMsg: "An error occured.",
+            }}
           />
         }
       />

@@ -7,6 +7,7 @@ import {
   Details,
   Toaster,
   UserBubble,
+  FallBackLoading,
 } from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";
@@ -95,6 +96,10 @@ export default function Misc(props) {
             />
           </Row>
         }
+      />
+      <ComponentAsExample
+        name="FallBackLoading"
+        bodyNode={<FallBackLoading className="mt-5" />}
       />
     </ContentSection>
   );
