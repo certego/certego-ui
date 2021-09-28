@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/certego-ui/static/css/main.cfe46c09.chunk.css",
-    "main.js": "/certego-ui/static/js/main.ee3d66e5.chunk.js",
-    "main.js.map": "/certego-ui/static/js/main.ee3d66e5.chunk.js.map",
+    "main.js": "/certego-ui/static/js/main.77fd30e3.chunk.js",
+    "main.js.map": "/certego-ui/static/js/main.77fd30e3.chunk.js.map",
     "runtime-main.js": "/certego-ui/static/js/runtime-main.c1a85ddb.js",
     "runtime-main.js.map": "/certego-ui/static/js/runtime-main.c1a85ddb.js.map",
     "static/js/2.3368527f.chunk.js": "/certego-ui/static/js/2.3368527f.chunk.js",
@@ -27,6 +27,6 @@
     "static/js/runtime-main.c1a85ddb.js",
     "static/js/2.3368527f.chunk.js",
     "static/css/main.cfe46c09.chunk.css",
-    "static/js/main.ee3d66e5.chunk.js"
+    "static/js/main.77fd30e3.chunk.js"
   ]
 }
