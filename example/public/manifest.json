@@ -1,6 +1,6 @@
 {
-  "short_name": "certego-ui",
-  "name": "certego-ui",
+  "short_name": "@certego/certego-ui",
+  "name": "@certego/certego-ui",
   "icons": [
     {
       "src": "favicon.ico",
