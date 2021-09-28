@@ -1,22 +1,24 @@
 /* global window */
 
 import React from "react";
+import PropTypes from "prop-types";
 import { MdArrowUpward } from "react-icons/md";
 import { Button } from "reactstrap";
 
-// constants
-const SCROLL_Y_OFFSET = 300;
-
 export default function ScrollToTopButton(props) {
-  const [isVisible, setIsVisible] = React.useState(false);
+  // props
+  const { defaultVisible, scrollYOffset, ...rest } = props;
+
+  // local state
+  const [isVisible, setIsVisible] = React.useState(defaultVisible);
 
   // Show button when page is scrolled upto given distance
   const toggleVisibility = React.useCallback(
     () =>
-      window.pageYOffset > SCROLL_Y_OFFSET
+      window.pageYOffset > scrollYOffset
         ? setIsVisible(true)
         : setIsVisible(false),
-    [setIsVisible]
+    [scrollYOffset, setIsVisible]
   );
 
   // Set the top cordinate to 0
@@ -32,7 +34,7 @@ export default function ScrollToTopButton(props) {
   }, [toggleVisibility]);
 
   return (
-    <div id="ScrollToTopButton" {...props}>
+    <div id="ScrollToTopButton" {...rest}>
       {isVisible && (
         <Button onClick={scrollToTop} color="accent-1" size="md">
           <MdArrowUpward />
@@ -41,3 +43,13 @@ export default function ScrollToTopButton(props) {
     </div>
   );
 }
+
+ScrollToTopButton.propTypes = {
+  defaultVisible: PropTypes.bool,
+  scrollYOffset: PropTypes.number,
+};
+
+ScrollToTopButton.defaultProps = {
+  defaultVisible: false,
+  scrollYOffset: 300,
+};
