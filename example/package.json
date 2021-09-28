@@ -10,10 +10,16 @@
     "eject": "node ../node_modules/react-scripts/bin/react-scripts.js eject"
   },
   "dependencies": {
+    "@certego/certego-ui": "file:..",
     "react": "file:../node_modules/react",
     "react-dom": "file:../node_modules/react-dom",
+    "react-router": "file:../node_modules/react-router",
+    "react-router-dom": "file:../node_modules/react-router-dom",
     "react-scripts": "file:../node_modules/react-scripts",
-    "@certego/certego-ui": "file:.."
+    "bootstrap": "~4.6.0",
+    "reactstrap": "^8.9.0",
+    "formik": "^2.2.9",
+    "formstrap": "^1.1.3"
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
