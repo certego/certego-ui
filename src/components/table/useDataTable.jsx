@@ -1,7 +1,7 @@
 import React from "react";
 import useAxios from "axios-hooks";
 
-import LoadingBoundary from "../LoadingBoundary";
+import LoadingBoundary from "../containers/LoadingBoundary";
 
 import DataTable from "./DataTable";
 import useQueryParamsTable from "./useQueryParamsTable";
@@ -12,8 +12,8 @@ const pageParams = {
 };
 
 function useDataTable(
-  { url, params: defaultParams, initialParams },
-  toPassTableProps,
+  { url, params: defaultParams, initialParams, },
+  toPassTableProps
 ) {
   // hook
   const [params, tableInitialState, tableStateReducer] = useQueryParamsTable({
@@ -24,9 +24,9 @@ function useDataTable(
   const [initialLoading, setInitialLoading] = React.useState(true);
 
   // API
-  const [{ data, loading, error }, refetch] = useAxios({
+  const [{ data, loading, error, }, refetch] = useAxios({
     url,
-    params: { ...pageParams, ...defaultParams, ...params },
+    params: { ...pageParams, ...defaultParams, ...params, },
   });
 
   // side-effects
@@ -49,7 +49,7 @@ function useDataTable(
             manualPagination
             manualFilters
             manualSortBy
-            customProps={{ refetchTableData: refetch }}
+            customProps={{ refetchTableData: refetch, }}
             {...toPassTableProps}
           />
         )}
@@ -63,7 +63,7 @@ function useDataTable(
       tableStateReducer,
       refetch,
       toPassTableProps,
-    ],
+    ]
   );
 
   return [data, tableNode, refetch];

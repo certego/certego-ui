@@ -42,7 +42,7 @@ function Tabs(props) {
               <TabPane key={`tabs-tabpane-${i}`} tabId={i} className="pt-3">
                 {render()}
               </TabPane>
-            ),
+            )
         )}
       </TabContent>
     </>
@@ -57,7 +57,7 @@ Tabs.defaultProps = {
 
 Tabs.propTypes = {
   tabTitles: PropTypes.arrayOf(
-    PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object]),
+    PropTypes.oneOfType([PropTypes.string, PropTypes.node, PropTypes.object])
   ).isRequired,
   renderables: PropTypes.arrayOf(PropTypes.func).isRequired,
   defaultTab: PropTypes.number,

@@ -40,7 +40,7 @@ function ElasticTimePicker(props) {
    */
   const onClick = React.useCallback(
     (e) => setSelected(e.currentTarget.value),
-    [setSelected],
+    [setSelected]
   );
 
   // effects
@@ -51,7 +51,7 @@ function ElasticTimePicker(props) {
     } else {
       onChange(selected, intervalToTime(selected));
     }
-  }, [selected]);
+  }, [onChange, selected]);
 
   return (
     <ButtonGroup size={size} {...rest}>

@@ -9,7 +9,6 @@
   }
 }
 
-/* stylelint-disable selector-max-type, selector-max-class, selector-max-compound-selectors */
 .navbar-dark {
   background-color: $navbar-dark-bg;
   // only bottom shadow, useful for dark theme
@@ -33,5 +32,45 @@
         color: $nav-tabs-link-active-color !important;
       }
     }
+  }
+}
+
+/* links */
+
+.link {
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline !important;
+  }
+}
+
+.link-primary {
+  @extend .link;
+  color: $primary !important;
+}
+
+.link-muted {
+  @extend .link;
+  color: $text-muted-color !important;
+  &:hover {
+    color: $text-muted-color !important;
+  }
+}
+
+.link-ul-primary {
+  @extend .link-primary;
+  text-decoration: underline;
+  &:hover {
+    color: $primary !important;
+    text-decoration: none !important;
+  }
+}
+
+.link-ul-muted {
+  @extend .link-muted;
+  text-decoration: underline;
+  &:hover {
+    color: $text-muted-color !important;
+    text-decoration: none !important;
   }
 }

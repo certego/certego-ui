@@ -5,7 +5,7 @@ import { Row, Col, Nav, TabContent } from "reactstrap";
 import { Switch, Redirect } from "react-router-dom";
 
 import useRouterTabs from "./useRouterTabs";
-import FallBackLoading from "../FallbackLoading";
+import FallBackLoading from "../misc/FallbackLoading";
 
 /**
  * @example

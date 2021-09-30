@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import classnames from "classnames";
 import { Spinner, Col } from "reactstrap";
 
-import ErrorAlert from "./alerts/ErrorAlert";
+import ErrorAlert from "../alerts/ErrorAlert";
 
 function LoadingBoundary(props) {
   const { loading, error, size, render, renderError, } = props;

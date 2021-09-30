@@ -1,8 +1,3 @@
-// individual
-export { default as FallBackLoading } from "./FallbackLoading";
-export { default as Loader } from "./Loader";
-export { default as LoadingBoundary } from "./LoadingBoundary";
-
 // grouped
 export * from "./alerts";
 export * from "./buttons";

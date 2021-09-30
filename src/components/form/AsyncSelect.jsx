@@ -5,7 +5,7 @@ import { Button } from "reactstrap";
 import { MdClear } from "react-icons/md";
 
 import Select from "./Select";
-import Loader from "../Loader";
+import Loader from "../containers/Loader";
 
 export default function AsyncSelect(props) {
   // console.debug(`AsyncSelect-${props.name} rendered!`);

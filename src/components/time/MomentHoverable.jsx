@@ -8,7 +8,7 @@ import {
   ListGroupItem,
   UncontrolledPopover,
   PopoverHeader,
-  PopoverBody,
+  PopoverBody
 } from "reactstrap";
 
 function MomentHoverable(props) {
@@ -37,7 +37,7 @@ function MomentHoverable(props) {
         <PopoverBody className="bg-body">
           <ListGroup flush>
             {showAgo && (
-              <ListGroupItem className="p-1 d-flex-custom">
+              <ListGroupItem className="p-1 d-flex justify-content-between align-items-center">
                 <b className="mx-auto text-secondary">
                   <Moment
                     unix={typeof value === "number"}
@@ -47,11 +47,11 @@ function MomentHoverable(props) {
                 </b>
               </ListGroupItem>
             )}
-            <ListGroupItem className="p-1 d-flex-custom">
+            <ListGroupItem className="p-1 d-flex justify-content-between align-items-center">
               <b>UTC</b>
               <span className="ml-4">{utcVal}</span>
             </ListGroupItem>
-            <ListGroupItem className="p-1 d-flex-custom">
+            <ListGroupItem className="p-1 d-flex justify-content-between align-items-center">
               <b>{userTz} · Your computer</b>
               <span className="ml-4">{userTzVal}</span>
             </ListGroupItem>
