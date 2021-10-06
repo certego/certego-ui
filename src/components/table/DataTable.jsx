@@ -2,14 +2,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
+import { Table } from "reactstrap";
 import { useTable, useMountedLayoutEffect } from "react-table";
-import { Table, Col } from "reactstrap";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
+
 import {
   makeTableArgs,
   defaultConfig,
   defaultInitialState,
-  defaultColumn,
+  defaultColumn
 } from "./utils";
 import Paginator from "./Paginator";
 
@@ -23,8 +24,8 @@ function DataTable({
 }) {
   // merge user specified config with default config
   const config = React.useMemo(
-    () => ({ ...defaultConfig, ...userConfig }),
-    [userConfig],
+    () => ({ ...defaultConfig, ...userConfig, }),
+    [userConfig]
   );
 
   const tableArgs = React.useMemo(() => makeTableArgs(config), [config]);
@@ -39,7 +40,7 @@ function DataTable({
     gotoPage,
     pageOptions,
     selectedFlatRows,
-    state: { pageIndex },
+    state: { pageIndex, },
   } = useTable(
     {
       defaultColumn,
@@ -53,7 +54,7 @@ function DataTable({
       autoResetRowState: false,
       ...rest,
     },
-    ...tableArgs,
+    ...tableArgs
   );
 
   useMountedLayoutEffect(() => {
@@ -69,95 +70,85 @@ function DataTable({
 
   // Use the state and functions returned from useTable to build your UI
   return (
-    <>
-      {/* Table */}
-      <Col xl="12" className="p-0">
-        <Table
-          className="text-light"
-          striped
-          hover
-          {...getTableProps(tableProps)}
-        >
-          {/* Table Head */}
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr className="head-row" {...headerGroup.getHeaderGroupProps()}>
-                {headerGroup.headers.map((column) => (
-                  <th
-                    className={column.isSorted ? "text-primary" : ""}
-                    {...column.getHeaderProps()}
-                  >
-                    <div
-                      className="text-center"
-                      {...(column.canSort ? column.getSortByToggleProps() : {})}
-                    >
-                      {column.render("Header")}
-                      {column.canSort &&
-                        (column.isSorted ? (
-                          column.isSortedDesc ? (
-                            <FaSortDown />
-                          ) : (
-                            <FaSortUp />
-                          )
-                        ) : (
-                          <FaSort className="text-muted small" />
-                        ))}
-                    </div>
-                    <div className="d-flex mt-1">
-                      {column.canFilter && column.render("Filter")}
-                    </div>
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          {/* Table Body */}
-          <tbody {...getTableBodyProps()}>
-            {page?.length ? (
-              page.map((row) => {
-                prepareRow(row);
-                const { key, ...rowProps } = row.getRowProps();
-                return (
-                  <React.Fragment key={key}>
-                    {/* table row */}
-                    <tr
-                      {...rowProps}
-                      className={classnames(rowProps.className, {
-                        "row-selected": row.isSelected,
-                      })}
-                    >
-                      {row.cells.map((cell) => (
-                        <td className="text-center" {...cell.getCellProps()}>
-                          {cell.render("Cell")}
-                        </td>
-                      ))}
-                    </tr>
-                    {/* SubComponent */}
-                    {SubComponent && config?.enableExpanded && row?.isExpanded && (
-                      <tr>
-                        <td colSpan={visibleColumns.length}>
-                          <SubComponent row={row} />
-                        </td>
-                      </tr>
-                    )}
-                  </React.Fragment>
-                );
-              })
-            ) : (
-              <tr>
-                <td
-                  colSpan={visibleColumns.length}
-                  className="text-large font-weight-bold text-center"
+    <Table striped hover {...getTableProps(tableProps)}>
+      {/* Table Head */}
+      <thead>
+        {headerGroups.map((headerGroup) => (
+          <tr className="head-row" {...headerGroup.getHeaderGroupProps()}>
+            {headerGroup.headers.map((column) => (
+              <th
+                className={column.isSorted ? "text-primary" : ""}
+                {...column.getHeaderProps()}
+              >
+                <div
+                  className="text-center"
+                  {...(column.canSort ? column.getSortByToggleProps() : {})}
                 >
-                  {tableEmptyNode}
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </Table>
-      </Col>
-      {/* Paginator */}
-      <Col xl="12" className="d-flex justify-content-center">
+                  {column.render("Header")}
+                  {column.canSort &&
+                    (column.isSorted ? (
+                      column.isSortedDesc ? (
+                        <FaSortDown />
+                      ) : (
+                        <FaSortUp />
+                      )
+                    ) : (
+                      <FaSort className="text-muted small" />
+                    ))}
+                </div>
+                <div className="d-flex mt-1">
+                  {column.canFilter && column.render("Filter")}
+                </div>
+              </th>
+            ))}
+          </tr>
+        ))}
+      </thead>
+      {/* Table Body */}
+      <tbody {...getTableBodyProps()}>
+        {page?.length ? (
+          page.map((row) => {
+            prepareRow(row);
+            const { key, ...rowProps } = row.getRowProps();
+            return (
+              <React.Fragment key={key}>
+                {/* table row */}
+                <tr
+                  {...rowProps}
+                  className={classnames(rowProps.className, {
+                    "row-selected": row.isSelected,
+                  })}
+                >
+                  {row.cells.map((cell) => (
+                    <td className="text-center" {...cell.getCellProps()}>
+                      {cell.render("Cell")}
+                    </td>
+                  ))}
+                </tr>
+                {/* SubComponent */}
+                {SubComponent && config?.enableExpanded && row?.isExpanded && (
+                  <tr>
+                    <td colSpan={visibleColumns.length}>
+                      <SubComponent row={row} />
+                    </td>
+                  </tr>
+                )}
+              </React.Fragment>
+            );
+          })
+        ) : (
+          <tr>
+            <td
+              colSpan={visibleColumns.length}
+              className="text-large font-weight-bold text-center"
+            >
+              {tableEmptyNode}
+            </td>
+          </tr>
+        )}
+      </tbody>
+      {/* Table Footer; Paginator */}
+      <tfoot>
         {pageOptions.length > 1 && (
           <Paginator
             pageIndex={pageIndex}
@@ -165,8 +156,8 @@ function DataTable({
             onPaginate={gotoPage}
           />
         )}
-      </Col>
-    </>
+      </tfoot>
+    </Table>
   );
 }
 

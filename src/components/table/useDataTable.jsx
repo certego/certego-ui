@@ -10,10 +10,12 @@ const pageParams = {
   page_size: 10,
   page: 1,
 };
+const defaultModifier = (d) => d?.results || [];
 
 function useDataTable(
   { url, params: defaultParams, initialParams, },
-  toPassTableProps
+  toPassTableProps,
+  modifier = defaultModifier
 ) {
   // hook
   const [params, tableInitialState, tableStateReducer] = useQueryParamsTable({
@@ -42,7 +44,7 @@ function useDataTable(
         error={error}
         render={() => (
           <DataTable
-            data={data?.results || []}
+            data={data ? modifier(data) : []}
             pageCount={data?.total_pages || 1}
             stateReducer={tableStateReducer}
             initialState={tableInitialState}
@@ -57,6 +59,7 @@ function useDataTable(
     ),
     [
       data,
+      modifier,
       initialLoading,
       error,
       tableInitialState,

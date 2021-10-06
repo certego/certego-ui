@@ -160,12 +160,6 @@ $spinner-borders-widths: (
 $progress-bg: rgba(255, 255, 255, 0.85);
 $progress-border-radius: $reduced-border-radius;
 
-// pagination
-$pagination-active-bg: $secondary;
-$pagination-bg: $tertiary;
-$pagination-hover-bg: lighten($pagination-bg, 10%);
-$pagination-disabled-bg: darken($pagination-bg, 10%);
-
 // toast
 $toast-color: lighten($yiq-text-dark, 20%);
 
@@ -231,10 +225,25 @@ $navbar-crosshair-height: 0.5rem;
 
 // table
 $table-bg: $body-bg;
+$table-color: $light;
 $table-hover-bg: $yiq-text-dark;
 $table-accent-bg: rgba($light-bluish-grey, 0.1);
 $table-row-disabled-bg: darken($dark-bluish-grey, 6.5);
 $table-border: 1px solid $dark;
+
+// pagination
+$pagination-active-color: $info;
+$pagination-hover-color: $info;
+$pagination-disabled-color: $text-muted-color;
+$pagination-bg: $darker;
+$pagination-active-bg: lighten($pagination-bg, 9%);
+$pagination-hover-bg: lighten($pagination-bg, 6%);
+$pagination-disabled-bg: $pagination-bg;
+$pagination-border-width: 0;
+$pagination-border-radius-sm: 0;
+$pagination-border-radius-lg: 0;
+$pagination-border-color: $light;
+$pagination-line-height: 0.75rem;
 
 // chat
 $chat-color: #ebebeb;
