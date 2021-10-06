@@ -1,5 +1,12 @@
+/* eslint-disable react/prop-types */
+
 import React from "react";
+import { useRowSelect, useExpanded } from "react-table";
 import { CustomInput, UncontrolledTooltip } from "reactstrap";
+
+import ArrowToggleIcon from "../icons/ArrowToggleIcon";
+
+// hooks factory
 
 export const createUseRowDisabledHook = (hocProps) => (hooks) => {
   // HoC Props
@@ -17,7 +24,7 @@ export const createUseRowDisabledHook = (hocProps) => (hooks) => {
 
   hooks.visibleColumns.push((columns, { instance, }) => [
     {
-      id: "rules-table-actions",
+      id: "data-table-disabled_row_action",
       width: 80,
       // eslint-disable-next-line react/prop-types
       Cell: ({ row: { original: obj, }, }) =>
@@ -44,8 +51,97 @@ export const createUseRowDisabledHook = (hocProps) => (hooks) => {
   ]);
 };
 
-// export function createUseRowDisabledHook(props) {
-//   const hook = useRowDisabledAbstract(props);
-//   hook.pluginName = "useRowDisabled";
-//   return hook;
-// }
+export const rowSelectHooks = [
+  useRowSelect,
+  (hooks) => {
+    hooks.visibleColumns.push((columns, { instance: { isRowSelectable, }, }) => [
+      {
+        id: "data-table_row-selection",
+        maxWidth: 80,
+        // The header can use the table's getToggleAllRowsSelectedProps method
+        // to render a checkbox
+        Header: ({ selectedFlatRows, toggleRowSelected, page: pageRows, }) => {
+          const selectableRows = React.useMemo(
+            () => pageRows.filter((r) => isRowSelectable(r)),
+            [pageRows]
+          );
+          const onChange = React.useCallback(
+            (e) =>
+              e.target.checked
+                ? selectableRows.forEach((r) => toggleRowSelected(r.id, true))
+                : selectableRows.forEach((r) => toggleRowSelected(r.id, false)),
+            [selectableRows, toggleRowSelected]
+          );
+          return selectableRows.length ? (
+            <div
+              className="d-flex flex-column"
+              title="Toggle selection for all row objects you have ownership for"
+            >
+              <h6 className="text-muted">{selectedFlatRows.length} selected</h6>
+              <IndeterminateCheckbox
+                id="data-table-checkbox_header"
+                indeterminate={
+                  selectedFlatRows.length > 0 &&
+                  selectableRows.length !== selectedFlatRows.length
+                }
+                checked={
+                  selectableRows.length > 0 &&
+                  selectableRows.length === selectedFlatRows.length
+                }
+                onChange={onChange}
+              />
+            </div>
+          ) : null;
+        },
+        Cell: ({ row, }) =>
+          isRowSelectable(row) ? (
+            <IndeterminateCheckbox
+              id={`data-table-checkbox_cell_${row.id}`}
+              {...row.getToggleRowSelectedProps()}
+            />
+          ) : null,
+      },
+      ...columns,
+    ]);
+  },
+];
+
+export const rowExpandHooks = [
+  useExpanded,
+  (hooks) => {
+    hooks.visibleColumns.push((columns) => [
+      {
+        Header: () => null,
+        id: "data-table-row_expand",
+        maxWidth: 60,
+        Cell: ({ row, }) => (
+          // Use Cell to render an expander for each row.
+          // We can use the getToggleRowExpandedProps prop-getter
+          // to build the expander.
+          <span {...row.getToggleRowExpandedProps()}>
+            <ArrowToggleIcon isExpanded={!!row?.isExpanded} />
+          </span>
+        ),
+      },
+      ...columns,
+    ]);
+  },
+];
+
+// components
+
+const IndeterminateCheckbox = React.forwardRef(
+  ({ id, indeterminate, ...rest }, ref) => {
+    const defaultRef = React.useRef();
+    const resolvedRef = ref || defaultRef;
+
+    React.useEffect(() => {
+      if (resolvedRef?.current)
+        resolvedRef.current.indeterminate = indeterminate;
+    }, [resolvedRef, indeterminate]);
+
+    return (
+      <CustomInput id={id} type="checkbox" innerRef={resolvedRef} {...rest} />
+    );
+  }
+);

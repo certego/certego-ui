@@ -6,10 +6,10 @@ import {
   serializeFilterParams,
   deserializeFilterParams,
   serializeSortByParams,
-  deserializeSortByParams,
+  deserializeSortByParams
 } from "./queryParamsUtils";
 
-function useQueryParamsTable({ initialParams }) {
+function useQueryParamsTable({ initialParams, }) {
   // react-router
   const history = useHistory();
 
@@ -20,7 +20,7 @@ function useQueryParamsTable({ initialParams }) {
   */
   const [params, setParams] = React.useState(() => {
     const urlParams = Object.fromEntries(
-      new URLSearchParams(history.location.search),
+      new URLSearchParams(history.location.search)
     );
     return Object.keys(urlParams).length ? urlParams : initialParams || {};
   });
@@ -40,16 +40,16 @@ function useQueryParamsTable({ initialParams }) {
     history.replace({
       search: `?${new URLSearchParams(params).toString()}`,
     });
-  }, [params]);
+  }, [history, params]);
 
   // callbacks
   const onTableFilterDebounced = useAsyncDebounce(
     (filters) =>
-      setParams(({ ordering }) => ({
-        ...(ordering ? { ordering } : {}), // only include 'ordering' key if it defined
+      setParams(({ ordering, }) => ({
+        ...(ordering ? { ordering, } : {}), // only include 'ordering' key if it defined
         ...serializeFilterParams(filters),
       })),
-    500,
+    500
   ); // Debounce filter call for 500ms
 
   const onTableSortDebounced = useAsyncDebounce(
@@ -60,7 +60,7 @@ function useQueryParamsTable({ initialParams }) {
             ordering: serializeSortByParams(sortBy),
           }))
         : setParams(({ ordering, ...others }) => others),
-    500,
+    500
   ); // Debounce sortBy call for 500ms
 
   const tableStateReducer = React.useCallback(
@@ -83,7 +83,7 @@ function useQueryParamsTable({ initialParams }) {
       }
       return newState;
     },
-    [setParams, onTableFilterDebounced, onTableSortDebounced],
+    [setParams, onTableFilterDebounced, onTableSortDebounced]
   );
 
   return [params, initialState, tableStateReducer];

@@ -1,16 +1,17 @@
 /* table */
 
 table {
-  thead,
-  tfoot {
-    position: sticky;
-  }
-
   thead {
+    position: sticky;
     inset-block-start: 0; /* "top" */
   }
   tfoot {
+    @extend .d-flex;
+    @extend .justify-content-sm-start;
+    @extend .justify-content-lg-center;
+    position: sticky;
     inset-block-end: 0; /* "bottom" */
+    margin-top: 1rem;
   }
 }
 
@@ -37,12 +38,10 @@ tr {
   background-color: $table-bg;
   &.row-selected {
     background-color: $tertiary !important;
-
     td:first-child {
       background-color: $info !important;
     }
   }
-
   &.row-disabled {
     background-color: $table-row-disabled-bg !important;
   }
@@ -55,5 +54,17 @@ tr {
       background-color: $dark-bluish-grey;
       border-color: $dark-bluish-grey;
     }
+  }
+}
+
+// Pagination
+
+.pagination {
+  @extend .content-section;
+  background-color: $pagination-bg !important;
+  padding: 0.5rem !important;
+
+  .page-link {
+    border-radius: 0 !important;
   }
 }
