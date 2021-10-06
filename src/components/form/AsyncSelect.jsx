@@ -8,7 +8,6 @@ import Select from "./Select";
 import Loader from "../containers/Loader";
 
 export default function AsyncSelect(props) {
-  // console.debug(`AsyncSelect-${props.name} rendered!`);
   const { url, selectorFn, mapFn, onClear, ...selectProps } = props;
   // API
   const [{ data, loading, error, }] = useAxios(url);

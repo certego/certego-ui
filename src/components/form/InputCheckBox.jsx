@@ -17,7 +17,7 @@ function InputCheckBox(props) {
         name={name}
         className={classnames(
           "form-control form-control-sm bg-dark border-0 d-flex-start-center",
-          `is-${valid ? "valid" : "invalid"}`,
+          `is-${valid ? "valid" : "invalid"}`
         )}
         valid={valid}
         {...rest}
