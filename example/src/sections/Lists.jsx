@@ -2,9 +2,9 @@ import React from "react";
 
 import {
   ContentSection,
+  useAxiosComponentLoader,
   InfiniteScrollList,
   KvList,
-  useAxiosComponentLoader,
 } from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";
