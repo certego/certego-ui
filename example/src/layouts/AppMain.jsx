@@ -32,10 +32,22 @@ export default function AppMain() {
         Component: React.lazy(() => import("../sections/Buttons")),
       },
       {
+        key: "charts",
+        path: `${match.url}charts`,
+        Title: () => <span>Charts</span>,
+        Component: React.lazy(() => import("../sections/Charts")),
+      },
+      {
         key: "containers",
         path: `${match.url}containers`,
         Title: () => <span>Containers</span>,
         Component: React.lazy(() => import("../sections/Containers")),
+      },
+      {
+        key: "form",
+        path: `${match.url}form`,
+        Title: () => <span>Form</span>,
+        Component: React.lazy(() => import("../sections/Form")),
       },
       {
         key: "icons",
@@ -62,16 +74,22 @@ export default function AppMain() {
         Component: React.lazy(() => import("../sections/Nav")),
       },
       {
+        key: "table",
+        path: `${match.url}table`,
+        Title: () => <span>Table</span>,
+        Component: React.lazy(() => import("../sections/Table")),
+      },
+      {
         key: "tabs",
         path: `${match.url}tabs`,
         Title: () => <span>Tabs</span>,
         Component: React.lazy(() => import("../sections/Tabs")),
       },
       {
-        key: "texts",
-        path: `${match.url}texts`,
-        Title: () => <span>Texts</span>,
-        Component: React.lazy(() => import("../sections/Texts")),
+        key: "text",
+        path: `${match.url}text`,
+        Title: () => <span>Text</span>,
+        Component: React.lazy(() => import("../sections/Text")),
       },
       {
         key: "time",
