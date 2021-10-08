@@ -105,15 +105,15 @@ export default function AppMain() {
   const { activeTab, renderNavItems, renderRoutes } = useRouterTabs({ routes });
 
   return (
-    <Container fluid className="d-flex">
-      <Col md={2}>
+    <Container fluid className="d-flex flex-wrap">
+      <Col md={4} lg={2} className="mx-md-auto mx-lg-0">
         <ContentSection className="p-0 bg-body shadow sticky-top">
           <Nav tabs vertical>
             {renderNavItems()}
           </Nav>
         </ContentSection>
       </Col>
-      <Col md={8}>
+      <Col md={12} lg={10}>
         <div className="d-flex">
           <h1>{capitalize(activeTab)}</h1>
           <i className="ml-3 float-right">
