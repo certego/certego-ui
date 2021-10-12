@@ -70,7 +70,7 @@ function DataTable({
 
   // Use the state and functions returned from useTable to build your UI
   return (
-    <Table striped hover {...getTableProps(tableProps)}>
+    <Table striped hover responsive="xl" {...getTableProps(tableProps)}>
       {/* Table Head */}
       <thead>
         {headerGroups.map((headerGroup) => (

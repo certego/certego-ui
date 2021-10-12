@@ -229,7 +229,8 @@ $table-color: $light;
 $table-hover-bg: $yiq-text-dark;
 $table-accent-bg: rgba($light-bluish-grey, 0.1);
 $table-row-disabled-bg: darken($dark-bluish-grey, 6.5);
-$table-border: 1px solid $dark;
+$table-border-color: $dark;
+$table-border-width: 1px;
 
 // pagination
 $pagination-active-color: $info;

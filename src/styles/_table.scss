@@ -4,6 +4,19 @@ table {
   thead {
     position: sticky;
     inset-block-start: 0; /* "top" */
+    tr.head-row {
+      background-color: $darker;
+      th {
+        border-width: $table-border-width;
+        /* for no outer borders in thead
+        &:first-child,
+        &:last-child {
+          border-left: none !important;
+          border-right: none !important;
+        }
+        */
+      }
+    }
   }
   tfoot {
     @extend .d-flex;
@@ -13,23 +26,12 @@ table {
     inset-block-end: 0; /* "bottom" */
     margin-top: 1rem;
   }
-}
-
-tr.head-row {
-  background-color: $darker;
-  .scrolling-y {
-    > table {
-      border-spacing: 0 0.5rem;
-      border-collapse: separate;
-      border: none;
-    }
+  th,
+  td {
+    // force borders
+    border: $table-border-width solid $table-border-color !important;
+    border-collapse: collapse;
   }
-}
-
-th,
-td {
-  border: $table-border !important;
-  border-collapse: collapse;
 }
 
 // table row selection
@@ -63,7 +65,6 @@ tr {
   @extend .content-section;
   background-color: $pagination-bg !important;
   padding: 0.5rem !important;
-
   .page-link {
     border-radius: 0 !important;
   }
