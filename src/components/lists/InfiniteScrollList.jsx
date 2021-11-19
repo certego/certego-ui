@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
+  Row,
   Col,
   ListGroup,
   ListGroupItem,
@@ -80,11 +81,11 @@ export default function InfiniteScrollList(props) {
           }
         >
           {/* Extra Actions */}
-          <Col className="py-3 d-flex align-items-center justify-content-end">
+          <Row className="m-3 d-flex align-items-center justify-content-end">
             {/* Children */}
             <Col>{children}</Col>
             {/* Search Input */}
-            <Col md={3}>
+            <Col sm={6} md={3}>
               {showSearch && data?.length > 5 && (
                 <Input
                   name="search-input"
@@ -96,7 +97,7 @@ export default function InfiniteScrollList(props) {
                 />
               )}
             </Col>
-          </Col>
+          </Row>
           {/* List Items */}
           {items?.length ? (
             items

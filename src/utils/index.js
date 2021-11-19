@@ -54,3 +54,11 @@ export function objToString(obj) {
     ""
   );
 }
+
+export function uniq(arr) {
+  return arr.filter((x, i, a) => a.indexOf(x) === i);
+}
+
+export function diff(arr1, arr2, accesorFn = (d) => d) {
+  return arr1.filter((x) => arr2.indexOf(accesorFn(x)) < 0);
+}
