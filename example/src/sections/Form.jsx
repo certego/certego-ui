@@ -9,6 +9,8 @@ import {
   AsyncSelect,
   ButtonSelect,
   TernaryCheckbox,
+  MultiRangeSlider,
+  MultiSelectDropdownInput,
   MultiSelectTextInput,
   InputCheckBox,
   CustomJsonInput,
@@ -23,6 +25,9 @@ const asyncSelectProps = {
 const occupationChoices = [
   { label: "Software Engineer", value: "swe" },
   { label: "Super Shadowy Coder", value: "ssc" },
+  { label: "Data Engineer", value: "dee" },
+  { label: "ML engineer", value: "mle" },
+  { label: "Security engineer", value: "se" },
 ];
 const genderChoices = ["Female", "Male", "Other"];
 const initialValues = {
@@ -30,7 +35,9 @@ const initialValues = {
   country: "",
   gender: genderChoices[0],
   likeUI: true,
+  likeUIRange: [1, 10],
   occupation: occupationChoices[0]["value"],
+  pastOccupations: [],
   techTags: [],
   acceptTerms: false,
   additionalNote: "",
@@ -105,6 +112,22 @@ export default function FormExample(props) {
                 </Label>
                 <Select name="occupation" choices={occupationChoices} />
               </Col>
+              {/* MultiSelectDropdownInput */}
+              <Col lg={3}>
+                <Label className="required" htmlFor="likeUI">
+                  Past Occupations
+                </Label>
+                <MultiSelectDropdownInput
+                  defaultElements={formik.values.pastOccupations.map((v) => ({
+                    label: v,
+                    value: v,
+                  }))}
+                  options={occupationChoices}
+                  onElementsChange={(v) =>
+                    formik.setFieldValue("pastOccupations", v)
+                  }
+                />
+              </Col>
               {/* MultiSelectTextInput  */}
               <Col lg={6}>
                 <Label className="required" htmlFor="techTags">
@@ -121,7 +144,7 @@ export default function FormExample(props) {
               className="d-flex-start-start flex-lg-row flex-md-column"
             >
               {/* TernaryCheckbox */}
-              <Col md={6}>
+              <Col md={3}>
                 <Label className="required" htmlFor="likeUI">
                   Do you like this UI ?
                 </Label>
@@ -132,6 +155,19 @@ export default function FormExample(props) {
                   onChange={(ch) => formik.setFieldValue("likeUI", ch)}
                 />
               </Col>
+              {/* MultiRangeSlider */}
+              {formik.values.likeUI && (
+                <Col md={3} className="pt-3">
+                  <Label className="required" htmlFor="likeUI">
+                    On a scale of 1 - 10 ?
+                  </Label>
+                  <MultiRangeSlider
+                    domain={[1, 10]}
+                    defaultValues={formik.values.likeUIRange}
+                    onChange={(v) => formik.setFieldValue("likeUIRange", v)}
+                  />
+                </Col>
+              )}
             </FormGroup>
             <FormGroup row className="d-flex-start-start">
               {/* TextBoxInput */}

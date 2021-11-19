@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Label, FormGroup } from "reactstrap";
+import { Row, Col, Label, FormGroup } from "reactstrap";
 import {
   MdCheckCircle,
   MdContentCopy,
@@ -17,6 +17,7 @@ import {
   IconButton,
   PopupFormButton,
   ScrollToTopButton,
+  SocialShareBtn,
   SyncButton,
 } from "@certego/certego-ui";
 
@@ -146,6 +147,31 @@ export default function Buttons(props) {
               defaultVisible
               scrollYOffset={-50}
             />
+          </Row>
+        }
+      />
+      <ComponentAsExample
+        name="SocialShareBtn"
+        bodyNode={
+          <Row className="d-flex justify-content-around">
+            <Col className="d-flex flex-column align-items-center">
+              <SocialShareBtn
+                id="social-share-btn-example-1"
+                url="https://github.com/certego/certego-ui"
+                popoverTrigger="hover"
+                popoverPlacement="left"
+              />
+              <small className="font-italic">hover</small>
+            </Col>
+            <Col className="d-flex flex-column align-items-center">
+              <SocialShareBtn
+                id="social-share-btn-example-2"
+                url="https://github.com/certego/certego-ui"
+                popoverTrigger="click"
+                popoverPlacement="top"
+              />
+              <small className="font-italic">click</small>
+            </Col>
           </Row>
         }
       />
