@@ -41,7 +41,7 @@ export default function MultiSelectTextInput(props) {
       case "Tab":
         setInputList((prevInputList) => [
           ...prevInputList,
-          { label: inputValue, value: inputValue },
+          { label: inputValue, value: inputValue, },
         ]);
         setInputValue("");
         event.preventDefault();
