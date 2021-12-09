@@ -1,1 +1,51 @@
 @import "@certego/certego-ui/src/styles/root.scss";
+
+:root {
+  /* bootstrap overwrite */
+  --primary: #{$primary} !important;
+  --secondary: #{$secondary} !important;
+  --tertiary: #{$tertiary} !important;
+  --dark: #{$dark} !important;
+  --light: #{$light} !important;
+  --info: #{$info} !important;
+  --body-bg: #{$body-bg} !important;
+  --gray: #{$gray} !important;
+  --dark-bluish-grey: #{$dark-bluish-grey} !important;
+  --light-bluish-grey: #{$light-bluish-grey} !important;
+}
+
+// App.jsx
+* {
+  scroll-margin-top: 75px !important;
+  scroll-behavior: smooth !important;
+}
+
+main {
+  min-height: 80vh !important;
+}
+
+footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+section.fixed-bottom {
+  margin-bottom: 7.5rem;
+}
+
+section#app-toasts {
+  z-index: 9999 !important;
+}
+
+.twitter-follow-button {
+  @extend .btn;
+  @extend .btn-xs;
+  background-color: #1da1f2;
+  color: $light;
+  font-weight: 450;
+  &:hover {
+    background-color: darken($color: #1da1f2, $amount: 20);
+    color: $light !important;
+  }
+}
