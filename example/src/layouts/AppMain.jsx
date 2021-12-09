@@ -97,6 +97,12 @@ export default function AppMain() {
         Title: () => <span>Time</span>,
         Component: React.lazy(() => import("../sections/Time")),
       },
+      {
+        key: "../stores",
+        path: `${match.url}stores`,
+        Title: () => <span>Stores (hooks)</span>,
+        Component: React.lazy(() => import("../sections/Stores")),
+      },
     ],
     [match.url]
   );

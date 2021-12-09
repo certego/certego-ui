@@ -5,25 +5,13 @@ import {
   ContentSection,
   ElasticTimePicker,
   MomentHoverable,
+  useTimePickerStore,
 } from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";
 
-// constants
-const RANGE_DATEFORMAT_MAP = {
-  "6h": "DD/MM, HH:mm",
-  "24h": "DD/MM, HH:mm",
-  "7d": "Do MMM",
-  "6M": "MMM/YYYY",
-  "2Y": "YYYY",
-};
-const DEFAULT_INTERVAL = "24h";
-
 export default function Time(props) {
-  const [[intervalStr, intervalTime], setIntervalChoice] = React.useState([
-    DEFAULT_INTERVAL,
-    "",
-  ]);
+  const { range, fromTimeIsoStr, onTimeIntervalChange } = useTimePickerStore();
 
   return (
     <ContentSection {...props}>
@@ -32,13 +20,12 @@ export default function Time(props) {
         bodyNode={
           <Row className="center">
             <small className="text-muted font-italic my-1">
-              ~ currentTime - {intervalStr}
+              fromTimeIsoStr = currentTime - {range}
             </small>
             <ElasticTimePicker
               id="timepicker-example-1"
-              defaultSelected={DEFAULT_INTERVAL}
-              intervals={Object.keys(RANGE_DATEFORMAT_MAP)}
-              onChange={(ch, time) => setIntervalChoice([ch, time])}
+              defaultSelected={range}
+              onChange={onTimeIntervalChange}
             />
           </Row>
         }
@@ -49,20 +36,20 @@ export default function Time(props) {
           <Row className="d-flex justify-content-around">
             <MomentHoverable
               id="momenthoverable-example-1"
-              value={intervalTime}
+              value={fromTimeIsoStr}
               showAgo
             />
             <MomentHoverable
               id="momenthoverable-example-2"
-              value={intervalTime}
+              value={fromTimeIsoStr}
               showAgo
-              format={"hh:mm:ss A Z"}
+              format="hh:mm:ss A Z"
             />
             <MomentHoverable
               id="momenthoverable-example-3"
-              value={intervalTime}
+              value={fromTimeIsoStr}
               showAgo
-              format={"D/M/YYYY"}
+              format="D/M/YYYY"
             />
           </Row>
         }
