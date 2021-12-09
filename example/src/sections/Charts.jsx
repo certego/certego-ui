@@ -100,6 +100,14 @@ export default function Charts(props) {
           </>
         }
       />
+      <ComponentAsExample
+        name="AnyChartWidget"
+        bodyNode={<small className="font-italic">todo</small>}
+      />
+      <ComponentAsExample
+        name="PieChartWidget"
+        bodyNode={<small className="font-italic">todo</small>}
+      />
       <h6>
         See{" "}
         <a
