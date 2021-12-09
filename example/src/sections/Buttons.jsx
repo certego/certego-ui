@@ -14,6 +14,7 @@ import { Form, Formik } from "formik";
 import {
   ContentSection,
   CopyToClipboardButton,
+  GoBackButton,
   IconButton,
   PopupFormButton,
   ScrollToTopButton,
@@ -106,6 +107,8 @@ export default function Buttons(props) {
             <PopupFormButton
               id="popupform-example-1"
               title="Click me to edit"
+              titlePlacement="top"
+              popOverPlacement="top"
               Icon={MdModeEdit}
               Form={({ onFormSubmit }) => (
                 <Formik
@@ -154,7 +157,7 @@ export default function Buttons(props) {
         name="SocialShareBtn"
         bodyNode={
           <Row className="d-flex justify-content-around">
-            <Col className="d-flex flex-column align-items-center">
+            <Col className="d-flex-center flex-column">
               <SocialShareBtn
                 id="social-share-btn-example-1"
                 url="https://github.com/certego/certego-ui"
@@ -163,14 +166,40 @@ export default function Buttons(props) {
               />
               <small className="font-italic">hover</small>
             </Col>
-            <Col className="d-flex flex-column align-items-center">
+            <Col className="d-flex-center flex-column">
               <SocialShareBtn
                 id="social-share-btn-example-2"
+                url="https://github.com/certego/certego-ui"
+                popoverPlacement="top"
+                onlyIcon
+              />
+              <small className="font-italic">hover</small>
+            </Col>
+            <Col className="d-flex-center flex-column">
+              <SocialShareBtn
+                id="social-share-btn-example-3"
                 url="https://github.com/certego/certego-ui"
                 popoverTrigger="click"
                 popoverPlacement="top"
               />
               <small className="font-italic">click</small>
+            </Col>
+          </Row>
+        }
+      />
+      <ComponentAsExample
+        name="GoBackButton"
+        bodyNode={
+          <Row className="d-flex justify-content-around">
+            <Col className="d-flex-center flex-column">
+              <GoBackButton />
+              <small className="font-italic">color: accent-2</small>
+            </Col>
+            <Col className="d-flex-center flex-column">
+              <GoBackButton onlyIcon={false} color="gray" />
+              <small className="font-italic">
+                onlyIcon: false, color: gray
+              </small>
             </Col>
           </Row>
         }
