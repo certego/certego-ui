@@ -25,10 +25,24 @@ export default function Icons(props) {
       <ComponentAsExample
         name="BooleanIcon"
         bodyNode={
-          <Row className="d-flex justify-content-around">
-            <BooleanIcon truthy />
-            <BooleanIcon truthy={false} />
-          </Row>
+          <>
+            <Row className="d-flex justify-content-around">
+              <BooleanIcon truthy />
+              <BooleanIcon truthy={false} />
+            </Row>
+            <Row className="mt-2 d-flex justify-content-around">
+              <BooleanIcon truthy withColors />
+              <BooleanIcon truthy={false} withColors />
+            </Row>
+            <Row className="mt-2 d-flex justify-content-around">
+              <BooleanIcon truthy outline={false} />
+              <BooleanIcon truthy={false} outline={false} />
+            </Row>
+            <Row className="mt-2 d-flex justify-content-around">
+              <BooleanIcon truthy withColors outline={false} />
+              <BooleanIcon truthy={false} withColors outline={false} />
+            </Row>
+          </>
         }
       />
       <ComponentAsExample

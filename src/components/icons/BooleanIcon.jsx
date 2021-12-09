@@ -1,23 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import {
-  IoMdCheckmarkCircleOutline,
-  IoMdCloseCircleOutline,
-} from "react-icons/io";
+import { MdCheck, MdCheckCircleOutline } from "react-icons/md";
+import { IoMdCloseCircleOutline, IoMdClose } from "react-icons/io";
 
-export default function BooleanIcon({ truthy, withColors }) {
+export default function BooleanIcon({ truthy, withColors, outline, ...rest }) {
+  const Check = outline ? MdCheckCircleOutline : MdCheck;
+  const Close = outline ? IoMdCloseCircleOutline : IoMdClose;
+
   return truthy ? (
-    <IoMdCheckmarkCircleOutline
+    <Check
       title="true"
-      className={classnames({ "text-success": withColors })}
+      className={classnames({ "text-success": withColors, })}
       size="20px"
+      {...rest}
     />
   ) : (
-    <IoMdCloseCircleOutline
+    <Close
       title="false"
-      className={classnames({ "text-danger": withColors })}
+      className={classnames({ "text-danger": withColors, })}
       size="20px"
+      {...rest}
     />
   );
 }
@@ -25,8 +28,10 @@ export default function BooleanIcon({ truthy, withColors }) {
 BooleanIcon.propTypes = {
   truthy: PropTypes.bool.isRequired,
   withColors: PropTypes.bool,
+  outline: PropTypes.bool,
 };
 
 BooleanIcon.defaultProps = {
   withColors: false,
+  outline: true,
 };

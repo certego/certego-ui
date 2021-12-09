@@ -47,7 +47,13 @@
   z-index: 9999 !important;
   position: fixed;
   bottom: 1.5rem;
-  right: 0.5rem;
+  right: 1rem;
   animation: fadeIn 700ms ease-in-out 1s both;
   cursor: pointer;
+}
+
+a.btn {
+  &:hover {
+    color: inherit !important;
+  }
 }

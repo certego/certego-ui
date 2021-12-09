@@ -10,13 +10,13 @@ function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
 
   return (
     <CustomInput
-      id={`table-select-${id}`}
+      id={`datatable-select-${id}`}
       type="search"
       className={classnames(
         {
           "bg-body border-secondary": filterValue,
         },
-        "form-control form-control-sm",
+        "form-control form-control-sm"
       )}
       value={filterValue || ""}
       onChange={onChange}
@@ -53,15 +53,15 @@ function SelectColumnFilter({
   // Render a multi-select box
   return (
     <CustomInput
-      id={`table-select-${id}`}
+      id={`datatable-select-${id}`}
       type="select"
       className="custom-select-sm"
       value={filterValue}
       onChange={onChange}
     >
       <option value="">All</option>
-      {options.map((value, i) => (
-        <option key={i} value={value}>
+      {options.map((value) => (
+        <option key={`datatable-select-${id}-option-${value}`} value={value}>
           {value}
         </option>
       ))}
@@ -76,23 +76,22 @@ function SelectOptionsFilter({
 }) {
   const onChange = (e) => setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
 
-  // Render a multi-select box
   return (
     <CustomInput
-      id={`table-select-${id}`}
+      id={`datatable-select-${id}`}
       type="select"
       className={classnames(
         {
           "bg-body border-secondary": filterValue,
         },
-        "custom-select-sm",
+        "custom-select-sm"
       )}
       value={filterValue}
       onChange={onChange}
     >
       <option value="">All</option>
-      {selectOptions.map((value, i) => (
-        <option key={i} value={value}>
+      {selectOptions.map((value) => (
+        <option key={`datatable-select-${id}-option-${value}`} value={value}>
           {value}
         </option>
       ))}
@@ -113,7 +112,7 @@ function SliderColumnFilter({
     <div className="mx-auto text-center">
       <div className="text-info">{`>=${value}`}</div>
       <CustomInput
-        id={`table-select-${id}`}
+        id={`datatable-select-${id}`}
         type="range"
         min={min}
         max={max}

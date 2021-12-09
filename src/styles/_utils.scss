@@ -67,10 +67,31 @@
   flex-wrap: wrap;
 }
 
+.d-flex-start-end {
+  display: flex;
+  justify-content: flex-start;
+  align-items: end;
+  flex-wrap: wrap;
+}
+
 .d-flex-between-start {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.d-flex-between-center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.d-flex-between-end {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
   flex-wrap: wrap;
 }
 
