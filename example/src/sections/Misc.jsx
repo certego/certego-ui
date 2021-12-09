@@ -20,7 +20,7 @@ const statusColorMap = {
   canceled: "danger",
   incomplete: "warning",
 };
-const toasts = [
+const exampleToasts = [
   { header: "Info", body: "Example text", color: "info" },
   { header: "Light", body: "Example text", color: "light" },
   { header: "Primary", body: "Example text", color: "primary" },
@@ -74,7 +74,7 @@ export default function Misc(props) {
         name="Toaster"
         bodyNode={
           <Row className="d-flex justify-content-around align-items-start">
-            {toasts.map((toast) => (
+            {exampleToasts.map((toast) => (
               <Toaster key={toast.color} {...toast} />
             ))}
           </Row>

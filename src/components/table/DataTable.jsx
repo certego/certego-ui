@@ -20,6 +20,7 @@ function DataTable({
   SubComponent,
   tableProps,
   tableEmptyNode,
+  TableBodyComponent,
   ...rest
 }) {
   // merge user specified config with default config
@@ -107,35 +108,39 @@ function DataTable({
       {/* Table Body */}
       <tbody {...getTableBodyProps()}>
         {page?.length ? (
-          page.map((row) => {
-            prepareRow(row);
-            const { key, ...rowProps } = row.getRowProps();
-            return (
-              <React.Fragment key={key}>
-                {/* table row */}
-                <tr
-                  {...rowProps}
-                  className={classnames(rowProps.className, {
-                    "row-selected": row.isSelected,
-                  })}
-                >
-                  {row.cells.map((cell) => (
-                    <td className="text-center" {...cell.getCellProps()}>
-                      {cell.render("Cell")}
-                    </td>
-                  ))}
-                </tr>
-                {/* SubComponent */}
-                {SubComponent && config?.enableExpanded && row?.isExpanded && (
-                  <tr>
-                    <td colSpan={visibleColumns.length}>
-                      <SubComponent row={row} />
-                    </td>
+          !TableBodyComponent ? (
+            page.map((row) => {
+              prepareRow(row);
+              const { key, ...rowProps } = row.getRowProps();
+              return (
+                <React.Fragment key={key}>
+                  {/* table row */}
+                  <tr
+                    {...rowProps}
+                    className={classnames(rowProps.className, {
+                      "row-selected": row.isSelected,
+                    })}
+                  >
+                    {row.cells.map((cell) => (
+                      <td className="text-center" {...cell.getCellProps()}>
+                        {cell.render("Cell")}
+                      </td>
+                    ))}
                   </tr>
-                )}
-              </React.Fragment>
-            );
-          })
+                  {/* SubComponent */}
+                  {SubComponent && config?.enableExpanded && row?.isExpanded && (
+                    <tr>
+                      <td colSpan={visibleColumns.length}>
+                        <SubComponent row={row} />
+                      </td>
+                    </tr>
+                  )}
+                </React.Fragment>
+              );
+            })
+          ) : (
+            <TableBodyComponent page={page} />
+          )
         ) : (
           <tr>
             <td
@@ -167,6 +172,7 @@ DataTable.propTypes = {
   SubComponent: PropTypes.oneOfType([PropTypes.func, PropTypes.elementType]),
   tableProps: PropTypes.object,
   tableEmptyNode: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+  TableBodyComponent: PropTypes.func,
 };
 
 DataTable.defaultProps = {
@@ -175,6 +181,7 @@ DataTable.defaultProps = {
   SubComponent: undefined,
   tableProps: undefined,
   tableEmptyNode: "No Data",
+  TableBodyComponent: undefined,
 };
 
 export default DataTable;

@@ -1,9 +1,16 @@
 /* form */
 
-.form-group {
-  label.required:after {
-    content: "  *";
-    color: red;
+label.required:after {
+  content: "  *";
+  color: red;
+}
+
+.input-dark {
+  background-color: $darker !important;
+  border-color: $dark !important;
+  .custom-file-label {
+    background-color: $darker;
+    border-color: $dark;
   }
 }
 

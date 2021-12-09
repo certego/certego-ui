@@ -31,7 +31,7 @@ export default function PopupFormButton(props) {
 
   return (
     <>
-      <Button id={btnId} size="sm" color="info" {...rest}>
+      <Button id={btnId} type="button" size="sm" color="info" {...rest}>
         {popoverOpen ? <IoMdClose /> : <Icon />}
       </Button>
       {title && (

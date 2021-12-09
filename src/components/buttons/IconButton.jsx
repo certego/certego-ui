@@ -10,29 +10,30 @@ function IconButton(props) {
   const btnId = `${id}-iconbtn`;
 
   return (
-    <>
-      <Button id={btnId} {...rest}>
-        <Icon />
-      </Button>
-      <UncontrolledTooltip
-        target={btnId}
-        placement={titlePlacement}
-        delay={{ show: 0, }}
-      >
-        {title}
-      </UncontrolledTooltip>
-    </>
+    <Button id={btnId} type="button" {...rest}>
+      <Icon />
+      {title && (
+        <UncontrolledTooltip
+          target={btnId}
+          placement={titlePlacement}
+          delay={{ show: 0, }}
+        >
+          {title}
+        </UncontrolledTooltip>
+      )}
+    </Button>
   );
 }
 
 IconButton.propTypes = {
   id: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   titlePlacement: PropTypes.string,
   Icon: PropTypes.func.isRequired,
 };
 
 IconButton.defaultProps = {
+  title: undefined,
   titlePlacement: "right-start",
 };
 

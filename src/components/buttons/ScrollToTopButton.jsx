@@ -2,7 +2,7 @@
 
 import React from "react";
 import PropTypes from "prop-types";
-import { MdArrowUpward } from "react-icons/md";
+import { RiArrowUpSLine } from "react-icons/ri";
 import { Button } from "reactstrap";
 
 export default function ScrollToTopButton(props) {
@@ -36,8 +36,13 @@ export default function ScrollToTopButton(props) {
   return (
     <div id="ScrollToTopButton" {...rest}>
       {isVisible && (
-        <Button onClick={scrollToTop} color="accent-1" size="md">
-          <MdArrowUpward />
+        <Button
+          onClick={scrollToTop}
+          color="accent-1"
+          size="md"
+          className="rounded-circle"
+        >
+          <RiArrowUpSLine />
         </Button>
       )}
     </div>

@@ -6,7 +6,7 @@ import { IoInfinite } from "react-icons/io5";
 
 // constants
 const INFINITY = "inf";
-const TIME_INTERVALS = ["6h", "24h", "7d", "1M", "3M"];
+const TIME_INTERVALS = ["6h", "24h", "7d", "3M", "6M", "2Y"];
 const INTERVAL_TO_VAL = /(?<value>\d+)(?<unit>\w)/;
 
 function intervalToTime(ti) {
@@ -85,7 +85,7 @@ function ElasticTimePicker(props) {
 ElasticTimePicker.defaultProps = {
   size: "sm",
   defaultSelected: "24h",
-  intervals: TIME_INTERVALS.slice(),
+  intervals: TIME_INTERVALS,
   showInfinity: false,
 };
 

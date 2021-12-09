@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import { FormFeedback } from "reactstrap";
-import { CustomInput } from "formstrap";
+import { CustomInput as FormCustomInput } from "formstrap";
 
 function InputCheckBox(props) {
   // props
@@ -10,7 +10,7 @@ function InputCheckBox(props) {
 
   return (
     <>
-      <CustomInput
+      <FormCustomInput
         type="checkbox"
         withFeedback={false}
         label={label}
