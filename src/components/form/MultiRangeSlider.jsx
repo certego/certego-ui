@@ -53,6 +53,7 @@ export default function MultiRangeSlider({
           <div className="slider-handles">
             {handles.map(({ id, value, percent, }) => (
               <div
+                key={id}
                 role="slider"
                 aria-valuemin={min}
                 aria-valuemax={max}
@@ -82,19 +83,20 @@ export default function MultiRangeSlider({
           <div className="slider-tracks">
             {tracks.map(({ id, source, target, }) => (
               <div
+                key={id}
                 style={{
                   position: "absolute",
                   transform: "translate(0%, -50%)",
                   height: 5,
                   zIndex: 1,
                   backgroundColor: disabled
-                    ? "rgba(255, 255, 255, 0.3)"
+                    ? "var(--darker)"
                     : "var(--tertiary)",
                   cursor: "pointer",
                   left: `${source.percent}%`,
                   width: `${target.percent - source.percent}%`,
                 }}
-                {...getTrackProps()}
+                {...getTrackProps(id)}
               />
             ))}
           </div>

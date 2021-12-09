@@ -1,29 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import CreatableSelect from "react-select/creatable";
+
+import ReactCreatableSelect from "react-select/creatable";
+
+import { selectStyles } from "./data";
 
 // constants
 const components = {
   DropdownIndicator: null,
-};
-const styles = {
-  control: (base) => ({
-    ...base,
-    background: "var(--tertiary)",
-  }),
-  multiValueLabel: (base) => ({
-    ...base,
-    color: "var(--light)",
-  }),
-  multiValue: (base) => ({
-    ...base,
-    fontWeight: "bold",
-    background: "var(--dark)",
-  }),
-  input: (base) => ({
-    ...base,
-    color: "var(--light)",
-  }),
 };
 
 export default function MultiSelectTextInput(props) {
@@ -57,12 +41,12 @@ export default function MultiSelectTextInput(props) {
   }, [inputList]);
 
   return (
-    <CreatableSelect
+    <ReactCreatableSelect
       isClearable
       isMulti
       menuIsOpen={false}
       components={components}
-      styles={styles}
+      styles={selectStyles}
       value={inputList}
       inputValue={inputValue}
       onChange={onChange}
