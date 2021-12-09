@@ -1,6 +1,10 @@
 import React from "react";
 import { Col, Label, FormGroup } from "reactstrap";
-import { CustomInput as FormInput, Submit } from "formstrap";
+import {
+  CustomInput as FormCustomInput,
+  Input as FormInput,
+  Submit,
+} from "formstrap";
 import { Form, Formik } from "formik";
 
 import {
@@ -10,11 +14,11 @@ import {
   ButtonSelect,
   TernaryCheckbox,
   MultiRangeSlider,
+  MultiSelectCreatableInput,
   MultiSelectDropdownInput,
   MultiSelectTextInput,
   InputCheckBox,
   CustomJsonInput,
-  TextBoxInput,
 } from "@certego/certego-ui";
 
 // constants
@@ -29,6 +33,28 @@ const occupationChoices = [
   { label: "ML engineer", value: "mle" },
   { label: "Security engineer", value: "se" },
 ];
+const hearAboutUsChoices = [
+  {
+    label: "Search Engine (Google, DuckDuckGo, etc.)",
+    value: "search_engine",
+  },
+  {
+    label: "Recommended by friend or colleague",
+    value: "was_recommended",
+  },
+  {
+    label: "Social media",
+    value: "social_media",
+  },
+  {
+    label: "Blog or Publication",
+    value: "blog_or_publication",
+  },
+  {
+    label: "Other",
+    value: "other",
+  },
+];
 const genderChoices = ["Female", "Male", "Other"];
 const initialValues = {
   name: "",
@@ -39,6 +65,7 @@ const initialValues = {
   occupation: occupationChoices[0]["value"],
   pastOccupations: [],
   techTags: [],
+  discover_from: "",
   acceptTerms: false,
   additionalNote: "",
 };
@@ -68,16 +95,16 @@ export default function FormExample(props) {
               row
               className="d-flex-start-center flex-lg-row flex-md-column"
             >
-              {/* FormInput */}
+              {/* FormCustomInput */}
               <Col lg={4}>
                 <Label className="required" htmlFor="name">
                   Name
                 </Label>
-                <FormInput
+                <FormCustomInput
                   autoFocus
                   type="text"
                   name="name"
-                  className="form-control"
+                  className="form-control input-dark"
                 />
               </Col>
               {/* AsyncSelect */}
@@ -85,7 +112,12 @@ export default function FormExample(props) {
                 <Label className="required" htmlFor="country">
                   Country
                 </Label>
-                <AsyncSelect multi name="country" {...asyncSelectProps} />
+                <AsyncSelect
+                  multi
+                  name="country"
+                  {...asyncSelectProps}
+                  className="input-dark"
+                />
               </Col>
               {/* ButtonSelect */}
               <Col lg={3}>
@@ -105,31 +137,31 @@ export default function FormExample(props) {
               row
               className="d-flex-start-start flex-lg-row flex-md-column"
             >
-              {/* Select */}
-              <Col lg={3}>
-                <Label className="required" htmlFor="occupation">
+              {/* MultiSelectDropdownInput */}
+              <Col lg={4}>
+                <Label className="required" htmlFor="likeUI">
                   Select Occupation
                 </Label>
-                <Select name="occupation" choices={occupationChoices} />
+                <MultiSelectDropdownInput
+                  isMulti={false}
+                  options={occupationChoices}
+                  value={formik.values.occupation}
+                  onChange={(v) => formik.setFieldValue("occupation", v)}
+                />
               </Col>
-              {/* MultiSelectDropdownInput */}
-              <Col lg={3}>
+              {/* MultiSelectCreatableInput */}
+              <Col lg={4}>
                 <Label className="required" htmlFor="likeUI">
                   Past Occupations
                 </Label>
-                <MultiSelectDropdownInput
-                  defaultElements={formik.values.pastOccupations.map((v) => ({
-                    label: v,
-                    value: v,
-                  }))}
+                <MultiSelectCreatableInput
                   options={occupationChoices}
-                  onElementsChange={(v) =>
-                    formik.setFieldValue("pastOccupations", v)
-                  }
+                  value={formik.values.pastOccupations}
+                  onChange={(v) => formik.setFieldValue("pastOccupations", v)}
                 />
               </Col>
               {/* MultiSelectTextInput  */}
-              <Col lg={6}>
+              <Col lg={4}>
                 <Label className="required" htmlFor="techTags">
                   Add some technologies you work with
                 </Label>
@@ -143,8 +175,33 @@ export default function FormExample(props) {
               row
               className="d-flex-start-start flex-lg-row flex-md-column"
             >
+              {/* Select */}
+              <Col md={4}>
+                <Label className="required" htmlFor="discover_from">
+                  How did you discover certego-ui ?
+                </Label>
+                <Select
+                  name="discover_from"
+                  choices={hearAboutUsChoices}
+                  className="input-dark"
+                />
+              </Col>
+              {/* FormInput */}
+              <Col md={6}>
+                <Label htmlFor="additionalNote">Additional Note</Label>
+                <FormInput
+                  type="textarea"
+                  name="additionalNote"
+                  className="input-dark"
+                />
+              </Col>
+            </FormGroup>
+            <FormGroup
+              row
+              className="d-flex-start-start flex-lg-row flex-md-column"
+            >
               {/* TernaryCheckbox */}
-              <Col md={3}>
+              <Col md={2}>
                 <Label className="required" htmlFor="likeUI">
                   Do you like this UI ?
                 </Label>
@@ -157,7 +214,7 @@ export default function FormExample(props) {
               </Col>
               {/* MultiRangeSlider */}
               {formik.values.likeUI && (
-                <Col md={3} className="pt-3">
+                <Col md={4} className="pt-3">
                   <Label className="required" htmlFor="likeUI">
                     On a scale of 1 - 10 ?
                   </Label>
@@ -169,13 +226,6 @@ export default function FormExample(props) {
                 </Col>
               )}
             </FormGroup>
-            <FormGroup row className="d-flex-start-start">
-              {/* TextBoxInput */}
-              <Col lg={6}>
-                <Label htmlFor="additionalNote">Additional Note</Label>
-                <TextBoxInput name="additionalNote" />
-              </Col>
-            </FormGroup>
             <FormGroup row className="ml-1">
               {/* InputCheckBox */}
               <InputCheckBox
@@ -185,26 +235,32 @@ export default function FormExample(props) {
                 valid={formik.values.acceptTerms}
               />
             </FormGroup>
-            <FormGroup row className="d-flex-start-start">
+            <FormGroup
+              row
+              className="d-flex-start-start flex-lg-row flex-md-column"
+            >
               {/* CustomJsonInput */}
               <Col lg={6}>
                 <Label htmlFor="debugForm">Debug Form Values</Label>
                 <CustomJsonInput placeholder={formik.values} viewOnly />
               </Col>
             </FormGroup>
-            {/* Submit */}
-            <FormGroup row className="mt-5 d-flex-start-center">
+            <FormGroup row className="mt-5 d-flex-center">
+              {/* Submit */}
               <Submit
                 withSpinner
                 disabled={!(formik.isValid || formik.isSubmitting)}
                 color="primary"
                 outline
-                className="mx-auto"
                 size="md"
               >
                 {!formik.isSubmitting && "Submit"}
               </Submit>
             </FormGroup>
+            <small className="text-muted">
+              Note: This form is only for demo purposes, input data is neither
+              sent nor stored.
+            </small>
           </Form>
         )}
       </Formik>
