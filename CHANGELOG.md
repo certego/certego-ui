@@ -2,6 +2,14 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.0.6](https://github.com/certego/certego-ui/releases/tag/v0.0.6)
+
+[diff](https://github.com/certego/certego-ui/compare/v0.0.5...v0.0.6)
+
+- New components:
+  - misc: `AxiosLoadingBar`
+- `FallBackLoading` component now supports a `text` prop.
+
 ## [v0.0.5](https://github.com/certego/certego-ui/releases/tag/v0.0.5)
 
 [diff](https://github.com/certego/certego-ui/compare/v0.0.4...v0.0.5)
