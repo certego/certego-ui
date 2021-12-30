@@ -110,6 +110,10 @@ export default function Misc(props) {
           </Row>
         }
       />
+      <ComponentAsExample
+        name="AxiosLoadingBar"
+        bodyNode={<small className="font-italic">todo</small>}
+      />
     </ContentSection>
   );
 }
