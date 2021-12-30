@@ -1,5 +1,5 @@
 import React from "react";
-import { Row } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 import {
   ContentSection,
@@ -99,7 +99,16 @@ export default function Misc(props) {
       />
       <ComponentAsExample
         name="FallBackLoading"
-        bodyNode={<FallBackLoading className="mt-5" />}
+        bodyNode={
+          <Row>
+            <Col>
+              <FallBackLoading className="mt-5" />
+            </Col>
+            <Col>
+              <FallBackLoading text="custom text..." className="mt-5" />
+            </Col>
+          </Row>
+        }
       />
     </ContentSection>
   );

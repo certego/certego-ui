@@ -70,7 +70,7 @@
 .d-flex-start-end {
   display: flex;
   justify-content: flex-start;
-  align-items: end;
+  align-items: flex-end;
   flex-wrap: wrap;
 }
 
@@ -91,13 +91,19 @@
 .d-flex-between-end {
   display: flex;
   justify-content: space-between;
-  align-items: end;
+  align-items: flex-end;
   flex-wrap: wrap;
 }
 
 .d-flex-center {
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.d-flex-end-center {
+  display: flex;
+  justify-content: flex-end;
   align-items: center;
 }
 
