@@ -3,21 +3,34 @@ Based on: https://codesandbox.io/embed/6brgz
 */
 
 import React from "react";
-import { NavLink, NavItem, TabPane } from "reactstrap";
-import { NavLink as RouterNavLink, Route } from "react-router-dom";
+import { NavLink, NavItem } from "reactstrap";
+import { NavLink as RRNavLink, Route, useHistory } from "react-router-dom";
 
-function useRouterTabs({ routes, }) {
-  const [activeTab, setActiveTab] = React.useState(routes[0].key);
+// constants
+const isSame = (loc1, loc2) =>
+  loc1.pathname === loc2.pathname &&
+  (loc2.search ? loc1.search === loc2.search : true);
 
-  const isActive = React.useCallback(
-    (tabKey) => {
-      const isCurrentlyActive = activeTab === tabKey;
-      // set new
-      if (!isCurrentlyActive) setActiveTab(tabKey);
-      return isCurrentlyActive;
-    },
-    [activeTab, setActiveTab]
-  );
+// hook
+export default function useRouterTabs({ routes, redirect, }) {
+  const { location: hLocation, replace, } = useHistory();
+
+  const activeKey = React.useMemo(() => {
+    let key;
+    if (routes.length) {
+      // just loaded => try to find matching key
+      const routeFound = routes.find((r) => isSame(hLocation, r.location));
+      if (routeFound) {
+        key = routeFound.key;
+      }
+      // no match && redirect=true => redirect to first one
+      if (!key && redirect) {
+        key = routes[0].key;
+        replace(routes[0].location);
+      }
+    }
+    return key;
+  }, [hLocation, replace, routes, redirect]);
 
   /**
    * Renders the reactstrap `NavItem`s. Note that reactstrap's `NavLink`
@@ -29,37 +42,37 @@ function useRouterTabs({ routes, }) {
    */
   const renderNavItems = React.useCallback(
     () =>
-      routes.map(({ key, path, Title, }) => (
+      routes.map(({ key, Title, location, }) => (
         <NavItem key={`routertabs-${key}-navitem`}>
           <NavLink
-            tag={RouterNavLink}
-            to={path}
-            isActive={(match) => match && isActive(key)}
+            tag={RRNavLink}
+            to={location}
+            isActive={() => activeKey === key}
           >
             <Title />
           </NavLink>
         </NavItem>
       )),
-    [routes, isActive]
+    [activeKey, routes]
   );
 
   /**
-   * Renders `Route` components with their respective lazily loaded children
-   * wrapped inside a `TabPane`.
+   * Renders `Route` components.
    */
   const renderRoutes = React.useCallback(
     () =>
-      routes.map(({ key, path, Component, }) => (
-        <Route key={`routertabs-${key}-route`} path={path}>
-          <TabPane tabId={key} className="pt-3">
-            <Component />
-          </TabPane>
+      routes.map(({ key, Component, location, }) => (
+        <Route
+          key={`routertabs-${key}-route`}
+          location={location}
+          path={location.pathname}
+          exact={false}
+        >
+          {() => activeKey === key && <Component />}
         </Route>
       )),
-    [routes]
+    [activeKey, routes]
   );
 
-  return { activeTab, renderNavItems, renderRoutes, };
+  return { activeKey, renderNavItems, renderRoutes, };
 }
-
-export default useRouterTabs;

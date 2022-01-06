@@ -14,9 +14,11 @@ function Tabs(props) {
 
   const [activeTab, setActiveTab] = React.useState(defaultTab);
 
-  function toggle(tab) {
-    if (activeTab !== tab) setActiveTab(tab);
-  }
+  const toggle = (tab) => {
+    if (activeTab !== tab) {
+      setActiveTab(tab);
+    }
+  };
 
   const navClasses = classnames("nav-tabs", className, {
     "mw-fit-content": !overflow,

@@ -1,6 +1,5 @@
 import React from "react";
 import { Card } from "reactstrap";
-import { useRouteMatch } from "react-router";
 
 import { ContentSection, Tabs, RouterTabs } from "@certego/certego-ui";
 
@@ -15,30 +14,28 @@ const tabRenderables = [
 ];
 
 export default function TabsExample(props) {
-  const match = useRouteMatch();
-
   const routes = React.useMemo(
     () => [
       {
-        key: "tab1",
-        path: `${match.url}/tab1`,
-        Title: () => <span>Tab #1</span>,
+        key: "tabs__tab1",
+        location: { pathname: "/tabs", search: "?tab=tab1" },
+        Title: () => <span>{tabTitles[0]}</span>,
         Component: tabRenderables[0],
       },
       {
-        key: "tab2",
-        path: `${match.url}/tab2`,
-        Title: () => <span>Tab #2</span>,
+        key: "tabs__tab2",
+        location: { pathname: "/tabs", search: "?tab=tab2" },
+        Title: () => <span>{tabTitles[1]}</span>,
         Component: tabRenderables[1],
       },
       {
-        key: "tab3",
-        path: `${match.url}/tab3`,
-        Title: () => <span>Tab #3</span>,
+        key: "tabs__tab3",
+        location: { pathname: "/tabs", search: "?tab=tab3" },
+        Title: () => <span>{tabTitles[2]}</span>,
         Component: tabRenderables[2],
       },
     ],
-    [match.url]
+    []
   );
 
   return (

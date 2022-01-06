@@ -1,11 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { Row, Col, Nav, TabContent } from "reactstrap";
-import { Switch, Redirect } from "react-router-dom";
+import { Row, Col, Nav } from "reactstrap";
 
 import useRouterTabs from "./useRouterTabs";
-import FallBackLoading from "../misc/FallbackLoading";
 
 /**
  * @example
@@ -31,14 +29,17 @@ import FallBackLoading from "../misc/FallbackLoading";
  */
 function RouterTabs(props) {
   // props
-  const { routes, className, overflow, redirect, ...rest } = props;
+  const { routes, className, overflow, redirect, children, ...rest } = props;
 
   const navClasses = classnames("nav-tabs", className, {
     "mw-fit-content": !overflow,
   });
 
   // call hook
-  const { activeTab, renderNavItems, renderRoutes, } = useRouterTabs({ routes, });
+  const { renderNavItems, renderRoutes, } = useRouterTabs({
+    routes,
+    redirect,
+  });
 
   return (
     <>
@@ -56,18 +57,10 @@ function RouterTabs(props) {
           xl={4}
           className="mt-xl-0 mt-sm-3 ml-sm-auto mw-fit-content"
         >
-          {rest.children}
+          {children}
         </Col>
       </Row>
-      <TabContent activeTab={activeTab}>
-        <React.Suspense fallback={<FallBackLoading />}>
-          <Switch>
-            {renderRoutes()}
-            {/* Redirects all unknown paths to first one in the list */}
-            {redirect && <Redirect from="/" to={routes[0].path} />}
-          </Switch>
-        </React.Suspense>
-      </TabContent>
+      <div className="mt-3">{renderRoutes()}</div>
     </>
   );
 }
@@ -76,24 +69,26 @@ RouterTabs.propTypes = {
   routes: PropTypes.arrayOf(
     PropTypes.shape({
       key: PropTypes.string.isRequired,
-      path: PropTypes.string.isRequired,
-      Title: PropTypes.oneOfType([PropTypes.func, PropTypes.node]).isRequired,
-      Component: PropTypes.oneOfType([
-        PropTypes.func,
-        PropTypes.element,
-        PropTypes.elementType,
-      ]).isRequired,
+      location: PropTypes.shape({
+        pathname: PropTypes.string.isRequired,
+        search: PropTypes.search,
+      }).isRequired,
+      Title: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
+      Component: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
+        .isRequired,
     })
   ).isRequired,
+  redirect: PropTypes.bool,
   overflow: PropTypes.bool,
   className: PropTypes.string,
-  redirect: PropTypes.bool,
+  children: PropTypes.node,
 };
 
 RouterTabs.defaultProps = {
   redirect: true,
   overflow: false,
   className: undefined,
+  children: null,
 };
 
 export default RouterTabs;
