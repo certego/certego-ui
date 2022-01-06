@@ -2,6 +2,12 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.0.8](https://github.com/certego/certego-ui/releases/tag/v0.0.8)
+
+[diff](https://github.com/certego/certego-ui/compare/v0.0.7...v0.0.8)
+
+- `tabs`: Fixed regression bug in `useRouterTabs` that was introduced in release `v0.0.7`.
+
 ## [v0.0.7](https://github.com/certego/certego-ui/releases/tag/v0.0.7)
 
 [diff](https://github.com/certego/certego-ui/compare/v0.0.6...v0.0.7)
