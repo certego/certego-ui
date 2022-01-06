@@ -16,11 +16,11 @@ function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
         {
           "bg-body border-secondary": filterValue,
         },
-        "form-control form-control-sm"
+        "form-control form-control-sm input-dark"
       )}
       value={filterValue || ""}
       onChange={onChange}
-      placeholder="Search records.."
+      placeholder="Search keyword.."
     />
   );
 }
@@ -28,24 +28,33 @@ function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
 // This is a custom filter UI for selecting
 // a unique option from a list
 function SelectColumnFilter({
-  column: { filterValue, setFilter, preFilteredRows, id },
+  column: {
+    filterValue,
+    setFilter,
+    preFilteredRows,
+    id,
+    filterValueAccessorFn,
+  },
 }) {
   // Calculate the options for filtering
   // using the preFilteredRows
   const options = React.useMemo(() => {
-    const options = new Set();
+    const optionsSet = new Set();
     preFilteredRows.forEach((row) => {
       const value = row.values[id];
       if (value) {
-        if (Array.isArray(value)) {
-          value.forEach((v) => options.add(v));
+        const optVal = filterValueAccessorFn
+          ? filterValueAccessorFn(value)
+          : value;
+        if (Array.isArray(optVal)) {
+          optVal.forEach((v) => optionsSet.add(v));
         } else {
-          options.add(value);
+          optionsSet.add(optVal);
         }
       }
     });
-    return [...options.values()];
-  }, [id, preFilteredRows]);
+    return [...optionsSet.values()];
+  }, [id, preFilteredRows, filterValueAccessorFn]);
 
   // Set undefined to remove the filter entirely
   const onChange = (e) => setFilter(e.target.value || undefined);
@@ -55,7 +64,7 @@ function SelectColumnFilter({
     <CustomInput
       id={`datatable-select-${id}`}
       type="select"
-      className="custom-select-sm"
+      className="custom-select-sm input-dark"
       value={filterValue}
       onChange={onChange}
     >
@@ -84,7 +93,7 @@ function SelectOptionsFilter({
         {
           "bg-body border-secondary": filterValue,
         },
-        "custom-select-sm"
+        "custom-select-sm input-dark"
       )}
       value={filterValue}
       onChange={onChange}
