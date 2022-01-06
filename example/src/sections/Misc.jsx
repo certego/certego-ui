@@ -75,7 +75,11 @@ export default function Misc(props) {
         bodyNode={
           <Row className="d-flex justify-content-around align-items-start">
             {exampleToasts.map((toast) => (
-              <Toaster key={toast.color} {...toast} />
+              <Toaster
+                id={`toaster__${toast.color}`}
+                key={toast.color}
+                {...toast}
+              />
             ))}
           </Row>
         }
