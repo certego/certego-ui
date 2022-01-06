@@ -2,6 +2,15 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.0.7](https://github.com/certego/certego-ui/releases/tag/v0.0.7)
+
+[diff](https://github.com/certego/certego-ui/compare/v0.0.6...v0.0.7)
+
+- `table`: Dark background in filter inputs.
+- `tabs`: refactor `RouterTabs` and `useRouterTabs`.
+- `table`: export `Paginator` component.
+- Bump `reactstrap` dependency to `8.10.1`.
+
 ## [v0.0.6](https://github.com/certego/certego-ui/releases/tag/v0.0.6)
 
 [diff](https://github.com/certego/certego-ui/compare/v0.0.5...v0.0.6)
