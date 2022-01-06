@@ -6,6 +6,8 @@ import React from "react";
 import { NavLink, NavItem } from "reactstrap";
 import { NavLink as RRNavLink, Route, useHistory } from "react-router-dom";
 
+import FallbackLoading from "../misc/FallbackLoading";
+
 // constants
 const isSame = (loc1, loc2) =>
   loc1.pathname === loc2.pathname &&
@@ -68,7 +70,13 @@ export default function useRouterTabs({ routes, redirect, }) {
           path={location.pathname}
           exact={false}
         >
-          {() => activeKey === key && <Component />}
+          {() =>
+            activeKey === key && (
+              <React.Suspense fallback={<FallbackLoading />}>
+                <Component />
+              </React.Suspense>
+            )
+          }
         </Route>
       )),
     [activeKey, routes]
