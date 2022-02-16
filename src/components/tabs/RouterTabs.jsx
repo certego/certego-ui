@@ -71,7 +71,7 @@ RouterTabs.propTypes = {
       key: PropTypes.string.isRequired,
       location: PropTypes.shape({
         pathname: PropTypes.string.isRequired,
-        search: PropTypes.search,
+        search: PropTypes.string,
       }).isRequired,
       Title: PropTypes.oneOfType([PropTypes.func, PropTypes.object]).isRequired,
       Component: PropTypes.oneOfType([PropTypes.func, PropTypes.object])
