@@ -10,7 +10,7 @@ export default function App() {
         <header className="fixed-top">
           <AppHeader />
         </header>
-        <main role="main" className=" px-5 mx-auto">
+        <main role="main" className="px-5 mx-auto">
           <AppMain />
         </main>
         <footer>
