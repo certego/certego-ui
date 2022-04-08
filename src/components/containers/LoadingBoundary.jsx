@@ -10,9 +10,12 @@ function LoadingBoundary(props) {
   // this is required due to a bug in the axios-hooks library which
   // shows this string even if the request was successful
   var show_error = false;
-  if (error && error.response !== "error.response is undefined"){
+  if (error && error.response){
       show_error = true;
   }
+
+  console.log(error);
+  console.log(show_error);
 
   return (
     <>
