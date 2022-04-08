@@ -14,9 +14,6 @@ function LoadingBoundary(props) {
       show_error = true;
   }
 
-  console.log(error);
-  console.log(show_error);
-
   return (
     <>
       {loading && (
