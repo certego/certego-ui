@@ -36,7 +36,9 @@ function useDataTable(
   React.useEffect(() => {
     if (!loading) setInitialLoading(false);
   }, [loading]);
+  // https://it.reactjs.org/docs/hooks-effect.html#tip-optimizing-performance-by-skipping-effects
 
+  // https://it.reactjs.org/docs/hooks-reference.html#usememo
   const tableNode = React.useMemo(
     () => (
       <LoadingBoundary

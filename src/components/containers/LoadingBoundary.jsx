@@ -7,19 +7,30 @@ import ErrorAlert from "../alerts/ErrorAlert";
 
 function LoadingBoundary(props) {
   const { loading, error, size, render, renderError, } = props;
+  console.log("loading");
+  console.log(loading);
+  console.log("error");
+  // this is required due to a bug in the axios-hooks library which
+  // shows this string even if the request was successful
+  var show_error = false;
+  if (error && error.response !== "error.response is undefined"){
+      show_error = true;
+  }
 
   return (
     <>
       {loading && (
         <Spinner size={size} type="ripple" className="d-block mx-auto my-5" />
       )}
-      {error && renderError({ error, size, })}
-      <Col
-        md={12}
-        className={classnames("p-0", { invisible: loading || error, })}
-      >
-        {render()}
-      </Col>
+      {show_error && renderError({ error, size, })}
+      {!loading && !show_error && (
+          <Col
+            md={12}
+            className={classnames("p-0")}
+          >
+            {render()}
+          </Col>
+      )}
     </>
   );
 }
