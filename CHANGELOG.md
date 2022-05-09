@@ -2,6 +2,9 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.1.0](https://github.com/certego/certego-ui/releases/tag/v0.1.0)
+Major update of all dependencies. Breaking changes.
+
 ## [v0.0.9](https://github.com/certego/certego-ui/releases/tag/v0.0.9)
 
 [diff](https://github.com/certego/certego-ui/compare/v0.0.8...v0.0.9)

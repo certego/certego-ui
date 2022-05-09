@@ -1,3 +1,7 @@
+@use "sass:math";
+@use "sass:color";
+@use "sass:map";
+
 // theme
 @import "variables";
 @import "~bootstrap/scss/bootstrap";
@@ -35,16 +39,14 @@ hr {
   background-color: $light;
 }
 
-/* custom */
-
 a:hover {
   color: $primary !important;
   text-decoration: none !important;
 }
 
-// moment
+// date
 
-.moment-hoverable {
+.date-hoverable {
   text-decoration: underline;
   text-decoration-style: dotted;
   cursor: pointer;

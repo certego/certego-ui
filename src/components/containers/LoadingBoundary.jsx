@@ -9,9 +9,9 @@ function LoadingBoundary(props) {
   const { loading, error, size, render, renderError, } = props;
   // this is required due to a bug in the axios-hooks library which
   // shows this string even if the request was successful
-  var show_error = false;
+  let showError = false;
   if (error && error.response){
-      show_error = true;
+      showError = true;
   }
 
   return (
@@ -19,8 +19,8 @@ function LoadingBoundary(props) {
       {loading && (
         <Spinner size={size} type="ripple" className="d-block mx-auto my-5" />
       )}
-      {show_error && renderError({ error, size, })}
-      {!loading && !show_error && (
+      {showError && renderError({ error, size, })}
+      {!loading && !showError && (
           <Col
             md={12}
             className={classnames("p-0")}
@@ -33,8 +33,8 @@ function LoadingBoundary(props) {
 }
 
 LoadingBoundary.propTypes = {
-  loading: PropTypes.bool.isRequired,
   error: PropTypes.object,
+  loading: PropTypes.bool,
   render: PropTypes.func.isRequired,
   renderError: PropTypes.func,
   size: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
@@ -42,6 +42,7 @@ LoadingBoundary.propTypes = {
 
 LoadingBoundary.defaultProps = {
   error: null,
+  loading: false,
   renderError: ErrorAlert,
   size: "md",
 };

@@ -1,17 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button, UncontrolledPopover, PopoverBody } from "reactstrap";
-import { ShareButtonIconOnly, ShareBlockStandard } from "react-custom-share";
 import {
-  FaLink,
-  FaTwitter,
-  FaFacebook,
-  FaEnvelope,
-  FaLinkedin
-} from "react-icons/fa";
+  EmailShareButton,
+  FacebookShareButton,
+  LinkedinShareButton,
+  TwitterShareButton,
+} from "react-share";
+import { FaLink } from "react-icons/fa";
 import { MdShare } from "react-icons/md";
-
 import CopyToClipboardButton from "./CopyToClipboardButton";
+
 
 export default function SocialShareBtn({
   id,
@@ -22,27 +21,12 @@ export default function SocialShareBtn({
   popoverPlacement,
   ...shareProps
 }) {
-  const shareBlockProps = {
-    button: ShareButtonIconOnly,
-    buttons: [
-      { network: "Twitter", icon: FaTwitter, },
-      { network: "Facebook", icon: FaFacebook, },
-      {
-        network: "Linkedin",
-        icon: FaLinkedin,
-        link: `https://www.linkedin.com/sharing/share-offsite/?url=${url}`,
-      },
-      { network: "Email", icon: FaEnvelope, },
-    ],
-    url,
-    ...shareProps,
-  };
 
   return (
     <div>
       <Button
         id={`${id}-socialbtn`}
-        className="ml-2"
+        className="ms-2"
         size="sm"
         color="accent-2"
         {...btnProps}
@@ -56,9 +40,12 @@ export default function SocialShareBtn({
         placement={popoverPlacement}
       >
         <PopoverBody className="d-flex-center bg-darker border border-accent-2 rounded">
-          <ShareBlockStandard {...shareBlockProps} />
+          <TwitterShareButton url={url} {...shareProps} />
+          <FacebookShareButton url={url} {...shareProps} />
+          <LinkedinShareButton url={url} {...shareProps} />
+          <EmailShareButton url={url} {...shareProps} />
           <CopyToClipboardButton id={`${id}-copybtn`} text={url}>
-            <FaLink className="ml-3 mr-4 text-large text-secondary" />
+            <FaLink className="ms-3 me-4 text-large text-secondary" />
           </CopyToClipboardButton>
         </PopoverBody>
       </UncontrolledPopover>

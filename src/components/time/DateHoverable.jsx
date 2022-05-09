@@ -1,8 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import moment from "moment";
-import Moment from "react-moment";
 import {
   ListGroup,
   ListGroupItem,
@@ -10,26 +8,33 @@ import {
   PopoverHeader,
   PopoverBody
 } from "reactstrap";
+import {
+  addMinutes,
+  format,
+  formatDistanceToNow
+} from "date-fns";
 
-function MomentHoverable(props) {
-  const { id, value, className, showAgo, ...rest } = props;
+
+function DateHoverable(props) {
+  const { id, value, className, showAgo, format: formatProp, ...rest } = props;
 
   const [utcVal, userTz, userTzVal] = React.useMemo(() => {
-    const formatStr = "h:mm A MMM Do, YYYY";
+    const formatStr = "p PP";
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    const obj = typeof value === "number" ? moment.unix(value) : moment(value);
-    return [obj.utc().format(formatStr), tz, obj.local().format(formatStr)];
+    const d = new Date(value||null);
+    const dUTC = addMinutes(d, d.getTimezoneOffset());
+    return [format(dUTC, formatStr), tz, format(d, formatStr)];
   }, [value]);
 
   return (
     <>
-      <Moment
+      <time
         id={id}
-        unix={typeof value === "number"}
-        date={value}
-        className={classnames("moment-hoverable", className)}
+        className={classnames("date-hoverable", className)}
         {...rest}
-      />
+      >
+        {format(new Date(value||null), formatProp)}
+      </time>
       <UncontrolledPopover target={id} trigger="hover">
         <PopoverHeader className="p-1">
           <small>Time Conversion</small>
@@ -37,23 +42,19 @@ function MomentHoverable(props) {
         <PopoverBody className="bg-body">
           <ListGroup flush>
             {showAgo && (
-              <ListGroupItem className="p-1 d-flex justify-content-between align-items-center">
+              <ListGroupItem className="p-1 d-flex justify-content-between align-items-center text-light">
                 <b className="mx-auto text-secondary">
-                  <Moment
-                    unix={typeof value === "number"}
-                    date={value}
-                    fromNow
-                  />
+                  {formatDistanceToNow(new Date(value||null), { addSuffix: true, })}
                 </b>
               </ListGroupItem>
             )}
-            <ListGroupItem className="p-1 d-flex justify-content-between align-items-center">
+            <ListGroupItem className="p-1 d-flex justify-content-between align-items-center text-light">
               <b>UTC</b>
-              <span className="ml-4">{utcVal}</span>
+              <span className="ms-4">{utcVal}</span>
             </ListGroupItem>
-            <ListGroupItem className="p-1 d-flex justify-content-between align-items-center">
+            <ListGroupItem className="p-1 d-flex justify-content-between align-items-center text-light">
               <b>{userTz} · Your computer</b>
-              <span className="ml-4">{userTzVal}</span>
+              <span className="ms-4">{userTzVal}</span>
             </ListGroupItem>
           </ListGroup>
         </PopoverBody>
@@ -62,16 +63,18 @@ function MomentHoverable(props) {
   );
 }
 
-MomentHoverable.propTypes = {
+DateHoverable.propTypes = {
   id: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   className: PropTypes.string,
+  format: PropTypes.string,
   showAgo: PropTypes.bool,
 };
 
-MomentHoverable.defaultProps = {
+DateHoverable.defaultProps = {
   className: undefined,
+  format: "PPpppp",
   showAgo: false,
 };
 
-export default React.memo(MomentHoverable);
+export default React.memo(DateHoverable);

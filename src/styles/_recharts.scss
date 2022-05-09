@@ -3,7 +3,7 @@
   stroke-opacity: 0.75;
 
   .recharts-label {
-    stroke: $yiq-text-light;
+    stroke: $color-contrast-light;
     stroke-opacity: 0.75;
   }
 }
@@ -21,7 +21,7 @@
 .recharts-cartesian-axis-tick-value {
   &.recharts-text {
     font-size: $rc-axis-font-size;
-    fill: $yiq-text-light;
+    fill: $color-contrast-light;
   }
 }
 

@@ -16,18 +16,22 @@ const type2ClassnameMap = {
 // component
 export default function NavLink({ type, children, className, ...props }) {
   return (
-    <RSNavLink
-      tag={RRNavLink}
-      activeClassName="nav-link-active"
-      className={classnames(
-        "text-lg-center",
-        type2ClassnameMap[type],
-        className
+    <RRNavLink to="#"
+      {...props}>
+      {({ isActive, }) => (
+        <RSNavLink
+          tag="span"
+          className={classnames(
+            "text-lg-center",
+            type2ClassnameMap[type],
+            {"nav-link-active": isActive,},
+            className
+          )}
+        >
+          {children}
+        </RSNavLink>
       )}
-      {...props}
-    >
-      {children}
-    </RSNavLink>
+    </RRNavLink>
   );
 }
 

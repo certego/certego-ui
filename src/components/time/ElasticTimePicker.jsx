@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button, ButtonGroup } from "reactstrap";
-import moment from "moment";
 import { IoInfinite } from "react-icons/io5";
+import { sub } from "date-fns";
 
 // constants
 const INFINITY = "inf";
@@ -11,8 +11,11 @@ const INTERVAL_TO_VAL = /(?<value>\d+)(?<unit>\w)/;
 
 function intervalToTime(ti) {
   const match = INTERVAL_TO_VAL.exec(ti);
-  const fromTime = moment().subtract(+match.groups.value, match.groups.unit);
-  return fromTime.minutes(0).seconds(0).milliseconds(0).toISOString();
+  const fromTime = sub(new Date(), { [match.groups.unit]: +match.groups.value, });
+  fromTime.setMinutes(0);
+  fromTime.setSeconds(0);
+  fromTime.setMilliseconds(0);
+  return fromTime.toISOString();
 }
 
 /**
@@ -35,16 +38,12 @@ function ElasticTimePicker(props) {
   const [selected, setSelected] = React.useState(defaultSelected);
 
   // callbacks
-  /**
-   * @param {event} e
-   */
-  const onClick = React.useCallback(
-    (e) => setSelected(e.currentTarget.value),
+  const onClick = React.useCallback(e =>
+      setSelected(e.currentTarget.value),
     [setSelected]
   );
 
   // effects
-
   React.useEffect(() => {
     if (selected === INFINITY) {
       onChange(selected, null);
@@ -58,7 +57,7 @@ function ElasticTimePicker(props) {
       {intervals.map((ti) => (
         <Button
           key={ti}
-          className="font-weight-bold"
+          className="fw-bold"
           color="secondary"
           value={ti}
           onClick={onClick}
@@ -69,7 +68,7 @@ function ElasticTimePicker(props) {
       ))}
       {showInfinity && (
         <Button
-          className="font-weight-bold"
+          className="fw-bold"
           color="secondary"
           value={INFINITY}
           onClick={onClick}

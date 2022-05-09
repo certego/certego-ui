@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useRowSelect, useExpanded } from "react-table";
-import { CustomInput, UncontrolledTooltip } from "reactstrap";
+import { FormGroup, Input, UncontrolledTooltip, Label } from "reactstrap";
 
 import ArrowToggleIcon from "../icons/ArrowToggleIcon";
 
@@ -29,22 +29,23 @@ export const createUseRowDisabledHook = (hocProps) => (hooks) => {
       // eslint-disable-next-line react/prop-types
       Cell: ({ row: { original: obj, }, }) =>
         obj?.permissions?.edit ? (
-          <div id={`toggle-enable-switch__${obj?.id}`}>
-            <CustomInput
-              id={`toggle-enable-switch-inner__${obj?.id}`}
-              type="switch"
-              name="ruleEnabled"
-              className={obj?.enabled ? "row-disabled" : ""}
-              defaultChecked={obj?.enabled}
-              onChange={async () => {
-                await onChange(obj?.id, !obj?.enabled);
-                instance?.customProps?.refetchTableData();
-              }}
-            />
+          <>
+            <FormGroup switch
+              id={`toggle-enable-switch__${obj?.id}`}
+            >
+              <Input type="checkbox"
+                name="ruleEnabled"
+                className={obj?.enabled ? "row-disabled" : ""}
+                defaultChecked={obj?.enabled}
+                onChange={async () => {
+                  await onChange(obj?.id, !obj?.enabled);
+                  instance?.customProps?.refetchTableData();
+                }} />
+            </FormGroup>
             <UncontrolledTooltip target={`toggle-enable-switch__${obj?.id}`}>
               {obj?.enabled ? "Disable" : "Enable"} {objectName}
             </UncontrolledTooltip>
-          </div>
+          </>
         ) : null,
     },
     ...columns,
@@ -131,7 +132,7 @@ export const rowExpandHooks = [
 // components
 
 const IndeterminateCheckbox = React.forwardRef(
-  ({ id, indeterminate, ...rest }, ref) => {
+  ({ id, indeterminate, label, ...rest }, ref) => {
     const defaultRef = React.useRef();
     const resolvedRef = ref || defaultRef;
 
@@ -141,7 +142,10 @@ const IndeterminateCheckbox = React.forwardRef(
     }, [resolvedRef, indeterminate]);
 
     return (
-      <CustomInput id={id} type="checkbox" innerRef={resolvedRef} {...rest} />
+      <FormGroup check>
+        <Input id={id} type="checkbox" innerRef={resolvedRef} {...rest} />
+        {label && <Label check>{label}</Label>}
+      </FormGroup>
     );
   }
 );

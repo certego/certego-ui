@@ -20,9 +20,7 @@ function Tabs(props) {
     }
   };
 
-  const navClasses = classnames("nav-tabs", className, {
-    "mw-fit-content": !overflow,
-  });
+  const navClasses = classnames("nav-tabs", className);
 
   return (
     <>

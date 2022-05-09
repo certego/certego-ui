@@ -21,14 +21,13 @@ export default function IconAlert(props) {
 
   return (
     <Alert color={color} {...rest}>
-      <Icon className="mr-2" />
+      <Icon className="me-2" />
       {children}
     </Alert>
   );
 }
 
 IconAlert.propTypes = {
-  id: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   color: PropTypes.string.isRequired,
 };

@@ -1,5 +1,4 @@
 import React from "react";
-import { Row } from "reactstrap";
 
 import {
   ContentSection,
@@ -16,39 +15,39 @@ export default function Icons(props) {
       <ComponentAsExample
         name="ArrowToggleIcon"
         bodyNode={
-          <Row className="d-flex justify-content-around">
-            <ArrowToggleIcon isExpanded />
-            <ArrowToggleIcon isExpanded={false} />
-          </Row>
+          <div className="d-flex justify-content-around">
+              <ArrowToggleIcon isExpanded />
+              <ArrowToggleIcon isExpanded={false} />
+          </div>
         }
       />
       <ComponentAsExample
         name="BooleanIcon"
         bodyNode={
           <>
-            <Row className="d-flex justify-content-around">
+            <div className="d-flex justify-content-around">
               <BooleanIcon truthy />
               <BooleanIcon truthy={false} />
-            </Row>
-            <Row className="mt-2 d-flex justify-content-around">
+            </div>
+            <div className="mt-2 d-flex justify-content-around">
               <BooleanIcon truthy withColors />
               <BooleanIcon truthy={false} withColors />
-            </Row>
-            <Row className="mt-2 d-flex justify-content-around">
+            </div>
+            <div className="mt-2 d-flex justify-content-around">
               <BooleanIcon truthy outline={false} />
               <BooleanIcon truthy={false} outline={false} />
-            </Row>
-            <Row className="mt-2 d-flex justify-content-around">
+            </div>
+            <div className="mt-2 d-flex justify-content-around">
               <BooleanIcon truthy withColors outline={false} />
               <BooleanIcon truthy={false} withColors outline={false} />
-            </Row>
+            </div>
           </>
         }
       />
       <ComponentAsExample
         name="LinkOpenViewIcon"
         bodyNode={
-          <Row className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around">
             <LinkOpenViewIcon
               id="linkopen-example-1"
               tooltip="Example #1"
@@ -66,7 +65,7 @@ export default function Icons(props) {
               tooltip="Example #3"
               href="#"
             />
-          </Row>
+          </div>
         }
       />
     </ContentSection>

@@ -1,21 +1,28 @@
 import React from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import { DropdownItem } from "reactstrap";
+import classNames from "classnames";
 
 /**
  * @type {component}
  * @param props
  */
 export default function DropdownNavLink(props) {
-  const { ...toPassProps } = props;
+  const { className, ...toPassProps } = props;
 
   return (
-    <DropdownItem
-      tag={RRNavLink}
-      activeClassName="nav-link-active"
-      to="#"
-      {...toPassProps}
-    />
+    <RRNavLink to="#"
+      {...toPassProps}>
+      {({ isActive, }) => (
+        <DropdownItem
+          className={classNames(
+            {"nav-link-active": isActive,},
+            className
+          )}
+        />
+      )}
+    </RRNavLink>
+
   );
 }
 

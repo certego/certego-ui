@@ -4,35 +4,24 @@ Based on: https://codesandbox.io/embed/6brgz
 
 import React from "react";
 import { NavLink, NavItem } from "reactstrap";
-import { NavLink as RRNavLink, Route, useHistory } from "react-router-dom";
+import { NavLink as RRNavLink, Route, Navigate, Routes, useLocation, useResolvedPath } from "react-router-dom";
 
 import FallbackLoading from "../misc/FallbackLoading";
 
-// constants
-const isSame = (loc1, loc2) =>
-  loc1.pathname === loc2.pathname &&
-  (loc2.search ? loc1.search === loc2.search : true);
-
 // hook
 export default function useRouterTabs({ routes, redirect, }) {
-  const { location: hLocation, replace, } = useHistory();
+  const hLocation = useLocation();
+  const resolvedPath = useResolvedPath("");
+  const activeKeyRef = React.useRef(null);
 
   const activeKey = React.useMemo(() => {
-    let key;
-    if (routes.length) {
-      // just loaded => try to find matching key
-      const routeFound = routes.find((r) => isSame(hLocation, r.location));
-      if (routeFound) {
-        key = routeFound.key;
-      }
-      // no match && redirect=true => redirect to first one
-      if (!key && redirect) {
-        key = routes[0].key;
-        replace(routes[0].location);
-      }
-    }
-    return key;
-  }, [hLocation, replace, routes, redirect]);
+    const a = routes?.find(r => {
+      const loc1 = hLocation.pathname;
+      const loc2 = `${resolvedPath.pathname}/${r.location}`.replaceAll("//", "");
+      return loc1.includes(loc2);
+    });
+    return a?.key;
+  }, [routes, hLocation, resolvedPath]);
 
   /**
    * Renders the reactstrap `NavItem`s. Note that reactstrap's `NavLink`
@@ -49,13 +38,17 @@ export default function useRouterTabs({ routes, redirect, }) {
           <NavLink
             tag={RRNavLink}
             to={location}
-            isActive={() => activeKey === key}
+            style={({isActive,}) => {
+              if (isActive)
+                activeKeyRef.current = key;
+                return undefined;
+            }}
           >
             <Title />
           </NavLink>
         </NavItem>
       )),
-    [activeKey, routes]
+    [routes]
   );
 
   /**
@@ -63,23 +56,27 @@ export default function useRouterTabs({ routes, redirect, }) {
    */
   const renderRoutes = React.useCallback(
     () =>
-      routes.map(({ key, Component, location, }) => (
-        <Route
-          key={`routertabs-${key}-route`}
-          location={location}
-          path={location.pathname}
-          exact={false}
-        >
-          {() =>
-            activeKey === key && (
+      <Routes>
+        {routes.map(({ key, Component, location, }) => 
+          <Route
+            key={`routertabs-${key}-route`}
+            path={`${location}/*`}
+            element={
               <React.Suspense fallback={<FallbackLoading />}>
                 <Component />
               </React.Suspense>
-            )
-          }
-        </Route>
-      )),
-    [activeKey, routes]
+            }
+          />
+        )}
+      {redirect && routes.length &&
+        <Route
+          key="routertabs-redirect"
+          path="*"
+          element={<Navigate to={routes[0].location} />}
+        />}
+      </Routes>,
+
+    [routes, redirect]
   );
 
   return { activeKey, renderNavItems, renderRoutes, };

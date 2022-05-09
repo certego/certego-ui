@@ -1,7 +1,7 @@
 /* eslint-disable */
 import React from "react";
 import classnames from "classnames";
-import { CustomInput } from "reactstrap";
+import { Input } from "reactstrap";
 
 // Define a default UI for filtering
 function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
@@ -9,7 +9,7 @@ function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
   const onChange = (e) => setFilter(e.target.value || undefined);
 
   return (
-    <CustomInput
+    <Input
       id={`datatable-select-${id}`}
       type="search"
       className={classnames(
@@ -61,7 +61,7 @@ function SelectColumnFilter({
 
   // Render a multi-select box
   return (
-    <CustomInput
+    <Input
       id={`datatable-select-${id}`}
       type="select"
       className="custom-select-sm input-dark"
@@ -74,7 +74,7 @@ function SelectColumnFilter({
           {value}
         </option>
       ))}
-    </CustomInput>
+    </Input>
   );
 }
 
@@ -86,7 +86,7 @@ function SelectOptionsFilter({
   const onChange = (e) => setFilter(e.target.value || undefined); // Set undefined to remove the filter entirely
 
   return (
-    <CustomInput
+    <Input
       id={`datatable-select-${id}`}
       type="select"
       className={classnames(
@@ -104,7 +104,7 @@ function SelectOptionsFilter({
           {value}
         </option>
       ))}
-    </CustomInput>
+    </Input>
   );
 }
 
@@ -120,7 +120,7 @@ function SliderColumnFilter({
   return (
     <div className="mx-auto text-center">
       <div className="text-info">{`>=${value}`}</div>
-      <CustomInput
+      <Input
         id={`datatable-select-${id}`}
         type="range"
         min={min}

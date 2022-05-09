@@ -1,5 +1,5 @@
 import React from "react";
-import { Row } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 import {
   ContentSection,
@@ -22,13 +22,15 @@ export default function Containers(props) {
   const exampleRenderFn = React.useCallback(
     () => (
       <Row>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
-          odit? Saepe earum nostrum rerum quasi nisi illo sit. Numquam nesciunt
-          pariatur natus alias aperiam. Repellat velit perspiciatis sed rem
-          commodi!
-        </p>
-        <p className="text-muted">Will refetch in a second...</p>
+        <Col>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum,
+            odit? Saepe earum nostrum rerum quasi nisi illo sit. Numquam nesciunt
+            pariatur natus alias aperiam. Repellat velit perspiciatis sed rem
+            commodi!
+          </p>
+          <p className="text-muted">Will refetch in a second...</p>
+        </Col>
       </Row>
     ),
     []
@@ -40,7 +42,7 @@ export default function Containers(props) {
         name="ContentSection"
         bodyNode={
           <>
-            <Row className="d-flex justify-content-around">
+            <div className="d-flex justify-content-around">
               <ContentSection className="col-3 bg-dark">Dark</ContentSection>
               <ContentSection className="col-3 bg-darker">
                 Darker
@@ -48,8 +50,8 @@ export default function Containers(props) {
               <ContentSection className="col-3 bg-body">
                 Body background
               </ContentSection>
-            </Row>
-            <Row className="d-flex justify-content-around">
+            </div>
+            <div className="d-flex justify-content-around">
               <ContentSection className="col-3 bg-dark shadow">
                 With shadow
               </ContentSection>
@@ -59,8 +61,8 @@ export default function Containers(props) {
               <ContentSection className="col-3 bg-body shadow">
                 With shadow
               </ContentSection>
-            </Row>
-            <Row className="d-flex justify-content-around">
+            </div>
+            <div className="d-flex justify-content-around">
               <ContentSection className="col-3 bg-dark glow">
                 With glow
               </ContentSection>
@@ -70,7 +72,7 @@ export default function Containers(props) {
               <ContentSection className="col-3 bg-body glow">
                 With glow
               </ContentSection>
-            </Row>
+            </div>
           </>
         }
       />
@@ -87,7 +89,6 @@ export default function Containers(props) {
                 debitis officia ullam?
               </p>
             }
-            foo
           />
         }
       />

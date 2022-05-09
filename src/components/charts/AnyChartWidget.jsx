@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import moment from "moment";
+import { format } from "date-fns";
 
 import CustomComposedChart from "./CustomComposedChart";
 
@@ -29,10 +29,10 @@ export default function AnyChartWidget({
     const aggregation = accessorFnAggregation(respData);
     if (!aggregation || !aggregation?.length) return null;
     return aggregation
-      .sort((a, b) => moment(a.date) - moment(b.date))
+      .sort((a, b) => new Date(a.date) - new Date(b.date))
       .map((o) => ({
         ...o,
-        date: moment(o.date).format(dateFormat),
+        date: format(new Date(o.date), dateFormat),
       }));
   }, [accessorFnAggregation, dateFormat, respData]);
 

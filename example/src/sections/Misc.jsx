@@ -46,7 +46,7 @@ export default function Misc(props) {
       <ComponentAsExample
         name="CustomMapBadge"
         bodyNode={
-          <Row className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around">
             {Object.keys(statusColorMap).map((status) => (
               <CustomMapBadge
                 key={status}
@@ -54,7 +54,7 @@ export default function Misc(props) {
                 status={status}
               />
             ))}
-          </Row>
+          </div>
         }
       />
       <ComponentAsExample
@@ -73,13 +73,14 @@ export default function Misc(props) {
       <ComponentAsExample
         name="Toaster"
         bodyNode={
-          <Row className="d-flex justify-content-around align-items-start">
+          <Row className="row-cols-lg-3 g-2">
             {exampleToasts.map((toast) => (
-              <Toaster
-                id={`toaster__${toast.color}`}
-                key={toast.color}
-                {...toast}
-              />
+              <Col key={toast.color}>
+                <Toaster
+                  id={`toaster__${toast.color}`}
+                  {...toast}
+                />
+              </Col>
             ))}
           </Row>
         }
@@ -87,7 +88,7 @@ export default function Misc(props) {
       <ComponentAsExample
         name="UserBubble"
         bodyNode={
-          <Row className="d-flex justify-content-around align-items-start">
+          <div className="d-flex justify-content-around align-items-start">
             <UserBubble
               className="bg-light text-darker"
               size="xs"
@@ -98,7 +99,7 @@ export default function Misc(props) {
               size="sm"
               userInfo={userInfo}
             />
-          </Row>
+          </div>
         }
       />
       <ComponentAsExample
@@ -116,7 +117,7 @@ export default function Misc(props) {
       />
       <ComponentAsExample
         name="AxiosLoadingBar"
-        bodyNode={<small className="font-italic">todo</small>}
+        bodyNode={<small className="fst-italic">todo</small>}
       />
     </ContentSection>
   );

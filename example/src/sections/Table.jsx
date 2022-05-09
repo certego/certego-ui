@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, Row } from "reactstrap";
+import { Col } from "reactstrap";
 
 import {
   ContentSection,
@@ -122,9 +122,9 @@ export default function Table(props) {
       <ComponentAsExample
         name="TableHintIcon"
         bodyNode={
-          <Row className="d-flex-center">
+          <div className="d-flex-center">
             <TableHintIcon />
-          </Row>
+          </div>
         }
       />
       <ComponentAsExample

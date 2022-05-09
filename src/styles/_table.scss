@@ -18,14 +18,6 @@ table {
       }
     }
   }
-  tfoot {
-    @extend .d-flex;
-    @extend .justify-content-sm-start;
-    @extend .justify-content-lg-center;
-    position: sticky;
-    inset-block-end: 0; /* "bottom" */
-    margin-top: 1rem;
-  }
   th,
   td {
     // force borders
@@ -60,6 +52,15 @@ tr {
 }
 
 // Pagination
+
+.table-paginator {
+  @extend .d-flex;
+  @extend .justify-content-sm-start;
+  @extend .justify-content-lg-center;
+  position: sticky;
+  inset-block-end: 0; /* "bottom" */
+  margin-top: 1rem;
+}
 
 .pagination {
   @extend .content-section;

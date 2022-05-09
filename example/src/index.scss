@@ -1,7 +1,7 @@
 @import "@certego/certego-ui/src/styles/root.scss";
 
 :root {
-  /* bootstrap overwrite */
+  // bootstrap overwrite
   --primary: #{$primary} !important;
   --secondary: #{$secondary} !important;
   --tertiary: #{$tertiary} !important;
@@ -45,7 +45,7 @@ section#app-toasts {
   color: $light;
   font-weight: 450;
   &:hover {
-    background-color: darken($color: #1da1f2, $amount: 20);
+    background-color: shade-color(#1da1f2, 20%);
     color: $light !important;
   }
 }

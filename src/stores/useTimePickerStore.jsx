@@ -20,7 +20,7 @@ const useTimePickerStore = create(
     (set, get) => ({
       RANGE_DATEFORMAT_MAP: DEFAULT_RANGE_DATEFORMAT_MAP,
       range: "24h",
-      fromTimeIsoStr: "",
+      fromTimeIsoStr: null,
       dateFormat: DEFAULT_RANGE_DATEFORMAT_MAP["24h"],
       onTimeIntervalChange: (range, fromTimeIsoStr) => {
         set({

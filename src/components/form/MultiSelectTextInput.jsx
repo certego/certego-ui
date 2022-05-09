@@ -16,9 +16,9 @@ export default function MultiSelectTextInput(props) {
   const [inputValue, setInputValue] = React.useState("");
   const [inputList, setInputList] = React.useState(() => defaultElements || []);
 
-  const onChange = (v, _) => setInputList(v);
-  const onInputChange = (v) => setInputValue(v);
-  const handleKeyDown = (event) => {
+  const onChange = v => setInputList(v);
+  const onInputChange = v => setInputValue(v);
+  const handleKeyDown = event => {
     if (!inputValue) return;
     switch (event.key) {
       case "Enter":
@@ -35,10 +35,12 @@ export default function MultiSelectTextInput(props) {
     }
   };
 
+  
+
   // fire onElementsChange to sync inputList with elements
   React.useEffect(() => {
     onElementsChange(inputList.map((el) => el.value));
-  }, [inputList]);
+  }, [inputList, onElementsChange]);
 
   return (
     <ReactCreatableSelect

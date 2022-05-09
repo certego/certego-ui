@@ -35,6 +35,7 @@ function DataTable({
     getTableProps,
     getTableBodyProps,
     headerGroups,
+    footerGroups,
     prepareRow,
     visibleColumns,
     page,
@@ -69,100 +70,115 @@ function DataTable({
     }
   }, [onSelectedRowChange, selectedFlatRows]);
 
+  const footerAvailable = footerGroups[0]?.headers.filter(h => h.Footer.length).length !== 0;
+
   // Use the state and functions returned from useTable to build your UI
   return (
-    <Table striped hover responsive="xl" {...getTableProps(tableProps)}>
-      {/* Table Head */}
-      <thead>
-        {headerGroups.map((headerGroup) => (
-          <tr className="head-row" {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map((column) => (
-              <th
-                className={column.isSorted ? "text-primary" : ""}
-                {...column.getHeaderProps()}
-              >
-                <div
-                  className="text-center"
-                  {...(column.canSort ? column.getSortByToggleProps() : {})}
+    <div>
+      <Table striped hover responsive="xl" {...getTableProps(tableProps)}>
+        {/* Table Head */}
+        <thead>
+          {headerGroups.map((headerGroup) => (
+            <tr className="head-row" {...headerGroup.getHeaderGroupProps()}>
+              {headerGroup.headers.map((column) => (
+                <th
+                  className={column.isSorted ? "text-primary" : ""}
+                  {...column.getHeaderProps()}
                 >
-                  {column.render("Header")}
-                  {column.canSort &&
-                    (column.isSorted ? (
-                      column.isSortedDesc ? (
-                        <FaSortDown />
-                      ) : (
-                        <FaSortUp />
-                      )
-                    ) : (
-                      <FaSort className="text-muted small" />
-                    ))}
-                </div>
-                <div className="d-flex mt-1">
-                  {column.canFilter && column.render("Filter")}
-                </div>
-              </th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      {/* Table Body */}
-      <tbody {...getTableBodyProps()}>
-        {page?.length ? (
-          !TableBodyComponent ? (
-            page.map((row) => {
-              prepareRow(row);
-              const { key, ...rowProps } = row.getRowProps();
-              return (
-                <React.Fragment key={key}>
-                  {/* table row */}
-                  <tr
-                    {...rowProps}
-                    className={classnames(rowProps.className, {
-                      "row-selected": row.isSelected,
-                    })}
+                  <div
+                    className="text-center"
+                    {...(column.canSort ? column.getSortByToggleProps() : {})}
                   >
-                    {row.cells.map((cell) => (
-                      <td className="text-center" {...cell.getCellProps()}>
-                        {cell.render("Cell")}
-                      </td>
-                    ))}
-                  </tr>
-                  {/* SubComponent */}
-                  {SubComponent && config?.enableExpanded && row?.isExpanded && (
-                    <tr>
-                      <td colSpan={visibleColumns.length}>
-                        <SubComponent row={row} />
-                      </td>
+                    {column.render("Header")}
+                    {column.canSort &&
+                      (column.isSorted ? (
+                        column.isSortedDesc ? (
+                          <FaSortDown />
+                        ) : (
+                          <FaSortUp />
+                        )
+                      ) : (
+                        <FaSort className="text-muted small" />
+                      ))}
+                  </div>
+                  <div className="d-flex mt-1">
+                    {column.canFilter && column.render("Filter")}
+                  </div>
+                </th>
+              ))}
+            </tr>
+          ))}
+        </thead>
+        {/* Table Body */}
+        <tbody {...getTableBodyProps()}>
+          {page?.length ? (
+            !TableBodyComponent ? (
+              page.map((row) => {
+                prepareRow(row);
+                const { key, ...rowProps } = row.getRowProps();
+                return (
+                  <React.Fragment key={key}>
+                    {/* table row */}
+                    <tr
+                      {...rowProps}
+                      className={classnames(rowProps.className, {
+                        "row-selected": row.isSelected,
+                      })}
+                    >
+                      {row.cells.map((cell) => (
+                        <td className="text-center" {...cell.getCellProps()}>
+                          {cell.render("Cell")}
+                        </td>
+                      ))}
                     </tr>
-                  )}
-                </React.Fragment>
-              );
-            })
+                    {/* SubComponent */}
+                    {SubComponent && config?.enableExpanded && row?.isExpanded && (
+                      <tr>
+                        <td colSpan={visibleColumns.length}>
+                          <SubComponent row={row} />
+                        </td>
+                      </tr>
+                    )}
+                  </React.Fragment>
+                );
+              })
+            ) : (
+              <TableBodyComponent page={page} />
+            )
           ) : (
-            <TableBodyComponent page={page} />
-          )
-        ) : (
-          <tr>
-            <td
-              colSpan={visibleColumns.length}
-              className="text-large font-weight-bold text-center"
-            >
-              {tableEmptyNode}
-            </td>
-          </tr>
-        )}
-      </tbody>
-      {/* Table Footer; Paginator */}
-      <tfoot>
-        {pageOptions.length > 1 && (
-          <Paginator
-            pageIndex={pageIndex}
-            pageOptions={pageOptions}
-            onPaginate={gotoPage}
-          />
-        )}
-      </tfoot>
-    </Table>
+            <tr>
+              <td
+                colSpan={visibleColumns.length}
+                className="text-large fw-bold text-center"
+              >
+                {tableEmptyNode}
+              </td>
+            </tr>
+          )}
+        </tbody>
+        {/* Table Footer */}
+        {footerAvailable &&
+        <tfoot>
+          {footerGroups.map(group => (
+            <tr {...group.getFooterGroupProps()}>
+              {group.headers.map(column => (
+                <th {...column.getFooterProps()}>{column.render("Footer")}</th>
+              ))}
+            </tr>
+          ))}
+        </tfoot>
+        }
+      </Table>
+    {/* Paginator */}
+    {pageOptions.length > 1 && (
+      <Paginator
+        pageIndex={pageIndex}
+        pageOptions={pageOptions}
+        onPaginate={gotoPage}
+        className="table-paginator"
+      />
+    )}
+    </div>
   );
 }
 

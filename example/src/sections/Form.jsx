@@ -1,10 +1,13 @@
 import React from "react";
-import { Col, Label, FormGroup } from "reactstrap";
 import {
-  CustomInput as FormCustomInput,
-  Input as FormInput,
-  Submit,
-} from "formstrap";
+  Col,
+  Label,
+  FormGroup,
+  Button,
+  Input,
+  Spinner,
+  Row
+} from "reactstrap";
 import { Form, Formik } from "formik";
 
 import {
@@ -91,176 +94,190 @@ export default function FormExample(props) {
       >
         {(formik) => (
           <Form className="content-section bg-body">
-            <FormGroup
-              row
-              className="d-flex-start-center flex-lg-row flex-md-column"
-            >
-              {/* FormCustomInput */}
+            <Row>
+              {/* Input */}
               <Col lg={4}>
-                <Label className="required" htmlFor="name">
-                  Name
-                </Label>
-                <FormCustomInput
-                  autoFocus
-                  type="text"
-                  name="name"
-                  className="form-control input-dark"
-                />
+                <FormGroup>
+                  <Label className="required" for="name">
+                    Name
+                  </Label>
+                  <Input
+                    autoFocus
+                    type="text"
+                    name="name"
+                    className="input-dark"
+                  />
+                </FormGroup>
               </Col>
               {/* AsyncSelect */}
               <Col lg={3}>
-                <Label className="required" htmlFor="country">
-                  Country
-                </Label>
-                <AsyncSelect
-                  multi
-                  name="country"
-                  {...asyncSelectProps}
-                  className="input-dark"
-                />
+                <FormGroup>
+                  <Label className="required" for="country">
+                    Country
+                  </Label>
+                  <AsyncSelect
+                    name="country"
+                    {...asyncSelectProps}
+                    className="input-dark"
+                  />
+                </FormGroup>
               </Col>
               {/* ButtonSelect */}
               <Col lg={3}>
-                <Label className="required" htmlFor="gender">
-                  Gender
-                </Label>
-                <ButtonSelect
-                  className="d-block"
-                  name="gender"
-                  value={formik.values.gender}
-                  choices={genderChoices}
-                  onChange={(ch) => formik.setFieldValue("gender", ch)}
-                />
+                <FormGroup>
+                  <Label className="required" for="gender">
+                    Gender
+                  </Label>
+                  <ButtonSelect
+                    className="d-block"
+                    name="gender"
+                    value={formik.values.gender}
+                    choices={genderChoices}
+                    onChange={(ch) => formik.setFieldValue("gender", ch)}
+                  />
+                </FormGroup>
               </Col>
-            </FormGroup>
-            <FormGroup
-              row
-              className="d-flex-start-start flex-lg-row flex-md-column"
-            >
+            </Row>
+            <Row>
               {/* MultiSelectDropdownInput */}
               <Col lg={4}>
-                <Label className="required" htmlFor="likeUI">
-                  Select Occupation
-                </Label>
-                <MultiSelectDropdownInput
-                  isMulti={false}
-                  options={occupationChoices}
-                  value={formik.values.occupation}
-                  onChange={(v) => formik.setFieldValue("occupation", v)}
-                />
+                <FormGroup>
+                  <Label className="required" for="likeUI">
+                    Select Occupation
+                  </Label>
+                  <MultiSelectDropdownInput
+                    isMulti={false}
+                    options={occupationChoices}
+                    value={formik.values.occupation}
+                    onChange={v => formik.setFieldValue("occupation", v)}
+                  />
+                </FormGroup>
               </Col>
               {/* MultiSelectCreatableInput */}
               <Col lg={4}>
-                <Label className="required" htmlFor="likeUI">
-                  Past Occupations
-                </Label>
-                <MultiSelectCreatableInput
-                  options={occupationChoices}
-                  value={formik.values.pastOccupations}
-                  onChange={(v) => formik.setFieldValue("pastOccupations", v)}
-                />
+                <FormGroup>
+                  <Label className="required" for="likeUI">
+                    Past Occupations
+                  </Label>
+                  <MultiSelectCreatableInput
+                    options={occupationChoices}
+                    value={formik.values.pastOccupations}
+                    onChange={(v) => formik.setFieldValue("pastOccupations", v)}
+                  />
+                </FormGroup>
               </Col>
               {/* MultiSelectTextInput  */}
               <Col lg={4}>
-                <Label className="required" htmlFor="techTags">
-                  Add some technologies you work with
-                </Label>
-                <MultiSelectTextInput
-                  defaultElements={formik.values.techTags}
-                  onElementsChange={(v) => formik.setFieldValue("techTags", v)}
-                />
+                <FormGroup>
+                  <Label className="required" for="techTags">
+                    Add some technologies you work with
+                  </Label>
+                  <MultiSelectTextInput
+                    defaultElements={formik.values.techTags}
+                    onElementsChange={v => formik.setFieldValue("techTags", v)}
+                  />
+                </FormGroup>
               </Col>
-            </FormGroup>
-            <FormGroup
-              row
-              className="d-flex-start-start flex-lg-row flex-md-column"
-            >
+            </Row>
+            <Row>
               {/* Select */}
               <Col md={4}>
-                <Label className="required" htmlFor="discover_from">
-                  How did you discover certego-ui ?
-                </Label>
-                <Select
-                  name="discover_from"
-                  choices={hearAboutUsChoices}
-                  className="input-dark"
-                />
+                <FormGroup>
+                  <Label className="required" for="discover_from">
+                    How did you discover <code>certego-ui</code>?
+                  </Label>
+                  <Select
+                    name="discover_from"
+                    choices={hearAboutUsChoices}
+                    className="input-dark"
+                  />
+                </FormGroup>
               </Col>
-              {/* FormInput */}
+              {/* Input */}
               <Col md={6}>
-                <Label htmlFor="additionalNote">Additional Note</Label>
-                <FormInput
-                  type="textarea"
-                  name="additionalNote"
-                  className="input-dark"
-                />
+                <FormGroup>
+                  <Label for="additionalNote">Additional Note</Label>
+                  <Input
+                    type="textarea"
+                    name="additionalNote"
+                    className="input-dark"
+                  />
+                </FormGroup>
               </Col>
-            </FormGroup>
-            <FormGroup
-              row
-              className="d-flex-start-start flex-lg-row flex-md-column"
-            >
+            </Row>
+            <Row>
               {/* TernaryCheckbox */}
               <Col md={2}>
-                <Label className="required" htmlFor="likeUI">
-                  Do you like this UI ?
-                </Label>
-                <TernaryCheckbox
-                  className="d-block"
-                  undefLabel="Maybe"
-                  value={formik.values.likeUI}
-                  onChange={(ch) => formik.setFieldValue("likeUI", ch)}
-                />
+                <FormGroup>
+                  <Label className="required" for="likeUI">
+                    Do you like this UI?
+                  </Label>
+                  <TernaryCheckbox
+                    className="d-block"
+                    undefLabel="Maybe"
+                    value={formik.values.likeUI}
+                    onChange={ch => formik.setFieldValue("likeUI", ch)}
+                  />
+                </FormGroup>
               </Col>
               {/* MultiRangeSlider */}
               {formik.values.likeUI && (
                 <Col md={4} className="pt-3">
-                  <Label className="required" htmlFor="likeUI">
-                    On a scale of 1 - 10 ?
-                  </Label>
-                  <MultiRangeSlider
-                    domain={[1, 10]}
-                    defaultValues={formik.values.likeUIRange}
-                    onChange={(v) => formik.setFieldValue("likeUIRange", v)}
-                  />
+                  <FormGroup>
+                    <Label className="required" for="likeUI">
+                      On a scale of 1-10?
+                    </Label>
+                    <MultiRangeSlider
+                      domain={[1, 10]}
+                      defaultValues={formik.values.likeUIRange}
+                      onChange={(v) => formik.setFieldValue("likeUIRange", v)}
+                    />
+                  </FormGroup>
                 </Col>
               )}
-            </FormGroup>
-            <FormGroup row className="ml-1">
+            </Row>
+            <Row>
               {/* InputCheckBox */}
-              <InputCheckBox
-                className="bg-body"
-                label="I Accept the terms and conditions"
-                name="acceptTerms"
-                valid={formik.values.acceptTerms}
-              />
-            </FormGroup>
-            <FormGroup
-              row
-              className="d-flex-start-start flex-lg-row flex-md-column"
-            >
+              <Col>
+                <InputCheckBox
+                  className="bg-body"
+                  label="I Accept the terms and conditions"
+                  name="acceptTerms"
+                  valid={formik.values.acceptTerms}
+                />
+              </Col>
+            </Row>
+            <Row>
               {/* CustomJsonInput */}
               <Col lg={6}>
-                <Label htmlFor="debugForm">Debug Form Values</Label>
-                <CustomJsonInput placeholder={formik.values} viewOnly />
+                <FormGroup>
+                  <Label for="debugForm">Debug Form Values</Label>
+                  <CustomJsonInput placeholder={formik.values} viewOnly />
+                </FormGroup>
               </Col>
-            </FormGroup>
-            <FormGroup row className="mt-5 d-flex-center">
+            </Row>
+            <Row className="mt-5">
               {/* Submit */}
-              <Submit
-                withSpinner
-                disabled={!(formik.isValid || formik.isSubmitting)}
-                color="primary"
-                outline
-                size="md"
-              >
-                {!formik.isSubmitting && "Submit"}
-              </Submit>
-            </FormGroup>
-            <small className="text-muted">
-              Note: This form is only for demo purposes, input data is neither
-              sent nor stored.
-            </small>
+              <Col>
+                <Button
+                  type="submit"
+                  disabled={!(formik.isValid || formik.isSubmitting)}
+                  color="primary"
+                  outline
+                  size="md"
+                >
+                  {formik.isSubmitting && <Spinner />}Submit
+                </Button>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <small className="text-muted">
+                  Note: This form is only for demo purposes, input data is neither
+                  sent nor stored.
+                </small>
+              </Col>
+            </Row>
           </Form>
         )}
       </Formik>

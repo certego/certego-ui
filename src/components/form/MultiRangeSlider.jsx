@@ -96,7 +96,7 @@ export default function MultiRangeSlider({
                   left: `${source.percent}%`,
                   width: `${target.percent - source.percent}%`,
                 }}
-                {...getTrackProps(id)}
+                {...getTrackProps()}
               />
             ))}
           </div>

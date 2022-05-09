@@ -1,5 +1,12 @@
 import React from "react";
-import { Row, Col, Label, FormGroup } from "reactstrap";
+import {
+  Row,
+  Col,
+  Label,
+  FormGroup,
+  Button,
+  Input
+} from "reactstrap";
 import {
   MdCheckCircle,
   MdContentCopy,
@@ -8,7 +15,6 @@ import {
   MdModeEdit,
   MdVisibility,
 } from "react-icons/md";
-import { CustomInput as FormInput, Submit } from "formstrap";
 import { Form, Formik } from "formik";
 
 import {
@@ -32,14 +38,14 @@ export default function Buttons(props) {
         name="IconButton"
         bodyNode={
           <>
-            <Row className="d-flex justify-content-around mt-3">
+            <div className="d-flex justify-content-around mt-3">
               <IconButton
                 id="iconbutton-example-1"
                 title="Example Button #1"
                 Icon={() => <span>Example Button #1</span>}
               />
-            </Row>
-            <Row className="d-flex justify-content-around mt-3">
+            </div>
+            <div className="d-flex justify-content-around mt-3">
               <IconButton
                 id="iconbutton-example-2"
                 title="Example Button #2"
@@ -64,27 +70,27 @@ export default function Buttons(props) {
                 Icon={MdVisibility}
                 color="dark"
               />
-            </Row>
+            </div>
           </>
         }
       />
       <ComponentAsExample
         name="SyncButton"
         bodyNode={
-          <Row className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around">
             <SyncButton onClick={async () => alert("Example Alert #1")} />
             <SyncButton
               title="Custom title"
               className="btn btn-info"
               onClick={async () => alert("Example Alert #2")}
             />
-          </Row>
+          </div>
         }
       />
       <ComponentAsExample
         name="CopyToClipboardButton"
         bodyNode={
-          <Row className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around">
             <CopyToClipboardButton
               id="copybtn-example-1"
               text="Example text #1"
@@ -97,13 +103,13 @@ export default function Buttons(props) {
             >
               <MdContentCopy />
             </CopyToClipboardButton>
-          </Row>
+          </div>
         }
       />
       <ComponentAsExample
         name="PopupFormButton"
         bodyNode={
-          <Row className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around">
             <PopupFormButton
               id="popupform-example-1"
               title="Click me to edit"
@@ -119,38 +125,38 @@ export default function Buttons(props) {
                   {(formik) => (
                     <Form className="p-2 ">
                       <FormGroup>
-                        <Label className="required" htmlFor="email">
+                        <Label className="required" for="email">
                           Name
                         </Label>
-                        <FormInput
+                        <Input
                           autoFocus
                           type="text"
                           name="name"
-                          className="form-control form-control-sm"
+                          size="sm"
                         />
                       </FormGroup>
-                      <Submit type="submit" color="darker" size="sm">
+                      <Button type="submit" color="darker" size="sm">
                         Submit
-                      </Submit>
+                      </Button>
                     </Form>
                   )}
                 </Formik>
               )}
               onFormSuccess={() => alert("onFormSuccess callback")}
             />
-          </Row>
+          </div>
         }
       />
       <ComponentAsExample
         name="ScrollToTopButton"
         bodyNode={
-          <Row className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around">
             <ScrollToTopButton
               id="override"
               defaultVisible
               scrollYOffset={-50}
             />
-          </Row>
+          </div>
         }
       />
       <ComponentAsExample
@@ -164,7 +170,7 @@ export default function Buttons(props) {
                 popoverTrigger="hover"
                 popoverPlacement="left"
               />
-              <small className="font-italic">hover</small>
+              <small className="fst-italic">hover</small>
             </Col>
             <Col className="d-flex-center flex-column">
               <SocialShareBtn
@@ -173,7 +179,7 @@ export default function Buttons(props) {
                 popoverPlacement="top"
                 onlyIcon
               />
-              <small className="font-italic">hover</small>
+              <small className="fst-italic">hover</small>
             </Col>
             <Col className="d-flex-center flex-column">
               <SocialShareBtn
@@ -182,7 +188,7 @@ export default function Buttons(props) {
                 popoverTrigger="click"
                 popoverPlacement="top"
               />
-              <small className="font-italic">click</small>
+              <small className="fst-italic">click</small>
             </Col>
           </Row>
         }
@@ -193,11 +199,11 @@ export default function Buttons(props) {
           <Row className="d-flex justify-content-around">
             <Col className="d-flex-center flex-column">
               <GoBackButton />
-              <small className="font-italic">color: accent-2</small>
+              <small className="fst-italic">color: accent-2</small>
             </Col>
             <Col className="d-flex-center flex-column">
               <GoBackButton onlyIcon={false} color="gray" />
-              <small className="font-italic">
+              <small className="fst-italic">
                 onlyIcon: false, color: gray
               </small>
             </Col>
