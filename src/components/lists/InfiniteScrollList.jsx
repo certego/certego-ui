@@ -92,7 +92,7 @@ export default function InfiniteScrollList(props) {
                   type="search"
                   name="search-input"
                   value={searchInput}
-                  className="form-control input-dark"
+                  className="input-dark"
                   placeholder="Search keyword..."
                   onChange={onInputChange}
                 />

@@ -7,6 +7,7 @@ export * from "./form";
 export * from "./icons";
 export * from "./lists";
 export * from "./misc";
+export * from "./modals";
 export * from "./nav";
 export * from "./table";
 export * from "./tabs";

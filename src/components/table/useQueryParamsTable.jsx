@@ -38,10 +38,10 @@ function useQueryParamsTable({ initialParams, }) {
 
   // update query params to match table state
   React.useEffect(() => {
-    navigate({
-      search: `?${new URLSearchParams(params).toString()}`,
-    }, { replace: true, });
-  }, [navigate, params]);
+    const search = `?${new URLSearchParams(params).toString()}`;
+    if (search !== location.search)
+      navigate({ search, }, { replace: true, });
+  }, [navigate, params, location.search]);
 
   // callbacks
   const onTableFilterDebounced = useAsyncDebounce(

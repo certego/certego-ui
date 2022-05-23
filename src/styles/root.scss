@@ -23,6 +23,28 @@
 @import "_toast";
 @import "_utils";
 
+/* custom properties */
+
+:root {
+  --primary: #{$primary} !important;
+  --secondary: #{$secondary} !important;
+  --tertiary: #{$tertiary} !important;
+  --dark: #{$dark} !important;
+  --light: #{$light} !important;
+  --info: #{$info} !important;
+  --body-bg: #{$body-bg} !important;
+  --gray: #{$gray} !important;
+  --dark-bluish-grey: #{$dark-bluish-grey} !important;
+  --light-bluish-grey: #{$light-bluish-grey} !important;
+  --accent: #{$sev-high} !important;
+  --accent-2: #{$accent-2} !important;
+  --accent-1: #{$accent-1} !important;
+  --tertiary: #{$tertiary} !important;
+  --advisory: #{$sev-low} !important;
+  --gray: #{$gray} !important;
+  --darker: #{$darker} !important;
+}
+
 /* custom SCSS */
 
 body {

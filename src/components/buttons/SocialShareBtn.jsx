@@ -5,10 +5,11 @@ import {
   EmailShareButton,
   FacebookShareButton,
   LinkedinShareButton,
-  TwitterShareButton,
+  TwitterShareButton
 } from "react-share";
 import { FaLink } from "react-icons/fa";
 import { MdShare } from "react-icons/md";
+import { nanoid } from "nanoid";
 import CopyToClipboardButton from "./CopyToClipboardButton";
 
 
@@ -22,10 +23,14 @@ export default function SocialShareBtn({
   ...shareProps
 }) {
 
+  // vars
+  const btnId = id || `socialbtn-${nanoid(4)}`;
+  const copyBtnId = `copybtn-${id||nanoid(4)}`;
+
   return (
     <div>
       <Button
-        id={`${id}-socialbtn`}
+        id={btnId}
         className="ms-2"
         size="sm"
         color="accent-2"
@@ -35,7 +40,7 @@ export default function SocialShareBtn({
         {!onlyIcon && <>&nbsp;Share</>}
       </Button>
       <UncontrolledPopover
-        target={`${id}-socialbtn`}
+        target={btnId}
         trigger={popoverTrigger}
         placement={popoverPlacement}
       >
@@ -44,7 +49,7 @@ export default function SocialShareBtn({
           <FacebookShareButton url={url} {...shareProps} />
           <LinkedinShareButton url={url} {...shareProps} />
           <EmailShareButton url={url} {...shareProps} />
-          <CopyToClipboardButton id={`${id}-copybtn`} text={url}>
+          <CopyToClipboardButton id={copyBtnId} text={url}>
             <FaLink className="ms-3 me-4 text-large text-secondary" />
           </CopyToClipboardButton>
         </PopoverBody>
@@ -54,7 +59,7 @@ export default function SocialShareBtn({
 }
 
 SocialShareBtn.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   url: PropTypes.string.isRequired,
   onlyIcon: PropTypes.bool,
   btnProps: PropTypes.object,
@@ -63,6 +68,7 @@ SocialShareBtn.propTypes = {
 };
 
 SocialShareBtn.defaultProps = {
+  id: undefined,
   onlyIcon: false,
   btnProps: null,
   popoverTrigger: "hover",

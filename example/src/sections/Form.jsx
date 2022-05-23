@@ -90,7 +90,6 @@ export default function FormExample(props) {
       <Formik
         initialValues={initialValues}
         onSubmit={onFormSubmit}
-        validateOnMount
       >
         {(formik) => (
           <Form className="content-section bg-body">
@@ -266,7 +265,7 @@ export default function FormExample(props) {
                   outline
                   size="md"
                 >
-                  {formik.isSubmitting && <Spinner />}Submit
+                  {formik.isSubmitting && <Spinner  size="sm" />}Submit
                 </Button>
               </Col>
             </Row>

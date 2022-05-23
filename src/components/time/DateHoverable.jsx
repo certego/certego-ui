@@ -13,29 +13,32 @@ import {
   format,
   formatDistanceToNow
 } from "date-fns";
+import { nanoid } from "nanoid";
 
 
 function DateHoverable(props) {
-  const { id, value, className, showAgo, format: formatProp, ...rest } = props;
+  const { id, value, className, noHover, ago, showAgo, format: formatProp, showFormat, ...rest } = props;
 
   const [utcVal, userTz, userTzVal] = React.useMemo(() => {
-    const formatStr = "p PP";
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const d = new Date(value||null);
     const dUTC = addMinutes(d, d.getTimezoneOffset());
-    return [format(dUTC, formatStr), tz, format(d, formatStr)];
-  }, [value]);
+    return [format(dUTC, showFormat), tz, format(d, showFormat)];
+  }, [value, showFormat]);
+
+  const timeId = id || `date-${nanoid(4)}`;
 
   return (
     <>
       <time
-        id={id}
+        id={timeId}
         className={classnames("date-hoverable", className)}
         {...rest}
       >
-        {format(new Date(value||null), formatProp)}
+        {ago ? formatDistanceToNow(new Date(value||null), { addSuffix: true, }) :
+          format(new Date(value||null), formatProp)}
       </time>
-      <UncontrolledPopover target={id} trigger="hover">
+      {!noHover && <UncontrolledPopover target={timeId} trigger="hover">
         <PopoverHeader className="p-1">
           <small>Time Conversion</small>
         </PopoverHeader>
@@ -58,23 +61,30 @@ function DateHoverable(props) {
             </ListGroupItem>
           </ListGroup>
         </PopoverBody>
-      </UncontrolledPopover>
+      </UncontrolledPopover>}
     </>
   );
 }
 
 DateHoverable.propTypes = {
-  id: PropTypes.string.isRequired,
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   className: PropTypes.string,
   format: PropTypes.string,
+  id: PropTypes.string,
+  noHover: PropTypes.bool,
+  showFormat: PropTypes.string,
+  ago: PropTypes.bool,
   showAgo: PropTypes.bool,
 };
 
 DateHoverable.defaultProps = {
+  ago: false,
   className: undefined,
   format: "PPpppp",
+  id: undefined,
+  noHover: false,
   showAgo: false,
+  showFormat: "p PP",
 };
 
 export default React.memo(DateHoverable);

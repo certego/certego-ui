@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classnames from "classnames";
-import { Spinner, Col } from "reactstrap";
+import { Spinner } from "reactstrap";
 
 import ErrorAlert from "../alerts/ErrorAlert";
 
@@ -10,7 +9,7 @@ function LoadingBoundary(props) {
   // this is required due to a bug in the axios-hooks library which
   // shows this string even if the request was successful
   let showError = false;
-  if (error && error.response){
+  if (error && error.response) {
       showError = true;
   }
 
@@ -20,14 +19,7 @@ function LoadingBoundary(props) {
         <Spinner size={size} type="ripple" className="d-block mx-auto my-5" />
       )}
       {showError && renderError({ error, size, })}
-      {!loading && !showError && (
-          <Col
-            md={12}
-            className={classnames("p-0")}
-          >
-            {render()}
-          </Col>
-      )}
+      {!loading && !showError && render()}
     </>
   );
 }

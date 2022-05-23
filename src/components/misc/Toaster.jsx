@@ -46,7 +46,6 @@ export default function Toaster({
 
 Toaster.propTypes = {
   ...Toast.propTypes,
-  id: PropTypes.string.isRequired,
   header: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   body: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   color: PropTypes.string,

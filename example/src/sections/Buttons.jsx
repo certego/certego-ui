@@ -120,7 +120,6 @@ export default function Buttons(props) {
                 <Formik
                   initialValues={{ name: "" }}
                   onSubmit={onFormSubmit}
-                  validateOnMount
                 >
                   {(formik) => (
                     <Form className="p-2 ">

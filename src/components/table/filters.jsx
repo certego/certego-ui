@@ -12,11 +12,12 @@ function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
     <Input
       id={`datatable-select-${id}`}
       type="search"
+      bsSize="sm"
       className={classnames(
         {
           "bg-body border-secondary": filterValue,
         },
-        "form-control form-control-sm input-dark"
+        "input-dark"
       )}
       value={filterValue || ""}
       onChange={onChange}

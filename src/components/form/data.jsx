@@ -32,7 +32,6 @@ export const selectComponents = {
         ) : (
           <FormGroup check>
             <Input
-              inline
               readOnly
               type="checkbox"
               id={`${props.innerProps.id}-custominput`}
