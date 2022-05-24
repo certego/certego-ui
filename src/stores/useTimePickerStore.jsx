@@ -5,13 +5,13 @@ import { persist } from "zustand/middleware";
 
 // constants
 const DEFAULT_RANGE_DATEFORMAT_MAP = {
-  "6h": "DD/MM, HH:mm",
-  "24h": "DD/MM, HH:mm",
+  "6h": "dd/MM, HH:mm",
+  "24h": "dd/MM, HH:mm",
   "7d": "Do MMM",
-  "3M": "MMM/YYYY",
-  "6M": "MMM/YYYY",
-  "1Y": "YYYY",
-  "2Y": "YYYY",
+  "3M": "MMM/yyyy",
+  "6M": "MMM/yyyy",
+  "1Y": "yyyy",
+  "2Y": "yyyy",
 };
 
 // store
