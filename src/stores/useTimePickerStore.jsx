@@ -7,7 +7,7 @@ import { persist } from "zustand/middleware";
 const DEFAULT_RANGE_DATEFORMAT_MAP = {
   "6h": "dd/MM, HH:mm",
   "24h": "dd/MM, HH:mm",
-  "7d": "Do MMM",
+  "7d": "do MMM",
   "3M": "MMM/yyyy",
   "6M": "MMM/yyyy",
   "1Y": "yyyy",
