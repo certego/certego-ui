@@ -70,7 +70,7 @@ function SelectColumnFilter({
       onChange={onChange}
     >
       <option value="">All</option>
-      {options.map((value) => (
+      {options.sort().map((value) => (
         <option key={`datatable-select-${id}-option-${value}`} value={value}>
           {value}
         </option>
