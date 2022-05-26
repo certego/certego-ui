@@ -6,12 +6,17 @@ import { sub } from "date-fns";
 
 // constants
 const INFINITY = "inf";
-const TIME_INTERVALS = ["6h", "24h", "7d", "3M", "6M", "2Y"];
-const INTERVAL_TO_VAL = /(?<value>\d+)(?<unit>\w)/;
+const TIME_INTERVALS = {
+  "6h": {hours: 6,},
+  "24h": {hours: 24,},
+  "7d": {days: 7,},
+  "3M": {months: 3,},
+  "6M": {months: 6,},
+  "2Y": {years: 2,},
+};
 
 function intervalToTime(ti) {
-  const match = INTERVAL_TO_VAL.exec(ti);
-  const fromTime = sub(new Date(), { [match.groups.unit]: +match.groups.value, });
+  const fromTime = sub(new Date(), TIME_INTERVALS[ti]);
   fromTime.setMinutes(0);
   fromTime.setSeconds(0);
   fromTime.setMilliseconds(0);
@@ -84,7 +89,7 @@ function ElasticTimePicker(props) {
 ElasticTimePicker.defaultProps = {
   size: "sm",
   defaultSelected: "24h",
-  intervals: TIME_INTERVALS,
+  intervals: Object.keys(TIME_INTERVALS),
   showInfinity: false,
 };
 

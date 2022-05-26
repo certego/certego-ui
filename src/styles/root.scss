@@ -77,3 +77,15 @@ a:hover {
     color: $info;
   }
 }
+
+// style scrollbar for webkit (mostly Chrome)
+::-webkit-scrollbar {
+  width: $scrollbar-size;
+  height: $scrollbar-size;
+  background: rgba($gray-800, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: $gray-100;
+  border-radius: math.div($scrollbar-size, 2);
+}

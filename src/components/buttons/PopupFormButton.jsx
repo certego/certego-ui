@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Popover, UncontrolledTooltip } from "reactstrap";
+import { Button, Popover, UncontrolledTooltip, PopoverBody } from "reactstrap";
 import { nanoid } from "nanoid";
 import { IoMdClose } from "react-icons/io";
 
@@ -49,7 +49,9 @@ export default function PopupFormButton(props) {
         target={btnId}
         toggle={() => setPopoverOpen(!popoverOpen)}
       >
-        <Form onFormSubmit={onFormSubmit} />
+        <PopoverBody className="bg-dark">
+          <Form onFormSubmit={onFormSubmit} />
+        </PopoverBody>
       </Popover>
     </>
   );
@@ -67,9 +69,6 @@ PopupFormButton.propTypes = {
 
 PopupFormButton.defaultProps = {
   id: undefined,
-};
-
-PopupFormButton.defaultProps = {
   onFormSuccess: () => null,
   title: null,
   titlePlacement: "right-start",
