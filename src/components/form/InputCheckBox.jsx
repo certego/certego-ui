@@ -1,29 +1,28 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { FormFeedback } from "reactstrap";
-import { CustomInput as FormCustomInput } from "formstrap";
+import { Input, FormGroup, FormFeedback, Label } from "reactstrap";
 
 function InputCheckBox(props) {
   // props
   const { label, name, valid, feedback, ...rest } = props;
 
   return (
-    <>
-      <FormCustomInput
+    <FormGroup check>
+      <Input
         type="checkbox"
-        withFeedback={false}
-        label={label}
         name={name}
+        bsSize="sm"
         className={classnames(
-          "form-control form-control-sm bg-dark border-0 d-flex-start-center",
+          "bg-dark border-0 d-flex-start-center",
           `is-${valid ? "valid" : "invalid"}`
         )}
         valid={valid}
         {...rest}
       />
-      {feedback && <FormFeedback valid={false}>{feedback}</FormFeedback>}
-    </>
+      <Label check>{label}</Label>
+      {feedback && <FormFeedback>{feedback}</FormFeedback>}
+    </FormGroup>
   );
 }
 

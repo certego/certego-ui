@@ -8,7 +8,7 @@ import {
   ListGroupItem,
   Fade,
   Spinner,
-  CustomInput
+  Input
 } from "reactstrap";
 
 import useFuzzySearch from "../../hooks/useFuzzySearch";
@@ -71,8 +71,8 @@ export default function InfiniteScrollList(props) {
           loader={<Spinner className="d-block mx-auto my-2" />}
           endMessage={
             items?.length && items.length > SCROLL_STEP * 2 ? (
-              <p className="font-weight-bold text-info text-center">
-                Oof! scrolled a lot, didn't you? Nothing more to see here.
+              <p className="fw-bold text-info text-center">
+                Oof! scrolled a lot, didn&apos;t you? Nothing more to see here.
                 &#x1F440;
               </p>
             ) : (
@@ -81,22 +81,22 @@ export default function InfiniteScrollList(props) {
           }
         >
           {/* Extra Actions */}
-          <Row className="m-3 d-flex align-items-center justify-content-end">
+          <Row className="m-3">
             {/* Children */}
             <Col>{children}</Col>
             {/* Search Input */}
             <Col sm={6} md={3}>
-              {showSearch && data?.length > 5 && (
-                <CustomInput
+              {showSearch && data?.length > 5 &&
+                <Input
                   id="infinitescrolllist-search-input"
                   type="search"
                   name="search-input"
                   value={searchInput}
-                  className="form-control input-dark"
+                  className="input-dark"
                   placeholder="Search keyword..."
                   onChange={onInputChange}
                 />
-              )}
+              }
             </Col>
           </Row>
           {/* List Items */}

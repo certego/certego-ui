@@ -1,14 +1,14 @@
 import React from "react";
-import { Row } from "reactstrap";
 
 import {
   ContentSection,
   ElasticTimePicker,
-  MomentHoverable,
+  DateHoverable,
   useTimePickerStore,
 } from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";
+
 
 export default function Time(props) {
   const { range, fromTimeIsoStr, onTimeIntervalChange } = useTimePickerStore();
@@ -18,8 +18,8 @@ export default function Time(props) {
       <ComponentAsExample
         name="ElasticTimePicker"
         bodyNode={
-          <Row className="center">
-            <small className="text-muted font-italic my-1">
+          <div className="d-flex align-items-center flex-column">
+            <small className="text-muted fst-italic my-1">
               fromTimeIsoStr = currentTime - {range}
             </small>
             <ElasticTimePicker
@@ -27,31 +27,31 @@ export default function Time(props) {
               defaultSelected={range}
               onChange={onTimeIntervalChange}
             />
-          </Row>
+          </div>
         }
       />
       <ComponentAsExample
-        name="MomentHoverable"
+        name="DateHoverable"
         bodyNode={
-          <Row className="d-flex justify-content-around">
-            <MomentHoverable
-              id="momenthoverable-example-1"
+          <div className="d-flex justify-content-around">
+            <DateHoverable
+              id="datehoverable-example-1"
               value={fromTimeIsoStr}
               showAgo
             />
-            <MomentHoverable
-              id="momenthoverable-example-2"
+            <DateHoverable
+              id="datehoverable-example-2"
               value={fromTimeIsoStr}
               showAgo
-              format="hh:mm:ss A Z"
+              format="pp xxx"
             />
-            <MomentHoverable
-              id="momenthoverable-example-3"
+            <DateHoverable
+              id="datehoverable-example-3"
               value={fromTimeIsoStr}
               showAgo
-              format="D/M/YYYY"
+              format="d/M/yyyy"
             />
-          </Row>
+          </div>
         }
       />
     </ContentSection>

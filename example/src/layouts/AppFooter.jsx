@@ -5,7 +5,7 @@ import { FaTwitter } from "react-icons/fa";
 import { Toaster, ScrollToTopButton, useToastr } from "@certego/certego-ui";
 
 // constants
-const CERTEGO_UI_VERSION = "v0.0.10";
+const CERTEGO_UI_VERSION = "v0.1.0";
 const selector = (state) => state.toasts;
 
 function AppFooter() {
@@ -24,7 +24,7 @@ function AppFooter() {
       </section>
       {/* Footer */}
       <Container fluid className="border-top mt-2 py-1">
-        <Row noGutters className="d-flex flex-column text-center lead">
+        <Row className="d-flex flex-column text-center lead g-0">
           <Col className="text-muted small standout">
             <strong>certego-ui </strong> &copy; By{" "}
             <a
@@ -47,7 +47,7 @@ function AppFooter() {
             </a>
           </Col>
         </Row>
-        <Row noGutters className="mt-3 text-center">
+        <Row className="mt-3 text-center g-0">
           <Col>
             <a
               href={`https://twitter.com/Certego_IRT?ref_src=twsrc%5Etfw`}

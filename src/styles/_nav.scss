@@ -17,9 +17,9 @@
 
   .navbar-nav {
     .nav-item {
-      @include media-breakpoint-down(sm) {
+      @include media-breakpoint-down(md) {
         .dropdown-menu {
-          background-color: lighten($navbar-dark-bg, 2.5%) !important;
+          background-color: tint-color($navbar-dark-bg, 2.5%) !important;
           box-shadow: none;
 
           .dropdown-item,
@@ -28,7 +28,7 @@
           }
         }
       }
-      .nav-link-active {
+      .nav-link.active {
         color: $nav-tabs-link-active-color !important;
       }
     }

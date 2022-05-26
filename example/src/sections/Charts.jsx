@@ -68,7 +68,7 @@ export default function Charts(props) {
             <ContentSection className="bg-darker">
               <CustomComposedChart xAxisDataKey="name" data={chartData}>
                 {chartLabels.slice(0, 2).map(([name, color]) => (
-                  <Bar dataKey={name} fill={color} />
+                  <Bar key={name} dataKey={name} fill={color} />
                 ))}
               </CustomComposedChart>
             </ContentSection>
@@ -76,10 +76,10 @@ export default function Charts(props) {
             <ContentSection className="bg-darker">
               <CustomComposedChart xAxisDataKey="name" data={chartData}>
                 {chartLabels.slice(0, 2).map(([name, color]) => (
-                  <Bar stackId="a" dataKey={name} fill={color} />
+                  <Bar key={name} stackId="a" dataKey={name} fill={color} />
                 ))}
                 {chartLabels.slice(2, 3).map(([name, color]) => (
-                  <Bar dataKey={name} fill={color} />
+                  <Bar key={name} dataKey={name} fill={color} />
                 ))}
               </CustomComposedChart>
             </ContentSection>
@@ -88,6 +88,7 @@ export default function Charts(props) {
               <CustomComposedChart xAxisDataKey="name" data={chartData}>
                 {chartLabels.slice(0, 2).map(([name, color]) => (
                   <Area
+                    key={name}
                     type="monotone"
                     stackId="b"
                     dataKey={name}
@@ -102,11 +103,11 @@ export default function Charts(props) {
       />
       <ComponentAsExample
         name="AnyChartWidget"
-        bodyNode={<small className="font-italic">todo</small>}
+        bodyNode={<small className="fst-italic">todo</small>}
       />
       <ComponentAsExample
         name="PieChartWidget"
-        bodyNode={<small className="font-italic">todo</small>}
+        bodyNode={<small className="fst-italic">todo</small>}
       />
       <h6>
         See{" "}

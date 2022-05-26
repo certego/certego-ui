@@ -1,5 +1,7 @@
 $enable-shadows: true;
 
+$min-contrast-ratio: 2.5;
+
 // font
 $font-family-sans-serif: "Montserrat", sans-serif;
 $font-family-monospace: "Montserrat", monospace;
@@ -31,15 +33,15 @@ $light-bluish-grey: #00485a;
 $dark-bluish-grey: #1a2d35;
 $link-color: $light;
 
-$yiq-text-dark: #010101;
-$yiq-text-light: #fefefe;
+$color-contrast-dark: #010101;
+$color-contrast-light: #fefefe;
 $text-muted-color: rgb(108, 117, 125);
 
 $gradient-color-1: #e55d87;
 $gradient-color-2: $secondary;
 $gradient: linear-gradient(to right, $gradient-color-1, $gradient-color-2);
 
-$theme-colors: (
+$custom-colors: (
   "accent": $sev-high,
   "accent-1": $accent-1,
   "accent-2": $accent-2,
@@ -77,10 +79,10 @@ $badge-border-radius: $reduced-border-radius;
 
 // body
 $body-bg: #00161f;
-$body-color: $yiq-text-light;
+$body-color: $color-contrast-light;
 
 // dropdown
-$dropdown-bg: lighten($body-bg, 10%);
+$dropdown-bg: tint-color($body-bg, 10%);
 $dropdown-box-shadow: $box-shadow;
 
 $dropdown-link-color: $secondary;
@@ -92,7 +94,7 @@ $list-group-bg: transparent;
 $list-group-hover-bg: $secondary;
 
 // tooltip
-$tooltip-color: $yiq-text-light;
+$tooltip-color: $color-contrast-light;
 $tooltip-border-radius: 0;
 
 // jumbotron
@@ -113,7 +115,7 @@ $alert-check-width: 2.375rem;
 $alert-filters-height: 75vh;
 
 // close
-$close-color: $yiq-text-dark;
+$close-color: $color-contrast-dark;
 
 // modal
 $modal-dialog-margin-y-sm-up: 1rem;
@@ -132,10 +134,10 @@ $tooltip-border-radius: $reduced-border-radius;
 $code-font-size: 92.5%;
 $code-color: $sev-high;
 $pre-bg: rgba(#427285, 0.25);
-$pre-color: $yiq-text-light;
+$pre-color: $color-contrast-light;
 
 // popover
-$popover-bg: lighten($body-bg, 5%);
+$popover-bg: tint-color($body-bg, 5%);
 $popover-header-bg: $tertiary;
 $popover-border-color: $dark;
 $popover-box-shadow: $box-shadow-lg;
@@ -161,7 +163,7 @@ $progress-bg: rgba(255, 255, 255, 0.85);
 $progress-border-radius: $reduced-border-radius;
 
 // toast
-$toast-color: lighten($yiq-text-dark, 20%);
+$toast-color: tint-color($color-contrast-dark, 20%);
 
 // recharts
 $rc-axis-font-size: 0.75rem;
@@ -170,14 +172,14 @@ $rc-axis-font-size: 0.75rem;
 $datetime-border-color: $sev-very-low;
 $datetime-boder: 1px solid $datetime-border-color;
 $datetime-picker-width: 250px;
-$datetime-today-marker-width: $font-size-base / 2;
+$datetime-today-marker-width: math.div($font-size-base, 2);
 $datetime-active-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 $datetime-active-color: #428bca;
 
 // input
 $input-bg: $tertiary;
 $input-disabled-bg: rgba(255, 255, 255, 0.3);
-$input-color: $yiq-text-light;
+$input-color: $color-contrast-light;
 $input-group-addon-bg: rgba(255, 255, 255, 0.25);
 $input-btn-focus-color: rgba($primary, 0.25);
 
@@ -185,7 +187,7 @@ $input-border-radius: $reduced-border-radius;
 $input-border-radius-lg: $reduced-border-radius-lg;
 $input-border-radius-sm: $reduced-border-radius-sm;
 
-$custom-select-indicator-color: $yiq-text-light;
+$custom-select-indicator-color: $color-contrast-light;
 $custom-select-border-radius: $reduced-border-radius;
 $custom-select-disabled-color: $input-color;
 $custom-select-disabled-bg: $input-disabled-bg;
@@ -208,7 +210,7 @@ $hr-border-color: rgba(#fff, 0.1);
 
 // nav
 $nav-tabs-link-active-border-color: transparent transparent transparent;
-$nav-tabs-link-color: $yiq-text-light;
+$nav-tabs-link-color: $color-contrast-light;
 $nav-tabs-link-active-color: $info;
 $nav-tabs-link-active-bg: $dark;
 $nav-tabs-link-hover-border-color: transparent transparent transparent;
@@ -226,9 +228,9 @@ $navbar-crosshair-height: 0.5rem;
 // table
 $table-bg: $body-bg;
 $table-color: $light;
-$table-hover-bg: $yiq-text-dark;
+$table-hover-bg: $color-contrast-dark;
 $table-accent-bg: rgba($light-bluish-grey, 0.1);
-$table-row-disabled-bg: darken($dark-bluish-grey, 6.5);
+$table-row-disabled-bg: shade-color($dark-bluish-grey, 6.5%);
 $table-border-color: $dark;
 $table-border-width: 1px;
 
@@ -237,8 +239,8 @@ $pagination-active-color: $info;
 $pagination-hover-color: $info;
 $pagination-disabled-color: $text-muted-color;
 $pagination-bg: $darker;
-$pagination-active-bg: lighten($pagination-bg, 9%);
-$pagination-hover-bg: lighten($pagination-bg, 6%);
+$pagination-active-bg: tint-color($pagination-bg, 9%);
+$pagination-hover-bg: tint-color($pagination-bg, 6%);
 $pagination-disabled-bg: $pagination-bg;
 $pagination-border-width: 0;
 $pagination-border-radius-sm: 0;
@@ -254,13 +256,24 @@ $chat-bubble-padding: $font-size-base * 0.5 $font-size-base * 0.25;
 $chat-bubble-width: $font-size-base * 3;
 $chat-bubble-font-size-sm: $font-size-base;
 $chat-bubble-padding-sm: $font-size-base * 0.4 $font-size-base * 0.2;
-$chat-bubble-width-sm: $chat-bubble-width / 1.25;
+$chat-bubble-width-sm: math.div($chat-bubble-width, 1.25);
 $chat-bubble-font-size-xs: $font-size-base * 0.66;
 $chat-bubble-padding-xs: $chat-bubble-font-size-xs * 0.4
   $chat-bubble-font-size-xs * 0.2;
-$chat-bubble-width-xs: $chat-bubble-font-size-xs * 3 / 1.25;
+$chat-bubble-width-xs: math.div($chat-bubble-font-size-xs * 3, 1.25);
 $chat-nav-bubble-color: linear-gradient(
   315deg,
   rgba(255, 255, 255, 0.6) 0%,
   #fff 100%
 );
+
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+
+// merge colors (Workaround BUG Bootstrap 5.1 https://github.com/twbs/bootstrap/issues/34756)
+$theme-colors: map.merge($theme-colors, $custom-colors);
+$theme-colors-rgb: map-loop($theme-colors, to-rgb, "$value");
+$utilities-text: map.merge($theme-colors, $utilities-text);
+$utilities-text-colors: map-loop($utilities-text, rgba-css-var, "$key", "text");
+$utilities-bg: map.merge($theme-colors, $utilities-bg);
+$utilities-bg-colors: map-loop($utilities-bg, rgba-css-var, "$key", "bg");

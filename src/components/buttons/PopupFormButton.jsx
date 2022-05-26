@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Button, Popover, UncontrolledTooltip } from "reactstrap";
-
+import { Button, Popover, UncontrolledTooltip, PopoverBody } from "reactstrap";
+import { nanoid } from "nanoid";
 import { IoMdClose } from "react-icons/io";
 
 export default function PopupFormButton(props) {
@@ -27,7 +27,7 @@ export default function PopupFormButton(props) {
   }, [setPopoverOpen, onFormSuccess]);
 
   // vars
-  const btnId = `${id}-popover-btn`;
+  const btnId = id || `popover-btn-${nanoid(4)}`;
 
   return (
     <>
@@ -49,14 +49,16 @@ export default function PopupFormButton(props) {
         target={btnId}
         toggle={() => setPopoverOpen(!popoverOpen)}
       >
-        <Form onFormSubmit={onFormSubmit} />
+        <PopoverBody className="bg-dark">
+          <Form onFormSubmit={onFormSubmit} />
+        </PopoverBody>
       </Popover>
     </>
   );
 }
 
 PopupFormButton.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.string,
   title: PropTypes.string,
   titlePlacement: PropTypes.string,
   popOverPlacement: PropTypes.string,
@@ -66,6 +68,7 @@ PopupFormButton.propTypes = {
 };
 
 PopupFormButton.defaultProps = {
+  id: undefined,
   onFormSuccess: () => null,
   title: null,
   titlePlacement: "right-start",

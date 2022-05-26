@@ -1,5 +1,4 @@
 import React from "react";
-import { Row } from "reactstrap";
 
 import { ContentSection, SlicedText } from "@certego/certego-ui";
 
@@ -11,7 +10,7 @@ export default function Texts(props) {
       <ComponentAsExample
         name="SlicedText"
         bodyNode={
-          <Row className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around">
             <SlicedText
               id="slicedtext-example-1"
               value={
@@ -26,7 +25,7 @@ export default function Texts(props) {
               }
               cutoffLength={50}
             />
-          </Row>
+          </div>
         }
       />
     </ContentSection>

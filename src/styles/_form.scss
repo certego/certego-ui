@@ -41,7 +41,7 @@ input[type="range"] {
     height: 12px;
     width: 12px;
     border-radius: 0;
-    background-color: darken($info, 30%);
+    background-color: shade-color($info, 30%);
     box-shadow: -80px 0 0 80px $sev-medium;
   }
 
@@ -62,7 +62,7 @@ input[type="range"] {
     cursor: ew-resize;
     height: 12px;
     width: 12px;
-    background-color: darken($info, 30%);
+    background-color: shade-color($info, 30%);
     border-radius: 0;
   }
 }

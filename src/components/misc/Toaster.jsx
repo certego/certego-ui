@@ -36,7 +36,7 @@ export default function Toaster({
         className={`bg-${toastColor} text-dark`}
         toggle={showToggle ? toggle : undefined}
       >
-        <Icon className="text-large mr-2" />
+        <Icon className="text-large me-2" />
         {header}
       </ToastHeader>
       {body && <ToastBody>{body}</ToastBody>}
@@ -46,7 +46,6 @@ export default function Toaster({
 
 Toaster.propTypes = {
   ...Toast.propTypes,
-  id: PropTypes.string.isRequired,
   header: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
   body: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   color: PropTypes.string,

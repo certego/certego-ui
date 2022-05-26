@@ -8,7 +8,7 @@
   padding: $chat-bubble-padding;
   font-size: $chat-bubble-font-size;
   font-weight: $font-weight-bold;
-  color: $yiq-text-light;
+  color: $color-contrast-light;
   text-align: center;
   text-transform: uppercase;
   word-break: keep-all;
@@ -43,7 +43,7 @@
     padding: 0;
   }
 
-  @include media-breakpoint-down(sm) {
+  @include media-breakpoint-down(md) {
     width: $chat-bubble-width * 0.75;
     font-size: $chat-bubble-font-size * 0.75;
 

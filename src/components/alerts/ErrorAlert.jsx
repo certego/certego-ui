@@ -28,7 +28,7 @@ function ErrorAlert(props) {
       </h4>
       <hr />
       <h5>
-        {error?.response?.status} | {error?.response?.statusText}
+        {[error?.response?.status, error?.response?.statusText].filter(Boolean).join(" | ")}
       </h5>
       <div className="p-2 border border-darker">
         <code className="text-light">{error?.parsedMsg?.toString()}</code>

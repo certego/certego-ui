@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/destructuring-assignment */
 import React from "react";
-import { Badge, CustomInput } from "reactstrap";
+import { Badge, Input, FormGroup, Label } from "reactstrap";
 
 import { components as rsComponents } from "react-select";
 
@@ -30,21 +30,23 @@ export const selectComponents = {
         {!props.selectProps.isMulti ? (
           children
         ) : (
-          <CustomInput
-            inline
-            readOnly
-            type="checkbox"
-            id={`${props.innerProps.id}-custominput`}
-            htmlFor={props.innerProps.id}
-            disabled={props.isDisabled}
-            checked={props.isSelected}
-            label={props.label}
-            value={props.value}
-          />
+          <FormGroup check>
+            <Input
+              readOnly
+              type="checkbox"
+              id={`${props.innerProps.id}-custominput`}
+              disabled={props.isDisabled}
+              checked={props.isSelected}
+              value={props.value}
+            />
+            <Label check>
+              {props.label}
+            </Label>
+          </FormGroup>
         )}
       </rsComponents.Option>
       {props.data?.labelOptionExtra && (
-        <div className="mr-3">{props.data.labelOptionExtra}</div>
+        <div className="me-3">{props.data.labelOptionExtra}</div>
       )}
     </div>
   ),
@@ -52,7 +54,7 @@ export const selectComponents = {
     <rsComponents.ValueContainer {...props}>
       {children}
       {props.selectProps.isMulti && (
-        <Badge className="ml-auto">
+        <Badge className="ms-auto">
           {props.selectProps.value.length} / {props.selectProps.options.length}
         </Badge>
       )}

@@ -1,18 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Button, ButtonGroup } from "reactstrap";
-import moment from "moment";
 import { IoInfinite } from "react-icons/io5";
+import { sub } from "date-fns";
 
 // constants
 const INFINITY = "inf";
-const TIME_INTERVALS = ["6h", "24h", "7d", "3M", "6M", "2Y"];
-const INTERVAL_TO_VAL = /(?<value>\d+)(?<unit>\w)/;
+const TIME_INTERVALS = {
+  "6h": {hours: 6,},
+  "24h": {hours: 24,},
+  "7d": {days: 7,},
+  "3M": {months: 3,},
+  "6M": {months: 6,},
+  "2Y": {years: 2,},
+};
 
 function intervalToTime(ti) {
-  const match = INTERVAL_TO_VAL.exec(ti);
-  const fromTime = moment().subtract(+match.groups.value, match.groups.unit);
-  return fromTime.minutes(0).seconds(0).milliseconds(0).toISOString();
+  const fromTime = sub(new Date(), TIME_INTERVALS[ti]);
+  fromTime.setMinutes(0);
+  fromTime.setSeconds(0);
+  fromTime.setMilliseconds(0);
+  return fromTime.toISOString();
 }
 
 /**
@@ -35,16 +43,12 @@ function ElasticTimePicker(props) {
   const [selected, setSelected] = React.useState(defaultSelected);
 
   // callbacks
-  /**
-   * @param {event} e
-   */
-  const onClick = React.useCallback(
-    (e) => setSelected(e.currentTarget.value),
+  const onClick = React.useCallback(e =>
+      setSelected(e.currentTarget.value),
     [setSelected]
   );
 
   // effects
-
   React.useEffect(() => {
     if (selected === INFINITY) {
       onChange(selected, null);
@@ -58,7 +62,7 @@ function ElasticTimePicker(props) {
       {intervals.map((ti) => (
         <Button
           key={ti}
-          className="font-weight-bold"
+          className="fw-bold"
           color="secondary"
           value={ti}
           onClick={onClick}
@@ -69,7 +73,7 @@ function ElasticTimePicker(props) {
       ))}
       {showInfinity && (
         <Button
-          className="font-weight-bold"
+          className="fw-bold"
           color="secondary"
           value={INFINITY}
           onClick={onClick}
@@ -85,7 +89,7 @@ function ElasticTimePicker(props) {
 ElasticTimePicker.defaultProps = {
   size: "sm",
   defaultSelected: "24h",
-  intervals: TIME_INTERVALS,
+  intervals: Object.keys(TIME_INTERVALS),
   showInfinity: false,
 };
 

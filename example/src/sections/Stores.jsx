@@ -1,5 +1,5 @@
 import React from "react";
-import { Row, Button } from "reactstrap";
+import { Button } from "reactstrap";
 
 import { ContentSection, useToastr } from "@certego/certego-ui";
 
@@ -19,22 +19,22 @@ export default function Stores(props) {
       <ComponentAsExample
         name="useToastr"
         bodyNode={
-          <Row className="d-flex justify-content-around">
-            {["info", "primary", "success", "warning", "danger"].map(
-              (color) => (
-                <Button
-                  size="sm"
-                  key={color}
-                  color={color}
-                  onClick={() =>
-                    addToast(capitalize(color), "Example text", color, true)
-                  }
-                >
-                  {color}
-                </Button>
-              )
-            )}
-          </Row>
+          <div className="d-flex justify-content-around">
+              {["info", "primary", "success", "warning", "danger"].map(
+                (color) => (
+                  <Button
+                    size="sm"
+                    key={color}
+                    color={color}
+                    onClick={() =>
+                      addToast(capitalize(color), "Example text", color, true)
+                    }
+                  >
+                    {color}
+                  </Button>
+                )
+              )}
+          </div>
         }
       />
       <ComponentAsExample

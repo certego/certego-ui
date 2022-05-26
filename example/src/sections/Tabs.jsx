@@ -18,19 +18,19 @@ export default function TabsExample(props) {
     () => [
       {
         key: "tabs__tab1",
-        location: { pathname: "/tabs", search: "?tab=tab1" },
+        location: "tab1",
         Title: () => <span>{tabTitles[0]}</span>,
         Component: tabRenderables[0],
       },
       {
         key: "tabs__tab2",
-        location: { pathname: "/tabs", search: "?tab=tab2" },
+        location: "tab2",
         Title: () => <span>{tabTitles[1]}</span>,
         Component: tabRenderables[1],
       },
       {
         key: "tabs__tab3",
-        location: { pathname: "/tabs", search: "?tab=tab3" },
+        location: "tab3",
         Title: () => <span>{tabTitles[2]}</span>,
         Component: tabRenderables[2],
       },

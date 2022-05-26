@@ -1,19 +1,5 @@
 @import "@certego/certego-ui/src/styles/root.scss";
 
-:root {
-  /* bootstrap overwrite */
-  --primary: #{$primary} !important;
-  --secondary: #{$secondary} !important;
-  --tertiary: #{$tertiary} !important;
-  --dark: #{$dark} !important;
-  --light: #{$light} !important;
-  --info: #{$info} !important;
-  --body-bg: #{$body-bg} !important;
-  --gray: #{$gray} !important;
-  --dark-bluish-grey: #{$dark-bluish-grey} !important;
-  --light-bluish-grey: #{$light-bluish-grey} !important;
-}
-
 // App.jsx
 * {
   scroll-margin-top: 75px !important;
@@ -45,7 +31,7 @@ section#app-toasts {
   color: $light;
   font-weight: 450;
   &:hover {
-    background-color: darken($color: #1da1f2, $amount: 20);
+    background-color: shade-color(#1da1f2, 20%);
     color: $light !important;
   }
 }

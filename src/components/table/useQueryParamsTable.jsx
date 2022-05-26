@@ -1,5 +1,5 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useAsyncDebounce } from "react-table";
 
 import {
@@ -11,7 +11,8 @@ import {
 
 function useQueryParamsTable({ initialParams, }) {
   // react-router
-  const history = useHistory();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // state
   /*
@@ -20,7 +21,7 @@ function useQueryParamsTable({ initialParams, }) {
   */
   const [params, setParams] = React.useState(() => {
     const urlParams = Object.fromEntries(
-      new URLSearchParams(history.location.search)
+      new URLSearchParams(location.search)
     );
     return Object.keys(urlParams).length ? urlParams : initialParams || {};
   });
@@ -33,14 +34,14 @@ function useQueryParamsTable({ initialParams, }) {
       sortBy: ordering ? deserializeSortByParams(ordering) : [],
       filters: filters ? deserializeFilterParams(filters) : [],
     };
-  }, []);
+  }, [params]);
 
   // update query params to match table state
   React.useEffect(() => {
-    history.replace({
-      search: `?${new URLSearchParams(params).toString()}`,
-    });
-  }, [history, params]);
+    const search = `?${new URLSearchParams(params).toString()}`;
+    if (search !== location.search)
+      navigate({ search, }, { replace: true, });
+  }, [navigate, params, location.search]);
 
   // callbacks
   const onTableFilterDebounced = useAsyncDebounce(

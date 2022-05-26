@@ -1,0 +1,1 @@
+export { default as ConfirmModal, confirm } from "./ConfirmModal";

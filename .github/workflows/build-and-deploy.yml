@@ -7,10 +7,10 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: 15
+          node-version: 16
 
       - name: Install and Build 🔧
         run: |
@@ -18,7 +18,7 @@ jobs:
           npm run predeploy
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.5
+        uses: JamesIves/github-pages-deploy-action@4.3.3
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: example/build # The folder the action should deploy.

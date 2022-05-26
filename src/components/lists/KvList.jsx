@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
-import { ListGroup, ListGroupItem, Col } from "reactstrap";
+import { ListGroup, ListGroupItem, Row, Col } from "reactstrap";
 
 import Details from "../misc/Details";
 import { isObject } from "../../utils";
@@ -28,14 +28,18 @@ function recurseArray(key, arr) {
 
 function recurseObjectList(obj) {
   if (!obj) return null;
-  return Object.entries(obj).map(([key, val]) => (
-    <ListGroupItem key={`kvlist-objlist__${key}-${val}`}>
-      <span className="text-gray">{key}:</span>
-      <span className="ml-2">
-        {isObject(val) ? recurseObjectList(val) : val}
-      </span>
-    </ListGroupItem>
-  ));
+  return (
+    <ListGroup>
+      {Object.entries(obj).map(([key, val]) => (
+        <ListGroupItem key={`kvlist-objlist__${key}-${val}`}>
+          <span className="text-gray">{key}:</span>
+          <span className="ms-2 text-light">
+            {isObject(val) ? recurseObjectList(val) : val}
+          </span>
+        </ListGroupItem>
+      ))}
+    </ListGroup>
+  );
 }
 
 export default function KvList(props) {
@@ -46,17 +50,19 @@ export default function KvList(props) {
     <ListGroup className="kv-list" {...rest}>
       {entries.map(([key, val]) => (
         <ListGroupItem key={`kvlist__${key}`}>
-          <Col sm={4} md={2} lg={2} className="list-key text-capitalize">
-            {key}
-          </Col>
-          <Col className="list-value">
-            {/* eslint-disable-next-line no-nested-ternary */}
-            {isObject(val)
-              ? Array.isArray(val)
-                ? recurseArray(key, val)
-                : recurseObjectList(val)
-              : val}
-          </Col>
+          <Row className="w-100">
+            <Col sm={4} md={2} lg={2} className="list-key text-capitalize text-light">
+              {key}
+            </Col>
+            <Col className="list-value text-light">
+              {/* eslint-disable-next-line no-nested-ternary */}
+              {isObject(val)
+                ? Array.isArray(val)
+                  ? recurseArray(key, val)
+                  : recurseObjectList(val)
+                : val}
+            </Col>
+          </Row>
         </ListGroupItem>
       ))}
     </ListGroup>

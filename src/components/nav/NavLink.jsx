@@ -18,7 +18,7 @@ export default function NavLink({ type, children, className, ...props }) {
   return (
     <RSNavLink
       tag={RRNavLink}
-      activeClassName="nav-link-active"
+      to="#"
       className={classnames(
         "text-lg-center",
         type2ClassnameMap[type],

@@ -1,5 +1,5 @@
 import React from "react";
-import { DropdownMenu, DropdownToggle, Row } from "reactstrap";
+import { DropdownMenu, DropdownToggle } from "reactstrap";
 
 import {
   ContentSection,
@@ -19,13 +19,13 @@ export default function Nav(props) {
           <HoverDropdown className="text-center">
             <DropdownToggle>Hover here</DropdownToggle>
             <DropdownMenu className="bg-dark">
-              <DropdownNavLink exact to="#">
+              <DropdownNavLink to="#">
                 Item #1
               </DropdownNavLink>
-              <DropdownNavLink exact to="#">
+              <DropdownNavLink to="#">
                 Item #2
               </DropdownNavLink>
-              <DropdownNavLink exact to="#">
+              <DropdownNavLink to="#">
                 Item #3
               </DropdownNavLink>
             </DropdownMenu>
@@ -43,7 +43,7 @@ export default function Nav(props) {
       <ComponentAsExample
         name="NavLink"
         bodyNode={
-          <Row className="d-flex justify-content-around">
+          <div className="d-flex justify-content-around">
             <NavLink type="default" to="#">
               Link #1
             </NavLink>
@@ -59,7 +59,7 @@ export default function Nav(props) {
             <NavLink type="mutedUl" to="#">
               Link #5
             </NavLink>
-          </Row>
+          </div>
         }
       />
     </ContentSection>

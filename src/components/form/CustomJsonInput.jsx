@@ -29,9 +29,13 @@ function CustomJsonInput(props) {
 }
 
 CustomJsonInput.propTypes = {
-  id: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.any.isRequired,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.object,
+};
+
+CustomJsonInput.defaultProps = {
+  onChange: null,
+  placeholder: null,
 };
 
 export default React.memo(CustomJsonInput);

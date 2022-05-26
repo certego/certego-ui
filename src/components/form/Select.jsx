@@ -1,30 +1,29 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { CustomInput } from "formstrap";
+import { Input } from "reactstrap";
 
 export default function Select(props) {
   const { choices, allowEmpty, emptyLabel, ...rest } = props;
 
   return (
-    <CustomInput
+    <Input
       type="select"
       id={`select-${rest.name}`}
-      withFeedback
       {...rest}
     >
       {allowEmpty && <option value="">{emptyLabel}</option>}
-      {choices.map(({ label, value, }) => (
+      {choices.map(({ label: text, value, }) => (
         <option key={value} value={value}>
-          {label}
+          {text}
         </option>
       ))}
-    </CustomInput>
+    </Input>
   );
 }
 
 Select.defaultProps = {
-  emptyLabel: "",
   allowEmpty: false,
+  emptyLabel: "",
 };
 
 Select.propTypes = {
