@@ -22,6 +22,7 @@ import {
   MultiSelectTextInput,
   InputCheckBox,
   CustomJsonInput,
+  NewJsonRenderer,
 } from "@certego/certego-ui";
 
 // constants
@@ -250,8 +251,15 @@ export default function FormExample(props) {
               {/* CustomJsonInput */}
               <Col lg={6}>
                 <FormGroup>
-                  <Label for="debugForm">Debug Form Values</Label>
+                  <Label for="debugForm1">Debug Form Values (CustomJsonInput)</Label>
                   <CustomJsonInput placeholder={formik.values} viewOnly />
+                </FormGroup>
+              </Col>
+
+              <Col lg={6}>
+                <FormGroup>
+                  <Label for="debugForm2">Debug Form Values (NewJsonRenderer)</Label>
+                  <NewJsonRenderer placeholder={formik.values} />
                 </FormGroup>
               </Col>
             </Row>
