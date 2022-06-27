@@ -62,6 +62,7 @@
     "react-icons": "^4.3.1",
     "react-infinite-scroll-component": "^6.1.0",
     "react-json-editor-ajrm": "^2.5.13",
+    "react-json-view": "^1.21.3",
     "react-select": "^5.3.2",
     "react-share": "^4.4.0",
     "react-top-loading-bar": "^2.1.0",

@@ -6,15 +6,17 @@ import Loader from "../components/containers/Loader";
 const noop = (x) => x;
 
 function useAxiosComponentLoader(axiosOptions, modifier = noop) {
-  const { url, params, } = axiosOptions;
-  const obj = React.useMemo(() => axiosOptions, [url, params]);
+  const obj = React.useMemo(() => axiosOptions, [axiosOptions ]);
 
   // API
   const [{ data, loading, error, }, refetch] = useAxios(obj);
 
   // memo
   const MyLoader = React.useMemo(
-    () => (props) => <Loader loading={loading} error={error} {...props} />,
+      // eslint-disable-next-line func-names
+    () => function(props) {
+  return <Loader loading={loading} error={error} {...props} />;
+},
     [loading, error]
   );
 
