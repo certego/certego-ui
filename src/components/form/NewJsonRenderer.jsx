@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import ReactJson from 'react-json-view';
+import ReactJson from "react-json-view";
 
 function NewJsonRenderer({ jsonData, ...rest }) {
   return (
-      <>
-    <ReactJson
+      <ReactJson
         name={null}
         theme="harmonic"
         src={jsonData}
@@ -15,18 +14,15 @@ function NewJsonRenderer({ jsonData, ...rest }) {
         {...rest}
 
     />
-        </>
   );
 }
 
 NewJsonRenderer.propTypes = {
-  onChange: PropTypes.func,
-  placeholder: PropTypes.object,
+  jsonData: PropTypes.object,
 };
 
 NewJsonRenderer.defaultProps = {
-  onChange: null,
-  placeholder: null,
+  jsonData: null,
 };
 
 export default React.memo(NewJsonRenderer);

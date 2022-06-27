@@ -38,6 +38,7 @@ export default function useFuzzySearch({ dataList, searchableKeys, }) {
   // side effect that updates item if input `dataList` is changed
   React.useEffect(() => {
     updateItems();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dataList]);
 
   return [searchInput, onInputChange, items];
