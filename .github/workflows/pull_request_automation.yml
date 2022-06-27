@@ -29,11 +29,11 @@ jobs:
     - name: Install dependencies
       run: |
         npm i --no-optional --no-audit --no-fund
-      working-directory: ./frontend
+      working-directory: .
     - name: Lint with eslint
       run: |
         npm run lint
-      working-directory: ./frontend
+      working-directory: .
 # no tests are implemented right now
 #    - name: Test with Jest
 #      run: |
