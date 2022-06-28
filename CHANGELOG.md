@@ -2,6 +2,9 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.1.1](https://github.com/certego/certego-ui/releases/tag/v0.1.1)
+Added NewJsonRenderer.
+
 ## [v0.1.0](https://github.com/certego/certego-ui/releases/tag/v0.1.0)
 Major update of all dependencies. Breaking changes.
 
