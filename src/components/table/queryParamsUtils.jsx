@@ -16,8 +16,8 @@ const deserializeKeyId = (id) =>
  */
 const serializeFilterParams = (filters) =>
   filters.reduce(
-    (acc, { id, value }) => ({ ...acc, [`${id.replace("-", "__")}`]: value }),
-    {},
+    (acc, { id, value, }) => ({ ...acc, [`${id.replace("-", "__")}`]: value, }),
+    {}
   );
 
 /**
@@ -29,7 +29,7 @@ const deserializeFilterParams = (filters) =>
     Object.entries(filters).map(([k, v]) => ({
       id: deserializeKeyId(k),
       value: v,
-    })),
+    }))
   );
 
 /**
@@ -38,7 +38,7 @@ const deserializeFilterParams = (filters) =>
  */
 const serializeSortByParams = (sortBy) =>
   sortBy
-    .map(({ id, desc }) => `${desc ? "-" : ""}${id.split("-")[0]}`)
+    .map(({ id, desc, }) => `${desc ? "-" : ""}${id.split("-")[0]}`)
     .join(",");
 
 /**
@@ -50,12 +50,12 @@ const deserializeSortByParams = (sortByStr) =>
     sortByStr.split(",").map((str) => ({
       id: deserializeKeyId(str.charAt(0) === "-" ? str.slice(1) : str),
       desc: str.charAt(0) === "-",
-    })),
+    }))
   );
 
 export {
   serializeFilterParams,
   deserializeFilterParams,
   serializeSortByParams,
-  deserializeSortByParams,
+  deserializeSortByParams
 };
