@@ -23,7 +23,7 @@ import useRouterTabs from "./useRouterTabs";
  */
 function RouterTabs(props) {
   // props
-  const { routes, className, overflow, redirect, children, ...rest } = props;
+  const { routes, className, overflow, redirect, children, extraNavComponent, ...rest } = props;
 
   const navClasses = classnames("nav-tabs", className);
 
@@ -37,6 +37,7 @@ function RouterTabs(props) {
     <>
       <Nav tabs className={navClasses} {...rest}>
         {renderNavItems()}
+        {extraNavComponent}
       </Nav>
       <div className="mt-3">{renderRoutes()}</div>
     </>
@@ -57,6 +58,7 @@ RouterTabs.propTypes = {
   overflow: PropTypes.bool,
   className: PropTypes.string,
   children: PropTypes.node,
+  extraNavComponent: PropTypes.node,
 };
 
 RouterTabs.defaultProps = {
@@ -64,6 +66,7 @@ RouterTabs.defaultProps = {
   overflow: false,
   className: undefined,
   children: null,
+  extraNavComponent: null,
 };
 
 export default RouterTabs;
