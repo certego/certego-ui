@@ -2,6 +2,9 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.1.3](https://github.com/certego/certego-ui/releases/tag/v0.1.3)
+Trying to fix error with new Bootstrap version and custom code to fix a bug
+
 ## [v0.1.2](https://github.com/certego/certego-ui/releases/tag/v0.1.2)
 Added extraNavComponent support in RouterTabs.
 
