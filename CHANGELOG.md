@@ -2,6 +2,9 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.1.4](https://github.com/certego/certego-ui/releases/tag/v0.1.4)
+Changed the default style for the <h1> to <h6> tags: now the text il selectable
+
 ## [v0.1.3](https://github.com/certego/certego-ui/releases/tag/v0.1.3)
 Trying to fix error with new Bootstrap version and custom code to fix a bug
 
