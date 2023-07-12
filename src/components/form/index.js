@@ -9,3 +9,4 @@ export { default as MultiSelectTextInput } from "./MultiSelectTextInput";
 export { default as NewJsonRenderer } from "./NewJsonRenderer";
 export { default as Select } from "./Select";
 export { default as TernaryCheckbox } from "./TernaryCheckbox";
+export * from "./data";
