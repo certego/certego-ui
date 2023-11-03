@@ -2,6 +2,7 @@
 import React from "react";
 import classnames from "classnames";
 import { Input } from "reactstrap";
+import useDebounceInput from "../../hooks/useDebounceInput";
 
 // Define a default UI for filtering
 function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
@@ -21,6 +22,48 @@ function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
       )}
       value={filterValue || ""}
       onChange={onChange}
+      placeholder="Search keyword.."
+    />
+  );
+}
+
+// This is a debounce filter based on DefaultColumnFilter
+function DebounceColumnFilter({
+  column: { filterValue, setFilter, id },
+}) {
+  const [inputValue, setInputValue] = React.useState(
+    filterValue !== undefined ? filterValue : "",
+  );
+
+  // wait the user terminated to typing and then perform the request
+  useDebounceInput(inputValue, 2000, setFilter);
+
+  return (
+    <Input
+      id={`datatable-select-${id}`}
+      type="search"
+      bsSize="sm"
+      className={classnames(
+        {
+          "bg-body border-secondary": filterValue,
+        },
+        "input-dark",
+      )}
+      value={inputValue}
+      onChange={(e) => {
+        setInputValue(e.target.value);
+      }}
+      onKeyPress={(e) => {
+        // if the user presses 'enter' 
+        // the request is sent without waiting
+        if (e.key === "Enter") {
+          setFilter(e.target.value || undefined);
+        }
+      }}
+      onPaste={(e) => {
+        // if copy-paste is done, the request is sent without waiting
+        setFilter(e.clipboardData.getData("text/plain") || undefined);
+      }}
       placeholder="Search keyword.."
     />
   );
@@ -135,6 +178,7 @@ function SliderColumnFilter({
 
 export {
   DefaultColumnFilter,
+  DebounceColumnFilter,
   SelectOptionsFilter,
   SelectColumnFilter,
   SliderColumnFilter,
