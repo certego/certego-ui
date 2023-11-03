@@ -2,6 +2,9 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.1.7](https://github.com/certego/certego-ui/releases/tag/v0.1.7)
+Added debounce hook and debounce filter for tables to delay the requests from the frontend
+
 ## [v0.1.6](https://github.com/certego/certego-ui/releases/tag/v0.1.6)
 Export style for selectable items in dropdown 
 
