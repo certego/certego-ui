@@ -2,6 +2,9 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.1.8](https://github.com/certego/certego-ui/releases/tag/v0.1.8)
+Update node version to 20 and updated dependencies
+
 ## [v0.1.7](https://github.com/certego/certego-ui/releases/tag/v0.1.7)
 Added debounce hook and debounce filter for tables to delay the requests from the frontend
 
