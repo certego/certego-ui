@@ -2,6 +2,9 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.1.9](https://github.com/certego/certego-ui/releases/tag/v0.1.9)
+Update axios and "size" property
+
 ## [v0.1.8](https://github.com/certego/certego-ui/releases/tag/v0.1.8)
 Update node version to 20 and updated dependencies
 
