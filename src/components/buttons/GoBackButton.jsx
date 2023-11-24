@@ -62,8 +62,8 @@ export default function GoBackButton({ onlyIcon, ...restProps }) {
       onClick={() => navigate(-1)}
       Icon={BackIcon}
       style={{ border: "none", padding: "0.1rem 0.2rem", }}
-      size="sm"
       color="accent-2"
+      className="btn-sm"
       {...restProps}
     />
   );

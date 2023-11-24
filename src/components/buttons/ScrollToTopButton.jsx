@@ -38,8 +38,7 @@ export default function ScrollToTopButton(props) {
         <Button
           onClick={scrollToTop}
           color="accent-1"
-          size="md"
-          className="rounded-circle"
+          className="rounded-circle btn-md"
         >
           <RiArrowUpSLine />
         </Button>

@@ -16,7 +16,7 @@ function LoadingBoundary(props) {
   return (
     <>
       {loading && (
-        <Spinner size={size} type="ripple" className="d-block mx-auto my-5" />
+        <Spinner type="ripple" className={`d-block mx-auto my-5 spinner-border-${size}`} />
       )}
       {showError && renderError({ error, size, })}
       {!loading && !showError && render()}

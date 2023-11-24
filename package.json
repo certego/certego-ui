@@ -42,7 +42,7 @@
     "pretty-quick": "pretty-quick --staged"
   },
   "peerDependencies": {
-    "axios": "^0.27.2",
+    "axios": "^1.6.0",
     "axios-hooks": "^3.0.4",
     "bootstrap": "^5.2.1",
     "formik": "^2.2.9",
