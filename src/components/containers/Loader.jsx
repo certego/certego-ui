@@ -9,7 +9,7 @@ function Loader(props) {
   return (
     <>
       {loading && (
-        <Spinner size={size} type="ripple" className="d-block mx-auto my-5" />
+        <Spinner type="ripple" className={`d-block mx-auto my-5 spinner-border-${size}`} />
       )}
       {error && renderError({ error, size, })}
       {!(loading || error) && render()}

@@ -134,7 +134,7 @@ export default function Buttons(props) {
                           size="sm"
                         />
                       </FormGroup>
-                      <Button type="submit" color="darker" size="sm">
+                      <Button type="submit" color="darker" className="btn-sm">
                         Submit
                       </Button>
                     </Form>

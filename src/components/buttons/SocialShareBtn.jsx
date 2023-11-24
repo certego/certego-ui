@@ -31,8 +31,7 @@ export default function SocialShareBtn({
     <div>
       <Button
         id={btnId}
-        className="ms-2"
-        size="sm"
+        className="ms-2 btn-sm"
         color="accent-2"
         {...btnProps}
       >

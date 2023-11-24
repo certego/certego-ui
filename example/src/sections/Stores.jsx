@@ -23,7 +23,7 @@ export default function Stores(props) {
               {["info", "primary", "success", "warning", "danger"].map(
                 (color) => (
                   <Button
-                    size="sm"
+                    className="btn-sm"
                     key={color}
                     color={color}
                     onClick={() =>

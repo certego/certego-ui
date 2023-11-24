@@ -271,9 +271,9 @@ export default function FormExample(props) {
                   disabled={!(formik.isValid || formik.isSubmitting)}
                   color="primary"
                   outline
-                  size="md"
+                  className="btn-md"
                 >
-                  {formik.isSubmitting && <Spinner  size="sm" />}Submit
+                  {formik.isSubmitting && <Spinner  className="sm" />}Submit
                 </Button>
               </Col>
             </Row>

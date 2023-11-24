@@ -25,7 +25,7 @@ export default function AsyncSelect(props) {
         <>
           <Select choices={choices} {...selectProps} />
           {onClear && (
-            <Button className="float-end" size="sm" onClick={onClear}>
+            <Button className="float-end btn-sm" onClick={onClear}>
               <MdClear />
             </Button>
           )}

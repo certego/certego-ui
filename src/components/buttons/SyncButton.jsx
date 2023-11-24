@@ -25,7 +25,7 @@ export default function SyncButton(props) {
       {!wasClicked ? (
         <MdSync className="pointer" onClick={onClickCb} />
       ) : (
-        <Spinner type="ripple" size="sm" className="m-1" />
+        <Spinner type="ripple" className="m-1 spinner-border-sm" />
       )}
       <UncontrolledTooltip placement="top" target="syncBtn">
         {title}

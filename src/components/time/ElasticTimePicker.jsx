@@ -58,7 +58,7 @@ function ElasticTimePicker(props) {
   }, [onChange, selected]);
 
   return (
-    <ButtonGroup size={size} {...rest}>
+    <ButtonGroup className={`btn-group-${size}`} {...rest}>
       {intervals.map((ti) => (
         <Button
           key={ti}
