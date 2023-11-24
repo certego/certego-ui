@@ -2,6 +2,9 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.1.10](https://github.com/certego/certego-ui/releases/tag/v0.1.9)
+Fixed bug in debounce filter
+
 ## [v0.1.9](https://github.com/certego/certego-ui/releases/tag/v0.1.9)
 Update axios and "size" property
 
