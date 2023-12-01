@@ -156,7 +156,6 @@ function SliderColumnFilter({
 
 export {
   DefaultColumnFilter,
-  DebounceColumnFilter,
   SelectOptionsFilter,
   SelectColumnFilter,
   SliderColumnFilter,
