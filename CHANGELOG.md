@@ -2,6 +2,9 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.1.12](https://github.com/certego/certego-ui/releases/tag/v0.1.12)
+Fixed auto-update DataTable when removed a filter with the cross icon 
+
 ## [v0.1.11](https://github.com/certego/certego-ui/releases/tag/v0.1.11)
 Removed debounce filter for columns
 
