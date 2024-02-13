@@ -23,7 +23,14 @@ function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
         "input-dark"
       )}
       value={inputValue}
-      onChange={(e) => setInputValue(e.target.value)}
+      onChange={(e) => {
+        setInputValue(e.target.value);
+        // if the user clears the filter
+        if(e.target.value.length === 0) {
+          // Set undefined to remove the filter entirely
+          setFilter(undefined);
+        }
+      }}
       onKeyDown={(e) => {
         // the request is sent if the user presses 'enter'
         if (e.key === "Enter") {
@@ -33,7 +40,7 @@ function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
       onKeyUp={(e) => {
         // if the user presses 'backspace' 
         // the request is sent if input value is empty
-        if (e.key === "Backspace" && e.target.value === "") {
+        if (e.key === "Backspace" && e.target.value.length === 0) {
           // Set undefined to remove the filter entirely
           setFilter(undefined);
         }
