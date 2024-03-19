@@ -71,7 +71,7 @@ function useDataTable(
     ]
   );
 
-  return [data, tableNode, refetch, tableStateReducer];
+  return [data, tableNode, refetch, tableStateReducer, loading];
 }
 
 export default useDataTable;
