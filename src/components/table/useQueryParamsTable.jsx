@@ -46,7 +46,8 @@ function useQueryParamsTable({ initialParams, }) {
   // callbacks
   const onTableFilterDebounced = useAsyncDebounce(
     (filters) =>
-      setParams(({ ordering, }) => ({
+      setParams(({ ordering, ...others }) => ({
+        ...others, // this is needed to maintainer other url params
         ...(ordering ? { ordering, } : {}), // only include 'ordering' key if it defined
         ...serializeFilterParams(filters),
       })),
