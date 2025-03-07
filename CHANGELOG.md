@@ -2,6 +2,10 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+
+## [v0.1.15](https://github.com/certego/certego-ui/releases/tag/v0.1.15)
+Fixed filters in useDataTable
+
 ## [v0.1.14](https://github.com/certego/certego-ui/releases/tag/v0.1.14)
 useDataTable preserve urls parameter to change them outside the table
 

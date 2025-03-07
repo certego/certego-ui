@@ -1,22 +1,17 @@
-/**
- * @argument {String} id
- * @return {String}
- */
-const deserializeKeyId = (id) =>
-  // eslint-disable-next-line no-nested-ternary
-  id.indexOf("weight") >= 0
-    ? id.indexOf("__gte") >= 0
-      ? id.replace("__gte", "-gte")
-      : `${id}-gte`
-    : id;
+/* This functions are used to serialize and deserialize URL params, to values for ordering and filter
+
+Data in tables about filter and ordering are saved as object, but in the url is a string.
+These funcitions helps to convert from obj to string and vice versa
+*/
 
 /**
  * @argument {Array<Object>} filters
  * @return {Object}
  */
-const serializeFilterParams = (filters) =>
+const serializeFilterParams = (filters) => 
   filters.reduce(
-    (acc, { id, value, }) => ({ ...acc, [`${id.replace("-", "__")}`]: value, }),
+    // id and value connot be changed, are requested with this name in the lib
+    (acc, { id, value, }) => ({ ...acc, [id]: value, }),
     {}
   );
 
@@ -26,9 +21,9 @@ const serializeFilterParams = (filters) =>
  */
 const deserializeFilterParams = (filters) =>
   Array.from(
-    Object.entries(filters).map(([k, v]) => ({
-      id: deserializeKeyId(k),
-      value: v,
+    Object.entries(filters).map(([filterName, filterValue]) => ({
+      id: filterName,
+      value: filterValue,
     }))
   );
 
@@ -38,6 +33,7 @@ const deserializeFilterParams = (filters) =>
  */
 const serializeSortByParams = (sortBy) =>
   sortBy
+    // id and desc connot be changed, are requested with this name in the lib
     .map(({ id, desc, }) => `${desc ? "-" : ""}${id.split("-")[0]}`)
     .join(",");
 
@@ -45,13 +41,10 @@ const serializeSortByParams = (sortBy) =>
  * @argument {String} filters
  * @return {Array<Object>}
  */
-const deserializeSortByParams = (sortByStr) =>
-  Array.from(
-    sortByStr.split(",").map((str) => ({
-      id: deserializeKeyId(str.charAt(0) === "-" ? str.slice(1) : str),
-      desc: str.charAt(0) === "-",
-    }))
-  );
+const deserializeSortByParams = (sortByStr) => ({
+  id: sortByStr.charAt(0) === "-" ? sortByStr.slice(1) : sortByStr,
+  desc: sortByStr.charAt(0) === "-",
+});
 
 export {
   serializeFilterParams,
