@@ -9,7 +9,7 @@ import {
   deserializeSortByParams
 } from "./queryParamsUtils";
 
-function useQueryParamsTable({ initialParams, }) {
+function useQueryParamsTable({ initialParams, columnNames, }) {
   // react-router
   const navigate = useNavigate();
   const location = useLocation();
@@ -31,7 +31,7 @@ function useQueryParamsTable({ initialParams, }) {
     const { ordering, page, ...filters } = params;
     return {
       pageIndex: page ? parseInt(page - 1, 10) : 0,
-      sortBy: ordering ? deserializeSortByParams(ordering) : [],
+      sortBy: ordering ? deserializeSortByParams(ordering) : "",
       filters: filters ? deserializeFilterParams(filters) : [],
     };
   }, [params]);
@@ -45,12 +45,21 @@ function useQueryParamsTable({ initialParams, }) {
 
   // callbacks
   const onTableFilterDebounced = useAsyncDebounce(
-    (filters) =>
-      setParams(({ ordering, ...others }) => ({
-        ...others, // this is needed to maintainer other url params
-        ...(ordering ? { ordering, } : {}), // only include 'ordering' key if it defined
-        ...serializeFilterParams(filters),
-      })),
+    /* this function MUST updates ONLY the parameters used by the table: the columns.
+    It has to maintain all the params used in the page outside the table.
+    */
+    (filters) => 
+      
+      setParams(({ ordering, ...others }) => ({  // we need to separate ordering, or this doesn't work 
+            // Maintain the parameter
+            ...Object.keys(others)
+              .filter(param => !!columnNames.includes(param.id)) // select only parameter external to the table
+              .reduce((savedParams, nextParam) => ({...savedParams, [nextParam[0]]: nextParam[1], }), {}), // concatenate them
+            // Add ordering parameter (if it's defined)
+            ...(ordering ? { ordering, } : {}), 
+            // add the filter parameters (the ones with columns names)
+            ...serializeFilterParams(filters.filter(filter => columnNames.includes(filter.id))),
+          })),
     500
   ); // Debounce filter call for 500ms
 

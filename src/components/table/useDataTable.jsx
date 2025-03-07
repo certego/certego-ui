@@ -17,9 +17,12 @@ function useDataTable(
   toPassTableProps,
   modifier = defaultModifier
 ) {
+  /*
+  */
+  const columnNames = toPassTableProps.columns.map(column => column.accessor);
   // hook
   const [params, tableInitialState, tableStateReducer] = useQueryParamsTable({
-    initialParams,
+    initialParams, columnNames,
   });
 
   // state
