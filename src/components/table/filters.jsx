@@ -2,7 +2,6 @@
 import React from "react";
 import classnames from "classnames";
 import { Input } from "reactstrap";
-import useDebounceInput from "../../hooks/useDebounceInput";
 
 // Define a default UI for filtering
 function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {

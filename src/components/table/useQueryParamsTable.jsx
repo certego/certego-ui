@@ -31,7 +31,7 @@ function useQueryParamsTable({ initialParams, columnNames, }) {
     const { ordering, page, ...filters } = params;
     return {
       pageIndex: page ? parseInt(page - 1, 10) : 0,
-      sortBy: ordering ? deserializeSortByParams(ordering) : "",
+      sortBy: ordering ? deserializeSortByParams(ordering) : [],
       filters: filters ? deserializeFilterParams(filters) : [],
     };
   }, [params]);
