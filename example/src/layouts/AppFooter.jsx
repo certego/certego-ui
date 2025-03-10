@@ -5,7 +5,7 @@ import { FaTwitter } from "react-icons/fa";
 import { Toaster, ScrollToTopButton, useToastr } from "@certego/certego-ui";
 
 // constants
-const CERTEGO_UI_VERSION = "v0.1.15";
+const CERTEGO_UI_VERSION = "v0.1.16";
 const selector = (state) => state.toasts;
 
 function AppFooter() {
