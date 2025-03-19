@@ -14,6 +14,9 @@ import {
 } from "./utils";
 import Paginator from "./Paginator";
 
+/**
+ * Suitable when data is already available client side. Thus, pagination/filtering/sorting can be performed client side too.
+ */
 function DataTable({
   config: userConfig,
   onSelectedRowChange,

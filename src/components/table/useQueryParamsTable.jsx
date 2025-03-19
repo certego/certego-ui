@@ -9,25 +9,24 @@ import {
   deserializeSortByParams
 } from "./queryParamsUtils";
 
-function useQueryParamsTable({ initialParams, columnNames, }) {
+/**
+  This function automatically defines the params to be used in the request based on the filters set in the table and the URL search parameters.
+*/
+function useQueryParamsTable() {
   // react-router
   const navigate = useNavigate();
   const location = useLocation();
 
-  // state
-  /*
-    initialParams is used for 
-    fallback values incase URL query params are empty
-  */
+  // Set the params based on url search params, if no parameter is set in the url it returns an empty dict
   const [params, setParams] = React.useState(() => {
     const urlParams = Object.fromEntries(
       new URLSearchParams(location.search)
     );
-    return Object.keys(urlParams).length ? urlParams : initialParams || {};
+    return Object.keys(urlParams).length ? urlParams : {};
   });
 
-  // memo
-  const initialState = React.useMemo(() => {
+  // The table state changes every time the url params are modified, therefore every time some filters are modified
+  const tableInitialState = React.useMemo(() => {
     const { ordering, page, ...filters } = params;
     return {
       pageIndex: page ? parseInt(page - 1, 10) : 0,
@@ -36,7 +35,7 @@ function useQueryParamsTable({ initialParams, columnNames, }) {
     };
   }, [params]);
 
-  // update query params to match table state
+  // Update query params to match table state and navigate to a page with the new params
   React.useEffect(() => {
     const search = `?${new URLSearchParams(params).toString()}`;
     if (search !== location.search)
@@ -45,21 +44,11 @@ function useQueryParamsTable({ initialParams, columnNames, }) {
 
   // callbacks
   const onTableFilterDebounced = useAsyncDebounce(
-    /* this function MUST updates ONLY the parameters used by the table: the columns.
-    It has to maintain all the params used in the page outside the table.
-    */
-    (filters) => 
-      
-      setParams(({ ordering, ...others }) => ({  // we need to separate ordering, or this doesn't work 
-            // Maintain the parameter
-            ...Object.keys(others)
-              .filter(param => !!columnNames.includes(param.id)) // select only parameter external to the table
-              .reduce((savedParams, nextParam) => ({...savedParams, [nextParam[0]]: nextParam[1], }), {}), // concatenate them
-            // Add ordering parameter (if it's defined)
-            ...(ordering ? { ordering, } : {}), 
-            // add the filter parameters (the ones with columns names)
-            ...serializeFilterParams(filters.filter(filter => columnNames.includes(filter.id))),
-          })),
+    (filters) =>
+      setParams(({ ordering, }) => ({
+        ...(ordering ? { ordering, } : {}), // only include 'ordering' key if it defined
+        ...serializeFilterParams(filters), // only serialize 'filters' field
+      })),
     500
   ); // Debounce filter call for 500ms
 
@@ -68,9 +57,9 @@ function useQueryParamsTable({ initialParams, columnNames, }) {
       sortBy?.length
         ? setParams(({ ordering, ...others }) => ({
             ...others,
-            ordering: serializeSortByParams(sortBy),
+            ordering: serializeSortByParams(sortBy), // override only 'ordering' key
           }))
-        : setParams(({ ordering, ...others }) => others),
+        : setParams(({ ordering, ...others }) => others), // if sortBy has been reset remove the 'orgering' key
     500
   ); // Debounce sortBy call for 500ms
 
@@ -97,7 +86,7 @@ function useQueryParamsTable({ initialParams, columnNames, }) {
     [setParams, onTableFilterDebounced, onTableSortDebounced]
   );
 
-  return [params, initialState, tableStateReducer];
+  return [params, tableInitialState, tableStateReducer];
 }
 
 export default useQueryParamsTable;
