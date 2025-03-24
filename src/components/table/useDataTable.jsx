@@ -6,7 +6,7 @@ import LoadingBoundary from "../containers/LoadingBoundary";
 import DataTable from "./DataTable";
 import useQueryParamsTable from "./useQueryParamsTable";
 
-const defualtPageParams = {
+const defaultPageParams = {
   page_size: 10,
   page: 1,
 };
@@ -33,7 +33,7 @@ function useDataTable(
   // API
   const [{ data, loading, error, }, refetch] = useAxios({
     url,
-    params: { ...defualtPageParams, ...defaultParams, ...params, },
+    params: { ...defaultPageParams, ...defaultParams, ...params, },
   });
 
   // side-effects
