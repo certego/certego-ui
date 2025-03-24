@@ -5,25 +5,13 @@ These funcitions helps to convert from obj to string and vice versa
 */
 
 /**
- * @argument {String} id
- * @return {String}
- */
-const deserializeKeyId = (id) =>
-  // eslint-disable-next-line no-nested-ternary
-  id.indexOf("weight") >= 0
-    ? id.indexOf("__gte") >= 0
-      ? id.replace("__gte", "-gte")
-      : `${id}-gte`
-    : id;
-
-/**
  * This function is used to convert filters from obj to string
  * @argument {Array<Object>} filters
  * @return {Object}
  */
 const serializeFilterParams = (filters) =>
   filters.reduce(
-    (acc, { id, value, }) => ({ ...acc, [`${id.replace("-", "__")}`]: value, }),
+    (acc, { id, value, }) => ({ ...acc, [id]: value, }),
     {}
   );
 
@@ -35,7 +23,7 @@ const serializeFilterParams = (filters) =>
 const deserializeFilterParams = (filters) =>
   Array.from(
     Object.entries(filters).map(([filterKey, filterValue]) => ({
-      id: deserializeKeyId(filterKey),
+      id: filterKey,
       value: filterValue,
     }))
   );
@@ -58,7 +46,7 @@ const serializeSortByParams = (sortBy) =>
 const deserializeSortByParams = (sortByStr) =>
   Array.from(
     sortByStr.split(",").map((str) => ({
-      id: deserializeKeyId(str.charAt(0) === "-" ? str.slice(1) : str),
+      id: str.charAt(0) === "-" ? str.slice(1) : str,
       desc: str.charAt(0) === "-",
     }))
   );
