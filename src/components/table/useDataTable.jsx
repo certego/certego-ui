@@ -6,24 +6,26 @@ import LoadingBoundary from "../containers/LoadingBoundary";
 import DataTable from "./DataTable";
 import useQueryParamsTable from "./useQueryParamsTable";
 
-const pageParams = {
+const defaultPageParams = {
   page_size: 10,
   page: 1,
 };
-const defaultModifier = (d) => d?.results || [];
+const defaultModifier = (responseData) => responseData?.results || [];
 
+/**
+ * Suitable for fetching data from a server. Thus, pagination/filtering/sorting in most cases should be handled by the server too.
+ * @param url URL to use to make the request.
+ * @param params Query parameters that will be added to the request, which can be overridden by table filters.
+ * @param toPassTableProps Table properties (ex. columns, config, initialState, SubComponent) that will be used for creating the table component.
+ * @param modifier Function that defines in which field of the response the data that will be used is located.
+ */
 function useDataTable(
-  { url, params: defaultParams, initialParams, },
+  { url, params: defaultParams, },
   toPassTableProps,
   modifier = defaultModifier
 ) {
-  /*
-  */
-  const columnNames = toPassTableProps.columns.map(column => column.accessor);
   // hook
-  const [params, tableInitialState, tableStateReducer] = useQueryParamsTable({
-    initialParams, columnNames,
-  });
+  const [params, tableInitialState, tableStateReducer] = useQueryParamsTable();
 
   // state
   const [initialLoading, setInitialLoading] = React.useState(true);
@@ -31,7 +33,7 @@ function useDataTable(
   // API
   const [{ data, loading, error, }, refetch] = useAxios({
     url,
-    params: { ...pageParams, ...defaultParams, ...params, },
+    params: { ...defaultPageParams, ...defaultParams, ...params, },
   });
 
   // side-effects
@@ -74,7 +76,7 @@ function useDataTable(
     ]
   );
 
-  return [data, tableNode, refetch, tableStateReducer, loading];
+  return [data, tableNode, refetch, tableStateReducer, loading, tableInitialState];
 }
 
 export default useDataTable;
