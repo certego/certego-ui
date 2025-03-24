@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import classnames from "classnames";
 import { Table } from "reactstrap";
+// react-table doc: https://react-table-v7-docs.netlify.app/
 import { useTable, useMountedLayoutEffect } from "react-table";
 import { FaSort, FaSortUp, FaSortDown } from "react-icons/fa";
 
@@ -14,6 +15,9 @@ import {
 } from "./utils";
 import Paginator from "./Paginator";
 
+/**
+ * Suitable when data is already available client side. Thus, pagination/filtering/sorting can be performed client side too.
+ */
 function DataTable({
   config: userConfig,
   onSelectedRowChange,
