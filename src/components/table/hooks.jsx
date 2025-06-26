@@ -142,7 +142,7 @@ const IndeterminateCheckbox = React.forwardRef(
     }, [resolvedRef, indeterminate]);
 
     return (
-      <FormGroup check>
+      <FormGroup check className="d-flex justify-content-center mt-4">
         <Input id={id} type="checkbox" innerRef={resolvedRef} {...rest} />
         {label && <Label check>{label}</Label>}
       </FormGroup>
