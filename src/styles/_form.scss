@@ -30,39 +30,54 @@ textarea {
 /* Weight range slider */
 
 input[type="range"] {
+  &.color-range-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    border-radius: 4px;
+    height: 5px;
+    background: linear-gradient(
+      to right,
+      var(--slider-fill-color, $range-fill-color),
+      var(--slider-fill-color, $range-fill-color)
+        var(--fill-percentage, $range-fill-percentage),
+      grey var(--fill-percentage, $range-fill-percentage),
+      grey
+    );
+  }
   // Chrome
   &::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
     overflow: hidden;
-    height: 5px;
-    background-color: $light;
+    height: 12px;
+    background: transparent;
+    border: none;
   }
   &::-webkit-slider-thumb {
+    -webkit-appearance: none;
     cursor: ew-resize;
     height: 12px;
     width: 12px;
-    border-radius: 0;
-    background-color: shade-color($info, 30%);
-    box-shadow: -80px 0 0 80px $sev-medium;
+    border-radius: 50%;
+    background: var(--slider-fill-color, $range-fill-color);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    margin-top: 0px;
   }
 
   // Firefox
   &::-moz-range-progress {
-    background: linear-gradient(
-      to right,
-      $sev-very-low 0%,
-      $sev-medium 20%,
-      $sev-critical 90%
-    );
+    background: var(--slider-fill-color, $range-fill-color);
   }
   &::-moz-range-track {
     height: 2.5px;
-    background-color: $light;
+    background-color: grey;
+    border-radius: 4px;
   }
   &::-moz-range-thumb {
     cursor: ew-resize;
     height: 12px;
     width: 12px;
-    background-color: shade-color($info, 30%);
-    border-radius: 0;
+    border-radius: 50%;
+    background: var(--slider-fill-color, $range-fill-color);
   }
 }

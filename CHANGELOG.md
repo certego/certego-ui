@@ -2,6 +2,9 @@
 
 **[Get it on npm](https://www.npmjs.com/package/certego-ui)**
 
+## [v0.1.19](https://github.com/certego/certego-ui/releases/tag/v0.1.19)
+Removed css for input slider
+
 ## [v0.1.18](https://github.com/certego/certego-ui/releases/tag/v0.1.18)
 Center select box in the tables
 
