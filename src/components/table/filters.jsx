@@ -4,7 +4,7 @@ import classnames from "classnames";
 import { Input } from "reactstrap";
 
 // Define a default UI for filtering
-function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
+function DefaultColumnFilter({ column: { filterValue, setFilter, id, filterPlaceholder } }) {
   // state
   const [inputValue, setInputValue] = React.useState(
     filterValue !== undefined ? filterValue : "",
@@ -48,7 +48,7 @@ function DefaultColumnFilter({ column: { filterValue, setFilter, id } }) {
         // if copy-paste is done, the request is sent automatically
         setFilter(e.clipboardData.getData("text/plain") || undefined);
       }}
-      placeholder="Search keyword.."
+      placeholder={filterPlaceholder || "Search keyword.."}
     />
   );
 }
