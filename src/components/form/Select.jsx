@@ -1,9 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Input } from "reactstrap";
 
-export default function Select(props) {
-  const { choices, allowEmpty, emptyLabel, ...rest } = props;
+export default function Select({ choices, allowEmpty = false, emptyLabel = "", ...rest }) {
 
   return (
     <Input
@@ -21,13 +19,3 @@ export default function Select(props) {
   );
 }
 
-Select.defaultProps = {
-  allowEmpty: false,
-  emptyLabel: "",
-};
-
-Select.propTypes = {
-  choices: PropTypes.array.isRequired,
-  allowEmpty: PropTypes.bool,
-  emptyLabel: PropTypes.string,
-};

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { NavLink as RRNavLink } from "react-router-dom";
 import { DropdownItem } from "reactstrap";
 
@@ -22,7 +21,3 @@ export default function DropdownNavLink(props) {
   );
 }
 
-DropdownNavLink.propTypes = {
-  children: PropTypes.node.isRequired,
-  ...RRNavLink.propTypes,
-};

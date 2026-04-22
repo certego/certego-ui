@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { ResponsiveContainer, PieChart, Pie, Sector, Legend } from "recharts";
 
 import { useAxiosComponentLoader } from "../../hooks";
@@ -83,7 +82,7 @@ const renderActiveShape = (props) => {
 export default function PieChartWidget({
   url,
   modifierFn,
-  composedChartProps,
+  composedChartProps = undefined,
 }) {
   // consume zustand store
   const { range, } = useTimePickerStore();
@@ -140,12 +139,3 @@ export default function PieChartWidget({
   );
 }
 
-PieChartWidget.propTypes = {
-  url: PropTypes.string.isRequired,
-  modifierFn: PropTypes.func.isRequired,
-  composedChartProps: PropTypes.object,
-};
-
-PieChartWidget.defaultProps = {
-  composedChartProps: undefined,
-};

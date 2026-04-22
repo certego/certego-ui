@@ -21,4 +21,3 @@ export default function MultiSelectDropdownInput(props) {
   );
 }
 
-MultiSelectDropdownInput.propTypes = ReactSelect.propTypes;

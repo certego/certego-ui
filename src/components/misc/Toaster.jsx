@@ -1,5 +1,4 @@
 import React, { useState, useCallback } from "react";
-import PropTypes from "prop-types";
 import { Toast, ToastBody, ToastHeader, Spinner } from "reactstrap";
 import { MdError, MdWarning, MdInfo, MdCheckCircle } from "react-icons/md";
 
@@ -16,10 +15,10 @@ function getIcon(color) {
 
 export default function Toaster({
   header,
-  body,
-  color,
-  timeout,
-  showToggle,
+  body = null,
+  color = "info",
+  timeout = 4000,
+  showToggle = false,
   ...props
 }) {
   // state
@@ -44,18 +43,3 @@ export default function Toaster({
   );
 }
 
-Toaster.propTypes = {
-  ...Toast.propTypes,
-  header: PropTypes.oneOfType([PropTypes.string, PropTypes.node]).isRequired,
-  body: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
-  color: PropTypes.string,
-  timeout: PropTypes.number,
-  showToggle: PropTypes.bool,
-};
-
-Toaster.defaultProps = {
-  body: null,
-  color: "info",
-  timeout: 4000,
-  showToggle: false,
-};

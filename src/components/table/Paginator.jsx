@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 
 // constants
@@ -71,11 +70,5 @@ function Paginator(props) {
     </Pagination>
   );
 }
-
-Paginator.propTypes = {
-  pageOptions: PropTypes.array.isRequired,
-  pageIndex: PropTypes.number.isRequired,
-  onPaginate: PropTypes.func.isRequired,
-};
 
 export default React.memo(Paginator);

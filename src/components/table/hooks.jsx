@@ -1,7 +1,4 @@
-/* eslint-disable react/prop-types */
-
 import React from "react";
-import { useRowSelect, useExpanded } from "react-table";
 import { FormGroup, Input, UncontrolledTooltip, Label } from "reactstrap";
 
 import ArrowToggleIcon from "../icons/ArrowToggleIcon";
@@ -26,7 +23,6 @@ export const createUseRowDisabledHook = (hocProps) => (hooks) => {
     {
       id: "data-table-disabled_row_action",
       width: 80,
-      // eslint-disable-next-line react/prop-types
       Cell: ({ row: { original: obj, }, }) =>
         obj?.permissions?.edit ? (
           <>
@@ -53,7 +49,6 @@ export const createUseRowDisabledHook = (hocProps) => (hooks) => {
 };
 
 export const rowSelectHooks = [
-  useRowSelect,
   (hooks) => {
     hooks.visibleColumns.push((columns, { instance: { isRowSelectable, }, }) => [
       {
@@ -108,7 +103,6 @@ export const rowSelectHooks = [
 ];
 
 export const rowExpandHooks = [
-  useExpanded,
   (hooks) => {
     hooks.visibleColumns.push((columns) => [
       {

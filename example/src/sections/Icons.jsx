@@ -4,7 +4,7 @@ import {
   ContentSection,
   ArrowToggleIcon,
   BooleanIcon,
-  LinkOpenViewIcon,
+  LinkOpenViewIcon
 } from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";

@@ -39,7 +39,7 @@ function AppFooter() {
           <Col className="text-muted small standout">
             <a
               className="text-muted link"
-              href={`https://github.com/certego/certego-ui`}
+              href="https://github.com/certego/certego-ui"
               target="_blank"
               rel="noreferrer noopener"
             >
@@ -50,7 +50,7 @@ function AppFooter() {
         <Row className="mt-3 text-center g-0">
           <Col>
             <a
-              href={`https://twitter.com/Certego_IRT?ref_src=twsrc%5Etfw`}
+              href="https://twitter.com/Certego_IRT?ref_src=twsrc%5Etfw"
               target="_blank"
               rel="noopener noreferrer"
               className="twitter-follow-button"

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Button, ButtonGroup } from "reactstrap";
 import { IoInfinite } from "react-icons/io5";
 import { sub } from "date-fns";
@@ -35,9 +34,7 @@ function intervalToTime(ti) {
  *   />
  * ```
  */
-function ElasticTimePicker(props) {
-  const { onChange, size, defaultSelected, intervals, showInfinity, ...rest } =
-    props;
+function ElasticTimePicker({ onChange, size = "sm", defaultSelected = "24h", intervals = Object.keys(TIME_INTERVALS), showInfinity = false, ...rest }) {
 
   // state
   const [selected, setSelected] = React.useState(defaultSelected);
@@ -85,20 +82,5 @@ function ElasticTimePicker(props) {
     </ButtonGroup>
   );
 }
-
-ElasticTimePicker.defaultProps = {
-  size: "sm",
-  defaultSelected: "24h",
-  intervals: Object.keys(TIME_INTERVALS),
-  showInfinity: false,
-};
-
-ElasticTimePicker.propTypes = {
-  onChange: PropTypes.func.isRequired,
-  defaultSelected: PropTypes.string,
-  size: PropTypes.string,
-  intervals: PropTypes.arrayOf(PropTypes.string),
-  showInfinity: PropTypes.bool,
-};
 
 export default ElasticTimePicker;

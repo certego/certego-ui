@@ -13,7 +13,7 @@ import {
   MdDelete,
   MdInfo,
   MdModeEdit,
-  MdVisibility,
+  MdVisibility
 } from "react-icons/md";
 import { Form, Formik } from "formik";
 
@@ -25,7 +25,7 @@ import {
   PopupFormButton,
   ScrollToTopButton,
   SocialShareBtn,
-  SyncButton,
+  SyncButton
 } from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";
@@ -116,9 +116,9 @@ export default function Buttons(props) {
               titlePlacement="top"
               popOverPlacement="top"
               Icon={MdModeEdit}
-              Form={({ onFormSubmit }) => (
+              Form={({ onFormSubmit, }) => (
                 <Formik
-                  initialValues={{ name: "" }}
+                  initialValues={{ name: "", }}
                   onSubmit={onFormSubmit}
                 >
                   {(formik) => (

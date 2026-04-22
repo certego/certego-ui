@@ -1,13 +1,11 @@
 import React from "react";
-import PropTypes from "prop-types";
 import classnames from "classnames";
 
 /**
  * @type {component}
  * @param props
  */
-export default function UserBubble(props) {
-  const { userInfo, size, className, ...elProps } = props;
+export default function UserBubble({ userInfo, size = "sm", className = undefined, ...elProps }) {
 
   const userInitials =
     userInfo?.first_name?.charAt(0).concat(userInfo?.last_name?.charAt(0)) ||
@@ -39,13 +37,3 @@ export default function UserBubble(props) {
   );
 }
 
-UserBubble.propTypes = {
-  size: PropTypes.oneOf(["xs", "sm"]),
-  className: PropTypes.string,
-  userInfo: PropTypes.object.isRequired,
-};
-
-UserBubble.defaultProps = {
-  size: "sm",
-  className: undefined,
-};

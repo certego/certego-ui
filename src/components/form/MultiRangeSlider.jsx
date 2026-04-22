@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Slider, Rail, Handles, Tracks, Ticks } from "react-compound-slider";
 
 const railOuterStyle = {
@@ -25,7 +24,7 @@ const sliderStyle = {
 export default function MultiRangeSlider({
   domain,
   defaultValues,
-  disabled,
+  disabled = false,
   onChange,
 }) {
   const [min, max] = domain;
@@ -139,13 +138,3 @@ export default function MultiRangeSlider({
   );
 }
 
-MultiRangeSlider.propTypes = {
-  domain: PropTypes.arrayOf(PropTypes.number).isRequired,
-  defaultValues: PropTypes.arrayOf(PropTypes.number).isRequired,
-  onChange: PropTypes.func.isRequired,
-  disabled: PropTypes.bool,
-};
-
-MultiRangeSlider.defaultProps = {
-  disabled: false,
-};

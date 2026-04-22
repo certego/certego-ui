@@ -1,9 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { ButtonGroup, Button } from "reactstrap";
 
-function ButtonSelect(props) {
-  const { choices, value, onChange, buttonProps, ...rest } = props;
+function ButtonSelect({ choices, value, onChange, buttonProps = {}, ...rest }) {
   return (
     <ButtonGroup {...rest}>
       {choices.map((ch) => (
@@ -21,16 +19,5 @@ function ButtonSelect(props) {
     </ButtonGroup>
   );
 }
-
-ButtonSelect.propTypes = {
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  choices: PropTypes.array.isRequired,
-  buttonProps: PropTypes.object,
-};
-
-ButtonSelect.defaultProps = {
-  buttonProps: {},
-};
 
 export default React.memo(ButtonSelect);

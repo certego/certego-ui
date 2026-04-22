@@ -7,7 +7,7 @@ import {
   Details,
   Toaster,
   UserBubble,
-  FallBackLoading,
+  FallBackLoading
 } from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";
@@ -21,11 +21,11 @@ const statusColorMap = {
   incomplete: "warning",
 };
 const exampleToasts = [
-  { header: "Info", body: "Example text", color: "info" },
-  { header: "Light", body: "Example text", color: "light" },
-  { header: "Primary", body: "Example text", color: "primary" },
-  { header: "Success", body: "Example text", color: "success" },
-  { header: "Danger", body: "Example text", color: "danger", showToggle: true },
+  { header: "Info", body: "Example text", color: "info", },
+  { header: "Light", body: "Example text", color: "light", },
+  { header: "Primary", body: "Example text", color: "primary", },
+  { header: "Success", body: "Example text", color: "success", },
+  { header: "Danger", body: "Example text", color: "danger", showToggle: true, },
   {
     header: "Warning",
     body: "Example text",

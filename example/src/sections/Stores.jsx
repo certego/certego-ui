@@ -12,7 +12,7 @@ const stateSelector = (state) => ({
 });
 
 export default function Stores(props) {
-  const { addToast } = useToastr(stateSelector);
+  const { addToast, } = useToastr(stateSelector);
 
   return (
     <ContentSection {...props}>

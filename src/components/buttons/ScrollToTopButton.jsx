@@ -1,12 +1,10 @@
 
 import React from "react";
-import PropTypes from "prop-types";
 import { RiArrowUpSLine } from "react-icons/ri";
 import { Button } from "reactstrap";
 
-export default function ScrollToTopButton(props) {
+export default function ScrollToTopButton({ defaultVisible = false, scrollYOffset = 300, ...rest }) {
   // props
-  const { defaultVisible, scrollYOffset, ...rest } = props;
 
   // local state
   const [isVisible, setIsVisible] = React.useState(defaultVisible);
@@ -47,12 +45,3 @@ export default function ScrollToTopButton(props) {
   );
 }
 
-ScrollToTopButton.propTypes = {
-  defaultVisible: PropTypes.bool,
-  scrollYOffset: PropTypes.number,
-};
-
-ScrollToTopButton.defaultProps = {
-  defaultVisible: false,
-  scrollYOffset: 300,
-};

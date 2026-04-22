@@ -1,8 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Spinner } from "reactstrap";
 
-export default function FallBackLoading({ text, ...rest }) {
+export default function FallBackLoading({ text = "Loading...", ...rest }) {
   return (
     <div className="vertical-center" {...rest}>
       <div className="container text-center">
@@ -13,10 +12,3 @@ export default function FallBackLoading({ text, ...rest }) {
   );
 }
 
-FallBackLoading.propTypes = {
-  text: PropTypes.string,
-};
-
-FallBackLoading.defaultProps = {
-  text: "Loading...",
-};

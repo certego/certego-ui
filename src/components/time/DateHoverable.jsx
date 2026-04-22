@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import classnames from "classnames";
 import {
   ListGroup,
@@ -15,9 +14,7 @@ import {
 } from "date-fns";
 import { nanoid } from "nanoid";
 
-
-function DateHoverable(props) {
-  const { id, value, className, noHover, ago, showAgo, format: formatProp, showFormat, ...rest } = props;
+function DateHoverable({ id = undefined, value, className = undefined, noHover = false, ago = false, showAgo = false, format: formatProp = "PPpppp", showFormat = "p PP", ...rest }) {
 
   const [utcVal, userTz, userTzVal] = React.useMemo(() => {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -65,26 +62,5 @@ function DateHoverable(props) {
     </>
   );
 }
-
-DateHoverable.propTypes = {
-  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  className: PropTypes.string,
-  format: PropTypes.string,
-  id: PropTypes.string,
-  noHover: PropTypes.bool,
-  showFormat: PropTypes.string,
-  ago: PropTypes.bool,
-  showAgo: PropTypes.bool,
-};
-
-DateHoverable.defaultProps = {
-  ago: false,
-  className: undefined,
-  format: "PPpppp",
-  id: undefined,
-  noHover: false,
-  showAgo: false,
-  showFormat: "p PP",
-};
 
 export default React.memo(DateHoverable);

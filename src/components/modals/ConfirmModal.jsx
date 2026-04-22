@@ -1,21 +1,20 @@
 import React, { Fragment } from "react";
-import { render, unmountComponentAtNode } from "react-dom";
-import PropTypes from "prop-types";
+import { createRoot } from "react-dom/client";
 import { Modal, ModalHeader, ModalBody, ModalFooter, Button } from "reactstrap";
 
 function ConfirmModal({
   onClose,
-  message,
-  title,
-  confirmText,
-  cancelText,
-  confirmColor,
-  cancelColor,
-  className,
-  buttonsComponent,
-  size,
-  bodyComponent,
-  modalProps,
+  message = "Are you sure?",
+  title = "Warning!",
+  confirmText = "Ok",
+  cancelText = "Cancel",
+  confirmColor = "primary",
+  cancelColor = "",
+  className = "",
+  buttonsComponent = null,
+  size = null,
+  bodyComponent = null,
+  modalProps = {},
 }) {
   let buttonsContent = (
     <Fragment>
@@ -54,43 +53,16 @@ function ConfirmModal({
   );
 }
 
-ConfirmModal.defaultProps = {
-  message: "Are you sure?",
-  title: "Warning!",
-  confirmText: "Ok",
-  cancelText: "Cancel",
-  confirmColor: "primary",
-  cancelColor: "",
-  className: "",
-  buttonsComponent: null,
-  size: null,
-  bodyComponent: null,
-  modalProps: {},
-};
-
-ConfirmModal.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  message: PropTypes.node,
-  title: PropTypes.node,
-  confirmText: PropTypes.node,
-  cancelText: PropTypes.node,
-  confirmColor: PropTypes.string,
-  cancelColor: PropTypes.string,
-  className: PropTypes.string,
-  size: PropTypes.string,
-  buttonsComponent: PropTypes.func,
-  bodyComponent: PropTypes.func,
-  modalProps: PropTypes.object,
-};
-
 export const confirm = (props) => new Promise((resolve) => {
-    let el = document.createElement("div");
+    const el = document.createElement("div");
+    document.body.appendChild(el);
+    const root = createRoot(el);
     const handleResolve = (result) => {
-      unmountComponentAtNode(el);
-      el = null;
+      root.unmount();
+      el.remove();
       resolve(result);
     };
-      render(<ConfirmModal {...props} onClose={handleResolve} />, el);
+    root.render(<ConfirmModal {...props} onClose={handleResolve} />);
   });
 
 export default ConfirmModal;

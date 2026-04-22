@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAsyncDebounce } from "react-table";
+
+import useAsyncDebounce from "../../hooks/useAsyncDebounce";
 
 import {
   serializeFilterParams,
@@ -65,18 +66,25 @@ function useQueryParamsTable() {
 
   const tableStateReducer = React.useCallback(
     (newState, action) => {
+      const filters = newState?.filters || newState?.columnFilters || [];
+      const sortBy = newState?.sortBy || newState?.sorting || [];
+      const pageIndex =
+        typeof action?.pageIndex === "number"
+          ? action.pageIndex
+          : newState?.pageIndex || newState?.pagination?.pageIndex || 0;
+
       switch (action.type) {
         case "gotoPage":
           setParams((currParams) => ({
             ...currParams,
-            page: action.pageIndex + 1,
+            page: pageIndex + 1,
           }));
           break;
         case "setFilter":
-          onTableFilterDebounced(newState.filters);
+          onTableFilterDebounced(filters);
           break;
         case "toggleSortBy":
-          onTableSortDebounced(newState.sortBy);
+          onTableSortDebounced(sortBy);
           break;
         default:
           break;

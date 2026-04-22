@@ -22,4 +22,3 @@ export default function MultiSelectCreatableInput(props) {
   );
 }
 
-MultiSelectCreatableInput.propTypes = ReactSelectCreatable.propTypes;

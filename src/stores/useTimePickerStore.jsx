@@ -1,6 +1,6 @@
 
-import create from "zustand";
-import { persist } from "zustand/middleware";
+import { create } from "zustand";
+import { persist, createJSONStorage } from "zustand/middleware";
 
 // constants
 const DEFAULT_RANGE_DATEFORMAT_MAP = {
@@ -31,7 +31,7 @@ const useTimePickerStore = create(
     }),
     {
       name: "certegoUI-useTimePickerStore", // unique name
-      getStorage: () => localStorage,
+      storage: createJSONStorage(() => localStorage),
     }
   )
 );

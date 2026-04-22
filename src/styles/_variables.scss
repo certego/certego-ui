@@ -270,8 +270,8 @@ $chat-nav-bubble-color: linear-gradient(
   #fff 100%
 );
 
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
 
 // merge colors (Workaround BUG Bootstrap 5.1 https://github.com/twbs/bootstrap/issues/34756)
 // bug should be fixed after 5.2.0 so we removed the code after the following line

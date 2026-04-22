@@ -1,9 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Badge } from "reactstrap";
 
-export default function CustomMapBadge(props) {
-  const { status, statusColorMap, defaultColor, ...rest } = props;
+export default function CustomMapBadge({ status, statusColorMap, defaultColor = "light", ...rest }) {
   const color = statusColorMap[status] ? statusColorMap[status] : defaultColor;
   return (
     <Badge color={color} className="user-select-none text-larger" {...rest}>
@@ -12,12 +10,3 @@ export default function CustomMapBadge(props) {
   );
 }
 
-CustomMapBadge.propTypes = {
-  status: PropTypes.string.isRequired,
-  statusColorMap: PropTypes.object.isRequired,
-  defaultColor: PropTypes.string,
-};
-
-CustomMapBadge.defaultProps = {
-  defaultColor: "light",
-};

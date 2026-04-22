@@ -1,6 +1,5 @@
 import React from "react";
 import { Alert } from "reactstrap";
-import PropTypes from "prop-types";
 import { MdCheckCircle, MdError, MdInfo, MdWarning } from "react-icons/md";
 
 const iconChoices = {
@@ -27,7 +26,3 @@ export default function IconAlert(props) {
   );
 }
 
-IconAlert.propTypes = {
-  children: PropTypes.node.isRequired,
-  color: PropTypes.string.isRequired,
-};

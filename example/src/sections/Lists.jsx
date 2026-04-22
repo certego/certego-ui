@@ -4,7 +4,7 @@ import {
   ContentSection,
   useAxiosComponentLoader,
   InfiniteScrollList,
-  KvList,
+  KvList
 } from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";
@@ -38,7 +38,7 @@ export default function Lists(props) {
                   renderListItem={(todo) => (
                     <KvList
                       key={`kvlist-${todo.id}`}
-                      object={{ [todo.id]: todo }}
+                      object={{ [todo.id]: todo, }}
                     />
                   )}
                 />

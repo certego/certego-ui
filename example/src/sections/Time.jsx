@@ -4,14 +4,14 @@ import {
   ContentSection,
   ElasticTimePicker,
   DateHoverable,
-  useTimePickerStore,
+  useTimePickerStore
 } from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";
 
 
 export default function Time(props) {
-  const { range, fromTimeIsoStr, onTimeIntervalChange } = useTimePickerStore();
+  const { range, fromTimeIsoStr, onTimeIntervalChange, } = useTimePickerStore();
 
   return (
     <ContentSection {...props}>

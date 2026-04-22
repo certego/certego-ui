@@ -1,8 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
 import LoadingBar from "react-top-loading-bar";
 
-export default function AxiosLoadingBar({ axiosInstance, color, ...rest }) {
+export default function AxiosLoadingBar({ axiosInstance, color = "#9441b7", ...rest }) {
   // ref
   const ref = React.useRef(null);
 
@@ -25,7 +24,7 @@ export default function AxiosLoadingBar({ axiosInstance, color, ...rest }) {
         return response;
       },
       (error) => {
-        if (ref?.current && error.response.config.certegoUIenableProgressBar)
+        if (ref?.current && error?.response?.config?.certegoUIenableProgressBar)
           ref.current.complete();
         return Promise.reject(error);
       }
@@ -35,12 +34,3 @@ export default function AxiosLoadingBar({ axiosInstance, color, ...rest }) {
   return <LoadingBar shadow ref={ref} color={color} {...rest} />;
 }
 
-AxiosLoadingBar.propTypes = {
-  axiosInstance: PropTypes.oneOfType([PropTypes.object, PropTypes.func])
-    .isRequired,
-  color: PropTypes.string,
-};
-
-AxiosLoadingBar.defaultProps = {
-  color: "#9441b7",
-};

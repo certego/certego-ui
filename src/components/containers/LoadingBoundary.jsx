@@ -1,11 +1,9 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Spinner } from "reactstrap";
 
 import ErrorAlert from "../alerts/ErrorAlert";
 
-function LoadingBoundary(props) {
-  const { loading, error, size, render, renderError, } = props;
+function LoadingBoundary({ loading = false, error = null, size = "md", render, renderError = ErrorAlert, }) {
   // this is required due to a bug in the axios-hooks library which
   // shows this string even if the request was successful
   let showError = false;
@@ -23,20 +21,5 @@ function LoadingBoundary(props) {
     </>
   );
 }
-
-LoadingBoundary.propTypes = {
-  error: PropTypes.object,
-  loading: PropTypes.bool,
-  render: PropTypes.func.isRequired,
-  renderError: PropTypes.func,
-  size: PropTypes.oneOf(["sm", "md", "lg", "xl"]),
-};
-
-LoadingBoundary.defaultProps = {
-  error: null,
-  loading: false,
-  renderError: ErrorAlert,
-  size: "md",
-};
 
 export default LoadingBoundary;

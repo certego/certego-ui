@@ -1,21 +1,9 @@
-import {
-  useSortBy,
-  useFilters,
-  usePagination,
-  useColumnOrder,
-  useFlexLayout
-} from "react-table";
-
 import { rowSelectHooks, rowExpandHooks } from "./hooks";
 
 // gotta maintain the order of these plugins
 function makeTableArgs(config) {
-  const args = [useColumnOrder];
-  if (config?.enableFlexLayout) args.push(useFlexLayout);
-  if (config?.enableFilters) args.push(useFilters);
-  if (config?.enableSortBy) args.push(useSortBy);
+  const args = [];
   if (config?.enableExpanded) args.push(...rowExpandHooks);
-  args.push(usePagination);
   if (config?.enableSelection) args.push(...rowSelectHooks);
   return [...args, ...config.customHooks];
 }

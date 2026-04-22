@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {
   Row,
@@ -17,17 +16,16 @@ import useFuzzySearch from "../../hooks/useFuzzySearch";
 const SCROLL_STEP = 10;
 
 // Component
-export default function InfiniteScrollList(props) {
+export default function InfiniteScrollList({
+  data,
+  showSearch = true,
+  searchableKeys = [],
+  renderListItem,
+  genListKeyProp,
+  children = null,
+  ...rest
+}) {
   // props
-  const {
-    data,
-    showSearch,
-    searchableKeys,
-    renderListItem,
-    genListKeyProp,
-    children,
-    ...rest
-  } = props;
 
   // memo
   const keys = React.useMemo(
@@ -117,17 +115,3 @@ export default function InfiniteScrollList(props) {
   );
 }
 
-InfiniteScrollList.propTypes = {
-  data: PropTypes.array.isRequired,
-  showSearch: PropTypes.bool,
-  searchableKeys: PropTypes.array,
-  renderListItem: PropTypes.func.isRequired,
-  genListKeyProp: PropTypes.func.isRequired,
-  children: PropTypes.node,
-};
-
-InfiniteScrollList.defaultProps = {
-  showSearch: true,
-  searchableKeys: [],
-  children: null,
-};

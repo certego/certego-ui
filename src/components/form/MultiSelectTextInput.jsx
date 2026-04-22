@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import ReactCreatableSelect from "react-select/creatable";
 
@@ -60,7 +59,3 @@ export default function MultiSelectTextInput(props) {
   );
 }
 
-MultiSelectTextInput.propTypes = {
-  defaultElements: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onElementsChange: PropTypes.func.isRequired,
-};

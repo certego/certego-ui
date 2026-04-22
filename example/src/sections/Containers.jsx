@@ -5,7 +5,7 @@ import {
   ContentSection,
   SmallInfoCard,
   Loader,
-  LoadingBoundary,
+  LoadingBoundary
 } from "@certego/certego-ui";
 
 import ComponentAsExample from "./ComponentAsExample";
@@ -80,7 +80,7 @@ export default function Containers(props) {
         name="SmallInfoCard"
         bodyNode={
           <SmallInfoCard
-            header={"Example Header"}
+            header="Example Header"
             body={
               <p className="pt-2 pb-0 px-2">
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cumque

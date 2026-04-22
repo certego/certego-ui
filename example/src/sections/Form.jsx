@@ -22,20 +22,20 @@ import {
   MultiSelectTextInput,
   InputCheckBox,
   CustomJsonInput,
-  NewJsonRenderer,
+  NewJsonRenderer
 } from "@certego/certego-ui";
 
 // constants
 const asyncSelectProps = {
   url: "https://raw.githubusercontent.com/samayo/country-json/master/src/country-by-name.json",
-  mapFn: (x) => ({ label: x["country"], value: x["country"] }),
+  mapFn: (x) => ({ label: x.country, value: x.country, }),
 };
 const occupationChoices = [
-  { label: "Software Engineer", value: "swe" },
-  { label: "Super Shadowy Coder", value: "ssc" },
-  { label: "Data Engineer", value: "dee" },
-  { label: "ML engineer", value: "mle" },
-  { label: "Security engineer", value: "se" },
+  { label: "Software Engineer", value: "swe", },
+  { label: "Super Shadowy Coder", value: "ssc", },
+  { label: "Data Engineer", value: "dee", },
+  { label: "ML engineer", value: "mle", },
+  { label: "Security engineer", value: "se", },
 ];
 const hearAboutUsChoices = [
   {
@@ -66,7 +66,7 @@ const initialValues = {
   gender: genderChoices[0],
   likeUI: true,
   likeUIRange: [1, 10],
-  occupation: occupationChoices[0]["value"],
+  occupation: occupationChoices[0].value,
   pastOccupations: [],
   techTags: [],
   discover_from: "",

@@ -100,7 +100,7 @@ export default function AppMain() {
   );
 
   // call hook
-  const { activeKey, renderNavItems, renderRoutes } = useRouterTabs({
+  const { activeKey, renderNavItems, renderRoutes, } = useRouterTabs({
     routes,
     redirect: true,
   });
