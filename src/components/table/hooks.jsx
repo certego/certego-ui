@@ -1,5 +1,4 @@
 import React from "react";
-import { useRowSelect, useExpanded } from "react-table";
 import { FormGroup, Input, UncontrolledTooltip, Label } from "reactstrap";
 
 import ArrowToggleIcon from "../icons/ArrowToggleIcon";
@@ -50,7 +49,6 @@ export const createUseRowDisabledHook = (hocProps) => (hooks) => {
 };
 
 export const rowSelectHooks = [
-  useRowSelect,
   (hooks) => {
     hooks.visibleColumns.push((columns, { instance: { isRowSelectable, }, }) => [
       {
@@ -105,7 +103,6 @@ export const rowSelectHooks = [
 ];
 
 export const rowExpandHooks = [
-  useExpanded,
   (hooks) => {
     hooks.visibleColumns.push((columns) => [
       {

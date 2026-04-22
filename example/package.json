@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "start": "node ../node_modules/vite/bin/vite.js",
+    "start:ci": "PLAYWRIGHT=true node ../node_modules/vite/bin/vite.js --host 127.0.0.1 --strictPort --port 3000",
     "build": "node ../node_modules/vite/bin/vite.js build",
     "test": "node ../node_modules/vitest/vitest.mjs run --config vitest.config.mjs"
   },

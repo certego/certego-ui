@@ -1,6 +1,7 @@
 import React from "react";
 import { matchSorter } from "match-sorter";
-import { useAsyncDebounce } from "react-table";
+
+import useAsyncDebounce from "./useAsyncDebounce";
 
 /**
  * React hook for fuzzy searching text among list of objects.
